@@ -29,7 +29,7 @@ public class FollowPlayer : MonoBehaviour
     {
         transform.position = _player.transform.position + new Vector3(0, _yOffset, 0);
 
-        temp = _playerInput.actions["Look"].ReadValue<Vector2>();
+        temp = _playerInput.actions["Look"].ReadValue<Vector2>().normalized;
         temp *= _camRotationMult;
 
         temp2.eulerAngles = new Vector3(temp.y, temp.x, 0);

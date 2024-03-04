@@ -25,6 +25,8 @@ public class playerController : MonoBehaviour
     
     // Input system
     private PlayerInput _playerInput;
+
+    private Vector3 temp;
     
     // Start is called before the first frame update
     void Start()
@@ -48,13 +50,12 @@ public class playerController : MonoBehaviour
         _camForward.Normalize();
         _camRight.Normalize();
         
-        _forward = _movementInput.normalized.z * _movementSpeed * _camForward;
+        _forward = _movementInput.normalized.y * _movementSpeed * _camForward;
         _right = _movementInput.normalized.x * _movementSpeed * _camRight;
+
+        transform.eulerAngles = _camForward;
         
-        if ((_forward + _right).magnitude > .1)
-        {
-            _rigidBody.velocity = _forward + _right + new Vector3(0, _rigidBody.velocity.y, 0);
-        }
+        _rigidBody.velocity = _forward + _right + new Vector3(0, _rigidBody.velocity.y, 0);
     }
 }
 

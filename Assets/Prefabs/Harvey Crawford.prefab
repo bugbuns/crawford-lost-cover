@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 5
   _jumpHeight: 0
-  _movementInput: {x: 0, y: 0, z: 0}
+  _camFocus: {fileID: 0}
 --- !u!114 &3036277906660594274
 MonoBehaviour:
   m_ObjectHideFlags: 0
