@@ -48,5 +48,25 @@ public class InventoryManager : MonoBehaviour
     inventoryItem.itemSlotNum = curSlotNum;
     inventoryItem.InitializeItem(item);
   }
-  
+
+  public Item getSelectedItem(bool use)
+  {
+    InventorySlot slot = _inventorySlots[selectedSlot];
+    InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+    if (itemInSlot != null)
+    {
+      
+      Item item = itemInSlot.item;
+      if (use == true)
+      {
+        Destroy(itemInSlot.gameObject);
+      }
+
+      return item;
+    }
+    else
+    {
+      return null;
+    }
+  }
 }
