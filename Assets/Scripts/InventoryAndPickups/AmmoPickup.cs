@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class AmmoPickup : MonoBehaviour
 {
     public int ammoCount;
-    
+    public string ammoType;
     void Awake()
     {
         ammoCount = Random.Range(1, 11);
@@ -19,9 +19,17 @@ public class AmmoPickup : MonoBehaviour
         GameObject other = collision.gameObject;
         if (other.CompareTag("Player"))
         {
-            
-            other.GetComponent<MockController>()._PlayerStats.ammo += ammoCount;
-            Debug.Log(other.GetComponent<MockController>()._PlayerStats.ammo);
+            if (ammoType == "Pistol")
+            {
+                other.GetComponent<MockController>()._PlayerStats.pistolAmmo += ammoCount;
+                Debug.Log(other.GetComponent<MockController>()._PlayerStats.pistolAmmo);
+            }
+            else if (ammoType == "Shotgun")
+            {
+                other.GetComponent<MockController>()._PlayerStats.pistolAmmo += ammoCount;
+                Debug.Log(other.GetComponent<MockController>()._PlayerStats.pistolAmmo);
+            }
+
             Destroy(this.gameObject);
         }
     }
