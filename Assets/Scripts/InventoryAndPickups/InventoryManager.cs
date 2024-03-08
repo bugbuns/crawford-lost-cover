@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
   public PlayerControls input;
 
   private InputAction toggleInventory;
-  private int selectedSlot = -1;
+ 
 
   void Awake()
   {
@@ -32,18 +32,7 @@ public class InventoryManager : MonoBehaviour
   }
 
 
-  public void changeSelectedSlot(int slotNum)
-  {
-    if (selectedSlot >= 0)
-    {
-      _inventorySlots[selectedSlot].Deselect();
-    }
-
-    _inventorySlots[slotNum].Select();
-    selectedSlot = slotNum;
-
-
-  }
+  
 
   public void toggleInv(InputAction.CallbackContext context)
   {
@@ -78,28 +67,8 @@ public class InventoryManager : MonoBehaviour
   {
     GameObject newItemGameObject = Instantiate(inventoryItemPrefab, slot.transform);
     InventoryItem inventoryItem = newItemGameObject.GetComponent<InventoryItem>();
-    inventoryItem.itemSlotNum = curSlotNum;
     inventoryItem.InitializeItem(item);
   }
 
-  public Item getSelectedItem(bool use)
-  {
-    InventorySlot slot = _inventorySlots[selectedSlot];
-    InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-    if (itemInSlot != null)
-    {
-      
-      Item item = itemInSlot.item;
-      if (use == true)
-      {
-        Destroy(itemInSlot.gameObject);
-      }
-
-      return item;
-    }
-    else
-    {
-      return null;
-    }
-  }
+ 
 }

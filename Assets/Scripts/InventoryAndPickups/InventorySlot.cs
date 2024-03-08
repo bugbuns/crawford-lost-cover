@@ -7,22 +7,9 @@ using UnityEngine.EventSystems;
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
  public Image image;
- public Color selectedColor, unselectedColor;
 
- public void Awake()
- {
-  Deselect();
- }
- 
- public void Select()
- {
-  image.color = selectedColor;
- }
 
- public void Deselect()
- {
-  image.color = unselectedColor;
- }
+
  public void OnDrop(PointerEventData eventData)
  {
   if (transform.childCount == 0)
@@ -30,5 +17,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
    InventoryItem item = eventData.pointerDrag.GetComponent<InventoryItem>();
    item.parentAfterDrag = transform;
   }
+ }
+
+ public void AddItem(Item item)
+ {
+  
  }
 }

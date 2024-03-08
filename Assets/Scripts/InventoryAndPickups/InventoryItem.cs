@@ -13,19 +13,15 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndD
   public Image image;
   public Transform parentAfterDrag;
   public InventoryManager invManager;
-
-  public int itemSlotNum;
+  
   
   public void InitializeItem(Item newItem)
   {
     item = newItem;
-    image.sprite = newItem.itemIcon;
+    image.sprite = newItem.GetSprite();
   }
 
-  public void selectItem()
-  {
-    invManager.changeSelectedSlot(itemSlotNum);
-  }
+  
 
   public void OnBeginDrag(PointerEventData eventData)
   {

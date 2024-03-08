@@ -27,7 +27,15 @@ public class playerController : MonoBehaviour
     private PlayerInput _playerInput;
 
     private Vector3 temp;
-    
+
+
+  
+    void Awake()
+    {
+        //Create and Setup Inventory
+       
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
