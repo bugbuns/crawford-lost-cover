@@ -8,6 +8,8 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
 
+  
+  
   public InventorySlot[] _inventorySlots;
   public InventorySlot meleeWeaponSlot;
   public InventorySlot rangedWeaponSlot;
@@ -23,12 +25,17 @@ public class InventoryManager : MonoBehaviour
   public PlayerControls input;
 
   private InputAction toggleInventory;
+  private MeleeItem activeMelee;
+  private RangedItem activeRanged;
+  private HealingItem activeHealingItem;
   
 
   void Awake()
   {
     input = new PlayerControls();
-  
+    activeMelee = new MeleeItem();
+    activeRanged = new RangedItem();
+    activeHealingItem = new HealingItem();
   }
 
   private void OnEnable()
@@ -63,7 +70,8 @@ public class InventoryManager : MonoBehaviour
     if (meleeWeaponSlot.GetComponentInChildren<MeleeInventoryItem>() == null)
     {
       SpawnMeleeItem(meleeWeapon,meleeWeaponSlot);
-      meleeHealthText.text = meleeWeapon.meleeHealth + "%";
+      activeMelee = meleeWeapon;
+      refreshInventory();
     }
     
   }
@@ -72,6 +80,9 @@ public class InventoryManager : MonoBehaviour
     if (meleeWeaponSlot.GetComponentInChildren<GunInventoryItem>() == null)
     {
       SpawnRangedItem(rangedWeapon,rangedWeaponSlot);
+      activeRanged = rangedWeapon;
+      refreshInventory();
+
     }
   }
   public void SetHeals(HealingItem heals)
@@ -79,6 +90,9 @@ public class InventoryManager : MonoBehaviour
     if (meleeWeaponSlot.GetComponentInChildren<HealsInventoryItem>() == null)
     {
       SpawnHealsItem(heals, healingItemSlot);
+      activeHealingItem = heals;
+      refreshInventory();
+
     }
   }
 //Do the same for collectible items in the 10 available item slots
@@ -97,6 +111,13 @@ public class InventoryManager : MonoBehaviour
     }
 
     return false;
+  }
+
+  public void refreshInventory()
+  {
+    meleeHealthText.text = activeMelee.meleeHealth + "%";
+    ammoText.text = activeRanged.GetAmmo() +"";
+    healsQuantityText.text = "1";
   }
 //Instantitate each item sprite as an InventoryItem
   void SpawnItem(Item item, InventorySlot slot)

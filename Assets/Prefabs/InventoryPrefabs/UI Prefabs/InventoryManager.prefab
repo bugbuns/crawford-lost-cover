@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &791473916863756706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6797353486070760012}
+  - component: {fileID: 1956378153958482687}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &6797353486070760012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791473916863756706}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 312.74365, y: 304.7375, z: 5.2154536}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1956378153958482687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791473916863756706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d56a19d03bfb34fb0d1b08871e22bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventorySlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  meleeWeaponSlot: {fileID: 0}
+  rangedWeaponSlot: {fileID: 0}
+  healingItemSlot: {fileID: 0}
+  inventoryItemPrefab: {fileID: 7090068747465243172, guid: 91d721ef28188944ba82bcb08abdde4c,
+    type: 3}
+  meleeInventoryItemPrefab: {fileID: 7090068747465243172, guid: fbc7634f11ce8b24c84c8b209f47b273,
+    type: 3}
+  meleeHealthText: {fileID: 0}
+  rangeInventoryItemPrefab: {fileID: 7090068747465243172, guid: 548d4f18c12c564488c303709453b9e3,
+    type: 3}
+  ammoText: {fileID: 0}
+  healsInventoryItemPrefab: {fileID: 7090068747465243172, guid: 7ed8e42608559374b882fb1f1d7225ca,
+    type: 3}
+  healsQuantityText: {fileID: 0}
+  inventory: {fileID: 0}

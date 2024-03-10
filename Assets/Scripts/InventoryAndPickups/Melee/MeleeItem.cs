@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 
@@ -18,9 +20,14 @@ public class MeleeItem: MonoBehaviour
     public int meleeHealth;
     public InventoryManager invManager;
 
+    
+    public PlayerControls input;
+    private InputAction pickUp;
+    private bool inRangeToPickup = false;
     private void Awake()
     {
         meleeHealth = 100;
+        input = new PlayerControls();
     }
     public Sprite GetSprite()
     {
@@ -32,12 +39,41 @@ public class MeleeItem: MonoBehaviour
             
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider col)
     {
-        if (collision.collider.tag == "Player")
+        if (col.tag == "Player")
+        {
+            inRangeToPickup = true;
+        }
+    }
+  
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.tag == "Player")
+        {
+            inRangeToPickup = false;
+        }
+    }
+
+    public void pickUpItem(InputAction.CallbackContext context)
+    {
+        if (inRangeToPickup)
         {
             invManager.SetMeleeWeapon(this);
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        pickUp = input.Player.PickupInteract;
+        pickUp.Enable();
+        pickUp.performed += pickUpItem;
+    }
+
+    private void OnDisable()
+    {
+        pickUp.Disable();
     }
 }

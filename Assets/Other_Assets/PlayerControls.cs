@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pickup/Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c8c6b9c-eb45-4b44-8691-d9dbb506ebc3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -324,6 +333,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c00a386-9a5e-4e7c-b15c-ccf043e425a1"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pickup/Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -916,6 +936,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
         m_Player_Ranged = m_Player.FindAction("Ranged", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_PickupInteract = m_Player.FindAction("Pickup/Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -994,6 +1015,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Melee;
     private readonly InputAction m_Player_Ranged;
     private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_PickupInteract;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1003,6 +1025,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputAction @Ranged => m_Wrapper.m_Player_Ranged;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        public InputAction @PickupInteract => m_Wrapper.m_Player_PickupInteract;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1027,6 +1050,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @PickupInteract.started += instance.OnPickupInteract;
+            @PickupInteract.performed += instance.OnPickupInteract;
+            @PickupInteract.canceled += instance.OnPickupInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1046,6 +1072,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @PickupInteract.started -= instance.OnPickupInteract;
+            @PickupInteract.performed -= instance.OnPickupInteract;
+            @PickupInteract.canceled -= instance.OnPickupInteract;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1233,6 +1262,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMelee(InputAction.CallbackContext context);
         void OnRanged(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnPickupInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

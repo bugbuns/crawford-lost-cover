@@ -2,35 +2,77 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class AmmoPickup : MonoBehaviour
 {
     public int ammoCount;
-    public string ammoType;
+    public ammoType type;
+    public PlayerControls input;
+    public InventoryManager invManager;
+    private InputAction pickUp;
+    private bool inRangeToPickup = false;
     void Awake()
     {
         ammoCount = Random.Range(1, 11);
+        input = new PlayerControls();
+    }
+    public enum ammoType
+    {
+        pistolAmmo,
+        shotgunAmmo,
+        tommygunAmmo
+    }
+    
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Player")
+        {
+            inRangeToPickup = true;
+        }
+    }
+  
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.tag == "Player")
+        {
+            inRangeToPickup = false;
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void pickUpItem(InputAction.CallbackContext context)
     {
-        //If the player collides with the object, increase the player's ammo
-        GameObject other = collision.gameObject;
-        if (other.CompareTag("Player"))
+        if (inRangeToPickup)
         {
-            if (ammoType == "Pistol")
+            if (type==ammoType.pistolAmmo)
             {
-                other.GetComponent<MockController>()._PlayerStats.pistolAmmo += ammoCount;
-                Debug.Log(other.GetComponent<MockController>()._PlayerStats.pistolAmmo);
+                PlayerStats.Instance.pistolAmmo += ammoCount;
+                
             }
-            else if (ammoType == "Shotgun")
+            else if (type==ammoType.shotgunAmmo)
             {
-                other.GetComponent<MockController>()._PlayerStats.pistolAmmo += ammoCount;
-                Debug.Log(other.GetComponent<MockController>()._PlayerStats.pistolAmmo);
+                PlayerStats.Instance.shotgunAmmo += ammoCount;
+                
             }
-
+            else if (type == ammoType.tommygunAmmo)
+            {
+                PlayerStats.Instance.pistolAmmo += ammoCount;
+            }
+            invManager.refreshInventory();
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        pickUp = input.Player.PickupInteract;
+        pickUp.Enable();
+        pickUp.performed += pickUpItem;
+    }
+
+    private void OnDisable()
+    {
+        pickUp.Disable();
     }
 }
