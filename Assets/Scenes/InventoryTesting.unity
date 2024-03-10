@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1909,6 +1909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060301745}
   - component: {fileID: 1060301744}
+  - component: {fileID: 1060301746}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1993,6 +1994,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1060301746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060301743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!114 &1095331778 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8913904917492507346, guid: 7de102a3838013247a86185511ce3a54,
@@ -2762,8 +2786,17 @@ MonoBehaviour:
   - {fileID: 1254082326}
   - {fileID: 606071460}
   - {fileID: 1881926619}
+  meleeWeaponSlot: {fileID: 0}
+  rangedWeaponSlot: {fileID: 0}
+  healingItemSlot: {fileID: 0}
   inventoryItemPrefab: {fileID: 7090068747465243172, guid: 91d721ef28188944ba82bcb08abdde4c,
     type: 3}
+  meleeInventoryItemPrefab: {fileID: 0}
+  meleeHealthText: {fileID: 0}
+  rangeInventoryItemPrefab: {fileID: 0}
+  ammoText: {fileID: 0}
+  healsInventoryItemPrefab: {fileID: 0}
+  healsQuantityText: {fileID: 0}
   inventory: {fileID: 803342446}
 --- !u!4 &1655860311
 Transform:
@@ -3083,7 +3116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoCount: 0
-  ammoType: 
+  type: 0
+  invManager: {fileID: 0}
 --- !u!65 &1752390690
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3125,7 +3159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c871cfd2a7eebed4b8ff9826a7fd52eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3234,6 +3268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
+  _PlayerStats: {fileID: 0}
 --- !u!65 &1899848154
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3275,7 +3310,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c871cfd2a7eebed4b8ff9826a7fd52eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
