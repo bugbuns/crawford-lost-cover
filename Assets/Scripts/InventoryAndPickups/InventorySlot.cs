@@ -19,8 +19,5 @@ public class InventorySlot : MonoBehaviour, IDropHandler
   }
  }
 
- public void AddItem(Item item)
- {
-  
- }
+
 }

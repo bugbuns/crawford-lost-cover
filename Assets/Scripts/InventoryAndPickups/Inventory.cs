@@ -5,12 +5,14 @@ using UnityEngine;
 public class Inventory:MonoBehaviour
 {
    public static Inventory Instance { get; private set; }
+
    private List<Item> itemList;
 
-   private void Awake()
+   public void Awake()
    {
       Instance = this;
    }
+
    public Inventory()
    {
       itemList = new List<Item>();

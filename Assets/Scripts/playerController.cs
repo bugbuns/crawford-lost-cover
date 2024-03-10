@@ -27,6 +27,7 @@ public class playerController : MonoBehaviour
     private PlayerInput _playerInput;
 
     private Vector3 temp;
+    
 
 
   

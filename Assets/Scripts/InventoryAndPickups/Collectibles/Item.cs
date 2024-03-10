@@ -30,7 +30,7 @@ public class Item: MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Player")
-        {
+        { 
             Inventory.Instance.AddItem(this);
             invManager.AddItem(this);
             Destroy(this.gameObject);
