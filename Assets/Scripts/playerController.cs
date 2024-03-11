@@ -8,7 +8,6 @@ public class playerController : MonoBehaviour
 {
     // Serialized variables
     [SerializeField] private float _movementSpeed = 5f;
-    [SerializeField] private float _jumpHeight;
     [SerializeField] private GameObject _camFocus;
     
     // Basic movement variables
@@ -18,10 +17,6 @@ public class playerController : MonoBehaviour
     private Rigidbody _rigidBody;
     private Vector3 _camForward;
     private Vector3 _camRight;
-    
-    // To manage jumping (and not jumping infinitely)
-    private bool _isJumping;
-    private bool _isMidair = true;
     
     // Input system
     private PlayerInput _playerInput;
@@ -48,7 +43,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
-        
+
         //Debug.Log(_movementInput);
     }
 
@@ -62,9 +57,12 @@ public class playerController : MonoBehaviour
         _forward = _movementInput.normalized.y * _movementSpeed * _camForward;
         _right = _movementInput.normalized.x * _movementSpeed * _camRight;
 
-        transform.eulerAngles = _camForward;
-        
-        _rigidBody.velocity = _forward + _right + new Vector3(0, _rigidBody.velocity.y, 0);
+        transform.forward = _camForward;
+
+        if (_movementInput.magnitude > .1f)
+        {
+            _rigidBody.velocity = _forward + _right + new Vector3(0, _rigidBody.velocity.y, 0);
+        }
     }
 }
 
