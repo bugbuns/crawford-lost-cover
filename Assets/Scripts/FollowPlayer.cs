@@ -11,9 +11,9 @@ public class FollowPlayer : MonoBehaviour
     
     private PlayerInput _playerInput;
 
-    private Vector2 temp;
+    private Quaternion temp;
 
-    private Quaternion temp2;
+    private Vector3 temp2;
 
     [SerializeField] private float _camRotationMult;
 
@@ -28,12 +28,12 @@ public class FollowPlayer : MonoBehaviour
     void Update()
     {
         transform.position = _player.transform.position + new Vector3(0, _yOffset, 0);
-
-        temp = _playerInput.actions["Look"].ReadValue<Vector2>().normalized;
-        temp *= _camRotationMult;
-
-        temp2.eulerAngles = new Vector3(temp.y, temp.x, 0);
-        transform.Rotate(temp2.x, 0, 0, Space.Self);
-        transform.Rotate(0, temp2.y, 0, Space.World);
+        
+        temp2 = _playerInput.actions["Look"].ReadValue<Vector2>().normalized;
+        temp2 *= _camRotationMult;
+        
+        temp.eulerAngles = new Vector3(temp2.y, temp2.x, 0);
+                transform.Rotate(temp.x, 0, 0, Space.Self);
+                transform.Rotate(0, temp.y, 0, Space.World);
     }
 }
