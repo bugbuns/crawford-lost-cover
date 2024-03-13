@@ -9,31 +9,35 @@ public class FollowPlayer : MonoBehaviour
 
     [SerializeField] private float _yOffset;
     
-    private PlayerInput _playerInput;
-
-    private Quaternion temp;
-
-    private Vector3 temp2;
-
     [SerializeField] private float _camRotationMult;
 
-    private float _yRotationStorage;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _playerInput = _player.GetComponent<PlayerInput>();
-    }
+    [SerializeField] private float _lerpTime = .35f;
+    
+    private PlayerInput _playerInput;
+    private Rigidbody _rigidbody;
 
-    // Update is called once per frame
-    void Update()
+    private Quaternion _rotation;
+    private Vector3 _lookInput;
+    private Vector3 _previousLookInput;
+    void Start ()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+ 
+    void Update ()
     {
         transform.position = _player.transform.position + new Vector3(0, _yOffset, 0);
-        
-        temp2 = _playerInput.actions["Look"].ReadValue<Vector2>().normalized;
-        temp2 *= _camRotationMult;
-        
-        temp.eulerAngles = new Vector3(temp2.y, temp2.x, 0);
-                transform.Rotate(temp.x, 0, 0, Space.Self);
-                transform.Rotate(0, temp.y, 0, Space.World);
+        _previousLookInput = _lookInput;
+        _lookInput = _playerInput.actions["Look"].ReadValue<Vector2>();
+        _lookInput *= _camRotationMult;
+
+        _lookInput = Vector3.Lerp(_previousLookInput, _lookInput, _lerpTime);
+    }
+
+    private void FixedUpdate()
+    {
+        _rotation = Quaternion.Euler(_rigidbody.rotation.eulerAngles.x + Mathf.Deg2Rad * _lookInput.y, _rigidbody.rotation.eulerAngles.y + Mathf.Deg2Rad * _lookInput.x, 0);
+        _rigidbody.rotation = _rotation;
     }
 }
