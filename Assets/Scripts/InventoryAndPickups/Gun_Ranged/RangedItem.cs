@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
 
-public class RangedItem: MonoBehaviour
+public class RangedItem: MonoBehaviour, IInteractable
 {
     public enum RangedItemType
     {
@@ -18,13 +17,6 @@ public class RangedItem: MonoBehaviour
     public RangedItemType itemType;
     public InventoryManager invManager;
     
-    public PlayerControls input;
-    private InputAction pickUp;
-    private bool inRangeToPickup = false;
-    private void Awake()
-    {
-        input = new PlayerControls();
-    }
     public Sprite GetSprite()
     {
         switch(itemType)
@@ -46,40 +38,14 @@ public class RangedItem: MonoBehaviour
             case RangedItemType.TommyGun: return PlayerStats.Instance.TommyGunAmmo;    
         }
     }
-    private void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Player")
-        {
-            inRangeToPickup = true;
-        }
-    }
-  
-    private void OnTriggerExit(Collider col)
-    {
-        if (col.tag == "Player")
-        {
-            inRangeToPickup = false;
-        }
-    }
 
-    public void pickUpItem(InputAction.CallbackContext context)
+    //Interaction System
+    [SerializeField] private string prompt;
+    public string InteractionPrompt => prompt;
+    public bool Interact(Interactor interactor)
     {
-        if (inRangeToPickup)
-        {
-            invManager.SetRangedWeapon(this);
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void OnEnable()
-    {
-        pickUp = input.Player.PickupInteract;
-        pickUp.Enable();
-        pickUp.performed += pickUpItem;
-    }
-
-    private void OnDisable()
-    {
-        pickUp.Disable();
+        invManager.SetRangedWeapon(this);
+        Destroy(this.gameObject);
+        return true;
     }
 }

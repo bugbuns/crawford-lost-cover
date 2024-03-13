@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
 
-public class Item: MonoBehaviour
+public class Item: MonoBehaviour,IInteractable
 {
     public enum ItemType
     {
@@ -17,15 +16,8 @@ public class Item: MonoBehaviour
 
     public ItemType itemType;
     public InventoryManager invManager;
-    
-    public PlayerControls input;
-    private InputAction pickUp;
-    private bool inRangeToPickup = false;
 
-    private void Awake()
-    {
-        input = new PlayerControls();
-    }
+    
     public Sprite GetSprite()
     {
         switch(itemType)
@@ -36,41 +28,14 @@ public class Item: MonoBehaviour
             case ItemType.Item3: return ItemAssets.Instance.Item3Sprite;
         }
     }
-    private void OnTriggerEnter(Collider col)
+    //Interaction
+    [SerializeField] private string prompt;
+    public string InteractionPrompt => prompt;
+    public bool Interact(Interactor interactor)
     {
-        if (col.tag == "Player")
-        {
-            inRangeToPickup = true;
-        }
-    }
-  
-    private void OnTriggerExit(Collider col)
-    {
-        if (col.tag == "Player")
-        {
-            inRangeToPickup = false;
-        }
-    }
-
-    public void pickUpItem(InputAction.CallbackContext context)
-    {
-        if (inRangeToPickup)
-        {
-            Inventory.Instance.AddItem(this);
-            invManager.AddItem(this);
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void OnEnable()
-    {
-        pickUp = input.Player.PickupInteract;
-        pickUp.Enable();
-        pickUp.performed += pickUpItem;
-    }
-
-    private void OnDisable()
-    {
-        pickUp.Disable();
+        Inventory.Instance.AddItem(this);
+        invManager.AddItem(this);
+        Destroy(this.gameObject);
+        return true;
     }
 }

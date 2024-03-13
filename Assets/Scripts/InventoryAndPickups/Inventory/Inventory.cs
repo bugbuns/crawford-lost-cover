@@ -23,4 +23,18 @@ public class Inventory:MonoBehaviour
       itemList.Add(item);
       
    }
+
+   public bool hasItem(Item.ItemType seekedItemType) 
+   {
+      for (int i = 0; i < itemList.Count; i++)
+      {
+         if (itemList[i].itemType == seekedItemType)
+         {
+            return true;
+         }
+         
+      }
+
+      return false;
+   } 
 }
