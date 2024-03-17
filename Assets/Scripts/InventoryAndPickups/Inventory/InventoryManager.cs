@@ -40,6 +40,7 @@ public class InventoryManager : MonoBehaviour
 
   private void OnEnable()
   {
+    //Allowing for input to toggle inventory
     toggleInventory = input.Player.Inventory;
     toggleInventory.Enable();
     toggleInventory.performed += toggleInv;
