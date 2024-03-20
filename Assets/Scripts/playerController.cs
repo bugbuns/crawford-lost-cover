@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,8 @@ public class playerController : MonoBehaviour
     // Input system
     private PlayerInput _playerInput;
 
+    private Animator _animator;
+
     private Vector3 temp;
     
 
@@ -37,12 +40,16 @@ public class playerController : MonoBehaviour
     {
         _playerInput = GetComponent<PlayerInput>();
         _rigidBody = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
+
+        _animator.SetFloat("horiz", _movementInput.x);
+        _animator.SetFloat("vert", _movementInput.y);
 
         //Debug.Log(_movementInput);
     }
