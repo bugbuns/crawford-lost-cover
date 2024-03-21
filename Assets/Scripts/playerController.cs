@@ -26,9 +26,6 @@ public class playerController : MonoBehaviour
 
     private Vector3 temp;
     
-
-
-  
     void Awake()
     {
         //Create and Setup Inventory
@@ -48,8 +45,8 @@ public class playerController : MonoBehaviour
     {
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
 
-        _animator.SetFloat("horiz", _movementInput.x);
-        _animator.SetFloat("vert", _movementInput.y);
+        _animator.SetFloat("horiz", _movementInput.x / _movementInput.x);
+        _animator.SetFloat("vert", _movementInput.y / _movementInput.y);
 
         //Debug.Log(_movementInput);
     }

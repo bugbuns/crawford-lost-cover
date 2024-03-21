@@ -1125,6 +1125,9 @@ MonoBehaviour:
   _yOffset: 2.274593
   _camRotationMult: 30
   _lerpTime: 0.35
+  _angleClampVertical: 100
+  _cameraInverted: 0
+  _rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!54 &177259625
 Rigidbody:
   m_ObjectHideFlags: 0
