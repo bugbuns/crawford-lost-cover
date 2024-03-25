@@ -48,6 +48,15 @@ public class playerController : MonoBehaviour
         _animator.SetFloat("horiz", _movementInput.x / _movementInput.x);
         _animator.SetFloat("vert", _movementInput.y / _movementInput.y);
 
+        if (_movementInput.magnitude > .1f)
+        {
+            _animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            _animator.SetBool("isWalking", false);
+        }
+
         //Debug.Log(_movementInput);
     }
 
