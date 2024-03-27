@@ -45,23 +45,8 @@ public class playerController : MonoBehaviour
     {
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
 
-        if (_movementInput.x != 0)
-        {
-            _animator.SetFloat("horiz", _movementInput.x / Mathf.Abs(_movementInput.x));
-        }
-        else
-        {
-            _animator.SetFloat("horiz", 0);
-        }
-
-        if (_movementInput.y != 0)
-        {
-            _animator.SetFloat("vert", _movementInput.y / Mathf.Abs(_movementInput.y));
-        }
-        else
-        {
-            _animator.SetFloat("vert", 0);
-        }
+        _animator.SetFloat("horiz", _movementInput.x / _movementInput.x);
+        _animator.SetFloat("vert", _movementInput.y / _movementInput.y);
 
         if (_movementInput != Vector3.zero)
         {

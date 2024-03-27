@@ -1,6 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1101 &-9099438885155247526
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -181,6 +182,9 @@ AnimatorStateTransition:
 =======
 --- !u!1101 &-3693723077580891234
 >>>>>>> ee719e59d81fbd7db24e76475a59d7132a6d1022
+=======
+--- !u!1101 &-4364683534650579610
+>>>>>>> parent of 2faecab (Made movement work)
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,31 +209,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-254272092127572120
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: horiz
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 8111764834219830803}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.6511628
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -245,13 +224,17 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
+=======
+    m_Controller: {fileID: 0}
+>>>>>>> parent of 2faecab (Made movement work)
   - m_Name: horiz
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: vert
 =======
     m_Controller: {fileID: 0}
@@ -261,7 +244,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isWalking
     m_Type: 4
     m_DefaultFloat: 0
@@ -273,7 +256,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -302,6 +285,7 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 5148825779841759383}
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Position: {x: -30, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5426532509297870921}
@@ -321,16 +305,20 @@ AnimatorStateMachine:
     m_State: {fileID: 8412594097273882419}
     m_Position: {x: 480, y: 330, z: 0}
 >>>>>>> ee719e59d81fbd7db24e76475a59d7132a6d1022
+=======
+    m_Position: {x: 270, y: 230, z: 0}
+>>>>>>> parent of 2faecab (Made movement work)
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -90, y: 170, z: 0}
-  m_EntryPosition: {x: -90, y: 110, z: 0}
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 7206539466524804945}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1101 &3724998558472319880
 AnimatorStateTransition:
@@ -447,6 +435,9 @@ BlendTree:
   m_BlendType: 2
 --- !u!1101 &4846935363944536379
 >>>>>>> ee719e59d81fbd7db24e76475a59d7132a6d1022
+=======
+--- !u!1101 &3013019496566895383
+>>>>>>> parent of 2faecab (Made movement work)
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -466,10 +457,14 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_ExitTime: 0.6428572
 =======
   m_ExitTime: 0.97
 >>>>>>> ee719e59d81fbd7db24e76475a59d7132a6d1022
+=======
+  m_ExitTime: 0.6938776
+>>>>>>> parent of 2faecab (Made movement work)
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -487,6 +482,7 @@ AnimatorState:
   m_CycleOffset: 0
 <<<<<<< HEAD
   m_Transitions:
+<<<<<<< HEAD
   - {fileID: -8283098476056859425}
   - {fileID: 8850110647320661045}
   - {fileID: 5162680217110600310}
@@ -494,6 +490,9 @@ AnimatorState:
 =======
   m_Transitions: []
 >>>>>>> ee719e59d81fbd7db24e76475a59d7132a6d1022
+=======
+  - {fileID: 3013019496566895383}
+>>>>>>> parent of 2faecab (Made movement work)
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -509,6 +508,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1101 &5162680217110600310
 AnimatorStateTransition:
@@ -576,6 +576,8 @@ AnimatorStateTransition:
   m_NormalizedBlendValues: 0
   m_BlendType: 0
 >>>>>>> ee719e59d81fbd7db24e76475a59d7132a6d1022
+=======
+>>>>>>> parent of 2faecab (Made movement work)
 --- !u!1102 &7206539466524804945
 AnimatorState:
   serializedVersion: 6
@@ -588,10 +590,14 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: -496504971332531105}
 =======
   - {fileID: 4846935363944536379}
 >>>>>>> ee719e59d81fbd7db24e76475a59d7132a6d1022
+=======
+  - {fileID: -4364683534650579610}
+>>>>>>> parent of 2faecab (Made movement work)
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -608,6 +614,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1101 &7286659825212801556
 AnimatorStateTransition:
@@ -736,3 +743,5 @@ AnimatorStateTransition:
   m_CanTransitionToSelf: 1
 =======
 >>>>>>> ee719e59d81fbd7db24e76475a59d7132a6d1022
+=======
+>>>>>>> parent of 2faecab (Made movement work)
