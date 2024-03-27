@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3398312612638053721}
   - component: {fileID: 2580015369075157075}
   - component: {fileID: 7120367071122525886}
-  - component: {fileID: 7731066010062993881}
-  m_Layer: 0
+  - component: {fileID: 8697927263750146113}
+  m_Layer: 6
   m_Name: HealingItemPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &7731066010062993881
+--- !u!114 &8697927263750146113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,10 +143,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870271343438817310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f2130aede513b4439e8c7440982157d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fbdedf6e49ed5b4c9edc1645aa19db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  meleeHealth: 0
   invManager: {fileID: 0}
-  inRangeToPickup: 0
+  quantity: 0
+  prompt: 
