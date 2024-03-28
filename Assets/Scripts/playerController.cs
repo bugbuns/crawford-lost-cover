@@ -45,8 +45,8 @@ public class playerController : MonoBehaviour
     {
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
 
-        _animator.SetFloat("horiz", _movementInput.x / _movementInput.x);
-        _animator.SetFloat("vert", _movementInput.y / _movementInput.y);
+        _animator.SetFloat("hzInput", _movementInput.x, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
+        _animator.SetFloat("vInput", _movementInput.y, 0.1f, Time.deltaTime);
 
         if (_movementInput != Vector3.zero)
         {
