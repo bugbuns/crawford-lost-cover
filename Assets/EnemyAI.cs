@@ -15,9 +15,10 @@ public class EnemyAI : MonoBehaviour
 
   public int health;
   //Patroling
-  public Vector3 walkPoint;
+  public Transform walkPoint;
   public bool walkPointSet;
   public float walkPointRange;
+  
 
   //Attacking
   public float timeBetweenAttacks;
@@ -56,34 +57,29 @@ public class EnemyAI : MonoBehaviour
 
   private void Patroling()
   {
-    if (!walkPointSet)
+    /*if (!walkPointSet)
     {
       setWalkPoint();
-    }
+    }*/
 
     if (walkPointSet)
     {
-      agent.SetDestination(walkPoint);
+      agent.SetDestination(walkPoint.position);
     }
 
-    Vector3 distanceToWalkPoint = transform.position-walkPoint;
+    Vector3 distanceToWalkPoint = transform.position-walkPoint.position;
 
     if (distanceToWalkPoint.magnitude < 1f)
     {
-      walkPointSet = false;
+      //walkPointSet = false;
+      agent.SetDestination(transform.position);
     }
+    
   }
 
   private void setWalkPoint()
   {
-    /*float randomX = Random.Range(-walkPointRange, walkPointRange);
-    float randomZ = Random.Range(-walkPointRange, walkPointRange);
-    walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-    if (Physics.Raycast(walkPoint, -transform.up, 2f, groundMask))
-    {
-      walkPointSet = true;
-    }*/
+   
   }
 
   private void ChasePlayer()
