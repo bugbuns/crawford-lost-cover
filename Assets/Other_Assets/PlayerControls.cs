@@ -80,6 +80,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Equip Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""5959d95a-3293-4349-befc-d86ad9dcc4a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Equip Ranged"",
+                    ""type"": ""Button"",
+                    ""id"": ""909a8cdd-6a56-4eca-a4a0-f64f96a13bb5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -344,6 +362,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pickup/Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7831d34-b129-403a-a5cd-dd60d4ea9a76"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b78c1f68-416a-4fe5-9ac3-f17318e73228"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip Ranged"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -937,6 +977,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Ranged = m_Player.FindAction("Ranged", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
         m_Player_PickupInteract = m_Player.FindAction("Pickup/Interact", throwIfNotFound: true);
+        m_Player_EquipMelee = m_Player.FindAction("Equip Melee", throwIfNotFound: true);
+        m_Player_EquipRanged = m_Player.FindAction("Equip Ranged", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1016,6 +1058,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Ranged;
     private readonly InputAction m_Player_Inventory;
     private readonly InputAction m_Player_PickupInteract;
+    private readonly InputAction m_Player_EquipMelee;
+    private readonly InputAction m_Player_EquipRanged;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1026,6 +1070,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Ranged => m_Wrapper.m_Player_Ranged;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
         public InputAction @PickupInteract => m_Wrapper.m_Player_PickupInteract;
+        public InputAction @EquipMelee => m_Wrapper.m_Player_EquipMelee;
+        public InputAction @EquipRanged => m_Wrapper.m_Player_EquipRanged;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1053,6 +1099,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PickupInteract.started += instance.OnPickupInteract;
             @PickupInteract.performed += instance.OnPickupInteract;
             @PickupInteract.canceled += instance.OnPickupInteract;
+            @EquipMelee.started += instance.OnEquipMelee;
+            @EquipMelee.performed += instance.OnEquipMelee;
+            @EquipMelee.canceled += instance.OnEquipMelee;
+            @EquipRanged.started += instance.OnEquipRanged;
+            @EquipRanged.performed += instance.OnEquipRanged;
+            @EquipRanged.canceled += instance.OnEquipRanged;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1075,6 +1127,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PickupInteract.started -= instance.OnPickupInteract;
             @PickupInteract.performed -= instance.OnPickupInteract;
             @PickupInteract.canceled -= instance.OnPickupInteract;
+            @EquipMelee.started -= instance.OnEquipMelee;
+            @EquipMelee.performed -= instance.OnEquipMelee;
+            @EquipMelee.canceled -= instance.OnEquipMelee;
+            @EquipRanged.started -= instance.OnEquipRanged;
+            @EquipRanged.performed -= instance.OnEquipRanged;
+            @EquipRanged.canceled -= instance.OnEquipRanged;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1263,6 +1321,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnRanged(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnPickupInteract(InputAction.CallbackContext context);
+        void OnEquipMelee(InputAction.CallbackContext context);
+        void OnEquipRanged(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

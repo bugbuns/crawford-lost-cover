@@ -23,11 +23,11 @@ public class InventoryManager : MonoBehaviour
   public TextMeshProUGUI healsQuantityText;
   public GameObject inventory;
   public PlayerControls input;
-
+  public HUDManager hudManager;
   private InputAction toggleInventory;
-  private MeleeItem activeMelee;
-  private RangedItem activeRanged;
-  private HealingItem activeHealingItem;
+  public MeleeItem activeMelee;
+  public RangedItem activeRanged;
+  public HealingItem activeHealingItem;
   
 
   void Awake()
@@ -74,6 +74,7 @@ public class InventoryManager : MonoBehaviour
       SpawnMeleeItem(meleeWeapon,meleeWeaponSlot);
       activeMelee = meleeWeapon;
       refreshInventory();
+      hudManager.refreshMeleeHud();
     }
     
   }
@@ -84,6 +85,7 @@ public class InventoryManager : MonoBehaviour
       SpawnRangedItem(rangedWeapon,rangedWeaponSlot);
       activeRanged = rangedWeapon;
       refreshInventory();
+      hudManager.refreshGunHud();
 
     }
   }

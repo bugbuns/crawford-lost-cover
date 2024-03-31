@@ -14,6 +14,7 @@ public class PlayerStats:MonoBehaviour
 
     }
     public int health;
+    public int bulletsInGun;
     public int pistolAmmo;
     public int shotgunAmmo;
     public int TommyGunAmmo;

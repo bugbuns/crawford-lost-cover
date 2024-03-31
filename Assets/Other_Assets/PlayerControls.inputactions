@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Melee",
+                    "type": "Button",
+                    "id": "5959d95a-3293-4349-befc-d86ad9dcc4a6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Ranged",
+                    "type": "Button",
+                    "id": "909a8cdd-6a56-4eca-a4a0-f64f96a13bb5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -322,6 +340,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pickup/Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d7831d34-b129-403a-a5cd-dd60d4ea9a76",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b78c1f68-416a-4fe5-9ac3-f17318e73228",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Ranged",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
