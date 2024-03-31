@@ -36,6 +36,7 @@ public class InventoryManager : MonoBehaviour
     activeMelee = new MeleeItem();
     activeRanged = new RangedItem();
     activeHealingItem = new HealingItem();
+    refreshInventory();
   }
 
   private void OnEnable()
