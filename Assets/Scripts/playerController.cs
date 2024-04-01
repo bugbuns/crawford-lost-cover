@@ -9,16 +9,19 @@ public class playerController : MonoBehaviour
 {
     // Serialized variables
     [SerializeField] private float _movementSpeed = 5f;
-    [SerializeField] private GameObject _camFocus;
+    public float rotationSpeed = 15;
+
     
     // Basic movement variables
     private Vector3 _movementInput;
-    private Vector3 _forward;
-    private Vector3 _right;
     private Rigidbody _rigidBody;
-    private Vector3 _camForward;
-    private Vector3 _camRight;
+    Vector3 moveDirection;
+    InputManager inputManager;
+
+
+    Transform cameraObject;
     
+
     // Input system
     private PlayerInput _playerInput;
 
@@ -30,9 +33,11 @@ public class playerController : MonoBehaviour
     
     void Awake()
     {
+        inputManager = GetComponent<InputManager>();
+        cameraObject = Camera.main.transform;
         //Create and Setup Inventory
-        
-        
+
+
     }
     // Start is called before the first frame update
     void Start()
@@ -66,21 +71,7 @@ public class playerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _camForward = _camFocus.transform.forward - new Vector3(0, _camFocus.transform.forward.y, 0);
-        _camRight = _camFocus.transform.right - new Vector3(0, _camFocus.transform.right.y, 0);
-        _camForward.Normalize();
-        _camRight.Normalize();
         
-        _forward = _movementInput.normalized.y * _movementSpeed * _camForward;
-        _right = _movementInput.normalized.x * _movementSpeed * _camRight;
-
-        transform.forward = _camForward;
-
-        if (_movementInput.magnitude > .1f)
-        {
-            _rigidBody.velocity = _forward + _right + new Vector3(0, _rigidBody.velocity.y, 0);
-        }
-
         if (isCrouching == false && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = true;
@@ -93,6 +84,41 @@ public class playerController : MonoBehaviour
             _movementSpeed = _movementSpeed * 2;
             _animator.SetBool("isCrouching", false);
         }
+    }
+
+    public void HandleAllMovement()
+    {
+        HandleMovement();
+        HandleRotation();
+    }
+
+    private void HandleMovement()
+    {
+        moveDirection = cameraObject.forward * inputManager.vertInput;
+        moveDirection = moveDirection + cameraObject.right * inputManager.horiInput;
+        moveDirection.Normalize();
+        moveDirection.y = 0;
+        moveDirection = moveDirection * _movementSpeed;
+
+        Vector3 movementVelocity = moveDirection;
+        _rigidBody.velocity = movementVelocity;
+
+    }
+
+
+    private void HandleRotation()
+    {
+        Vector3 targetDirection = Vector3.zero;
+
+        targetDirection = cameraObject.forward * inputManager.vertInput;
+        targetDirection = targetDirection + cameraObject.right * inputManager.horiInput;
+        targetDirection.Normalize();
+        targetDirection.y = 0;
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        transform.rotation = playerRotation;
     }
 }
 
