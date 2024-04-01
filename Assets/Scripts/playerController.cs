@@ -29,7 +29,7 @@ public class playerController : MonoBehaviour
     void Awake()
     {
         //Create and Setup Inventory
-       
+        
         
     }
     // Start is called before the first frame update
