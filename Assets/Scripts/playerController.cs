@@ -25,6 +25,8 @@ public class playerController : MonoBehaviour
     private Animator _animator;
 
     private Vector3 temp;
+
+    public bool isCrouching;
     
     void Awake()
     {
@@ -38,6 +40,8 @@ public class playerController : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _rigidBody = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
+
+        isCrouching = false;
     }
 
     // Update is called once per frame
@@ -75,6 +79,17 @@ public class playerController : MonoBehaviour
         if (_movementInput.magnitude > .1f)
         {
             _rigidBody.velocity = _forward + _right + new Vector3(0, _rigidBody.velocity.y, 0);
+        }
+
+        if (isCrouching == false && _playerInput.actions["Crouch"].WasPressedThisFrame())
+        {
+            isCrouching = true;
+            _animator.SetBool("isCrouching", true);
+        }
+        else if (isCrouching == true && _playerInput.actions["Crouch"].WasPressedThisFrame())
+        {
+            isCrouching = false;
+            _animator.SetBool("isCrouching", false);
         }
     }
 }

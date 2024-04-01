@@ -1553,7 +1553,7 @@ MonoBehaviour:
   _player: {fileID: 892113524}
   _yOffset: 2.274593
   _camRotationMult: 30
-  _lerpTime: 0.35
+  _lerpTime: 0.2
   _angleClampVertical: 100
   _cameraInverted: 0
   _rotation: {x: 0, y: 0, z: 0, w: 0}
@@ -9682,6 +9682,10 @@ MonoBehaviour:
     type: 3}
   healsQuantityText: {fileID: 1596877736}
   inventory: {fileID: 1178064162}
+  hudManager: {fileID: 0}
+  activeMelee: {fileID: 0}
+  activeRanged: {fileID: 0}
+  activeHealingItem: {fileID: 0}
 --- !u!4 &1139914930
 Transform:
   m_ObjectHideFlags: 0
@@ -19706,6 +19710,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3664561669407333231, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 5518300199441739400, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
       propertyPath: m_Material
@@ -19764,9 +19773,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8216702888202050788, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
+      propertyPath: forSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216702888202050788, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
       propertyPath: _camFocus
       value: 
       objectReference: {fileID: 177259622}
+    - target: {fileID: 8216702888202050788, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
+      propertyPath: backSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216702888202050788, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
+      propertyPath: isCrouching
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8216702888202050788, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
       propertyPath: _movementSpeed

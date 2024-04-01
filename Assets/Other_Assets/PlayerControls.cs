@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0b1b2de-398d-44fb-ba75-577e3afaa9f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -384,6 +393,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Equip Ranged"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8411f93-a948-4ca7-9f0e-1bdc5a6a4998"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc282c59-522b-4ca9-bea3-b3d484bf640c"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -979,6 +1010,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_PickupInteract = m_Player.FindAction("Pickup/Interact", throwIfNotFound: true);
         m_Player_EquipMelee = m_Player.FindAction("Equip Melee", throwIfNotFound: true);
         m_Player_EquipRanged = m_Player.FindAction("Equip Ranged", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1060,6 +1092,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PickupInteract;
     private readonly InputAction m_Player_EquipMelee;
     private readonly InputAction m_Player_EquipRanged;
+    private readonly InputAction m_Player_Crouch;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1072,6 +1105,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @PickupInteract => m_Wrapper.m_Player_PickupInteract;
         public InputAction @EquipMelee => m_Wrapper.m_Player_EquipMelee;
         public InputAction @EquipRanged => m_Wrapper.m_Player_EquipRanged;
+        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1105,6 +1139,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EquipRanged.started += instance.OnEquipRanged;
             @EquipRanged.performed += instance.OnEquipRanged;
             @EquipRanged.canceled += instance.OnEquipRanged;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1133,6 +1170,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EquipRanged.started -= instance.OnEquipRanged;
             @EquipRanged.performed -= instance.OnEquipRanged;
             @EquipRanged.canceled -= instance.OnEquipRanged;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1323,6 +1363,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnPickupInteract(InputAction.CallbackContext context);
         void OnEquipMelee(InputAction.CallbackContext context);
         void OnEquipRanged(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
