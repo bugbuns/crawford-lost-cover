@@ -84,11 +84,13 @@ public class playerController : MonoBehaviour
         if (isCrouching == false && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = true;
+            _movementSpeed = _movementSpeed / 2;
             _animator.SetBool("isCrouching", true);
         }
         else if (isCrouching == true && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = false;
+            _movementSpeed = _movementSpeed * 2;
             _animator.SetBool("isCrouching", false);
         }
     }
