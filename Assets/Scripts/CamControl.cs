@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CamControl : MonoBehaviour
 {
-    public Transform camTarget;
-    public float pLerp = .02f;
-    public float rLerp = .01f;
+    [SerializeField] Transform followTarget;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] float distanceX = 0.5f;
+    [SerializeField] float distanceY = 2.5f;
+    [SerializeField] float distanceZ = 0f;
+
+    float rotationY;
+
+    private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, camTarget.position, pLerp);
-        transform.rotation = Quaternion.Lerp(transform.rotation, camTarget.rotation, rLerp);
+        rotationY += Input.GetAxis("Mouse X");
+
+        transform.position = followTarget.position - Quaternion.Euler(0, rotationY, 0) * new Vector3(0, 0, distanceZ);
     }
 }

@@ -15,11 +15,8 @@ public class playerController : MonoBehaviour
     // Basic movement variables
     private Vector3 _movementInput;
     private Rigidbody _rigidBody;
-    Vector3 moveDirection;
-    InputManager inputManager;
+    [SerializeField] float moveSpeed = 5f;
 
-
-    Transform cameraObject;
     
 
     // Input system
@@ -33,8 +30,6 @@ public class playerController : MonoBehaviour
     
     void Awake()
     {
-        inputManager = GetComponent<InputManager>();
-        cameraObject = Camera.main.transform;
         //Create and Setup Inventory
 
 
@@ -52,6 +47,13 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+
+        var moveInput = (new Vector3(h, 0, v)).normalized;
+
+        transform.position += moveInput * moveSpeed * Time.deltaTime;
+
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
 
         _animator.SetFloat("hzInput", _movementInput.x, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
@@ -86,39 +88,6 @@ public class playerController : MonoBehaviour
         }
     }
 
-    public void HandleAllMovement()
-    {
-        HandleMovement();
-        HandleRotation();
-    }
-
-    private void HandleMovement()
-    {
-        moveDirection = cameraObject.forward * inputManager.vertInput;
-        moveDirection = moveDirection + cameraObject.right * inputManager.horiInput;
-        moveDirection.Normalize();
-        moveDirection.y = 0;
-        moveDirection = moveDirection * _movementSpeed;
-
-        Vector3 movementVelocity = moveDirection;
-        _rigidBody.velocity = movementVelocity;
-
-    }
-
-
-    private void HandleRotation()
-    {
-        Vector3 targetDirection = Vector3.zero;
-
-        targetDirection = cameraObject.forward * inputManager.vertInput;
-        targetDirection = targetDirection + cameraObject.right * inputManager.horiInput;
-        targetDirection.Normalize();
-        targetDirection.y = 0;
-
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        transform.rotation = playerRotation;
-    }
+    
 }
 
