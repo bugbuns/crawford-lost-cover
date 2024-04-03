@@ -9,7 +9,11 @@ public class checkPointCheck : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform spawnPosition;
     public Transform playerTransform;
-    public bool enemySpawned = false;
+    public Transform playerCheckpoint;
+    public float timeDelay;
+    public float spawnOffset;
+    public int numEnemies;
+    private bool enemySpawned = false;
 
 
     private void Awake()
@@ -20,16 +24,22 @@ public class checkPointCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerTransform.position.z > 30f&&!enemySpawned)
+        if (playerTransform.position.x > playerCheckpoint.position.x &&!enemySpawned)
         {
-            spawnEnemies();
+            StartCoroutine(spawnEnemies());
             enemySpawned = true;
             Debug.Log("Enemy Spawned");
         }
     }
 
-    void spawnEnemies()
+    IEnumerator spawnEnemies()
     {
-        Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
+        yield return new WaitForSeconds(timeDelay);
+        //Spawn the enemies with an offset
+        //int offset = 0;
+        for (int i = 0; i < numEnemies; i++)
+        {
+            Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
+        }
     }
 }
