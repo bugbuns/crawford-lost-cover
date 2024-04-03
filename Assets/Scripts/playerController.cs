@@ -8,16 +8,13 @@ using UnityEngine.InputSystem;
 public class playerController : MonoBehaviour
 {
     // Serialized variables
-    [SerializeField] private float _movementSpeed = 5f;
-    public float rotationSpeed = 15;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float rotationSpeed = 500f;
 
-    
     // Basic movement variables
     private Vector3 _movementInput;
     private Rigidbody _rigidBody;
-    [SerializeField] float moveSpeed = 5f;
 
-    
 
     // Input system
     private PlayerInput _playerInput;
@@ -27,9 +24,15 @@ public class playerController : MonoBehaviour
     private Vector3 temp;
 
     public bool isCrouching;
+
+    private CamControl cameraController;
+    private Quaternion targetRotation;
     
-    void Awake()
+    private void Awake()
     {
+        //CamControl
+        cameraController = Camera.main.GetComponent<CamControl>();
+
         //Create and Setup Inventory
 
 
@@ -50,9 +53,20 @@ public class playerController : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
+        float moveAmount = Mathf.Abs(h) + Mathf.Abs(v);
+
         var moveInput = (new Vector3(h, 0, v)).normalized;
 
-        transform.position += moveInput * moveSpeed * Time.deltaTime;
+        var moveDir = cameraController.PlanarRotation * moveInput;
+
+        if (moveAmount > 0)
+        {
+            transform.position += moveDir * moveSpeed * Time.deltaTime;
+            targetRotation = Quaternion.LookRotation(moveDir);
+        }
+
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
 
@@ -77,17 +91,15 @@ public class playerController : MonoBehaviour
         if (isCrouching == false && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = true;
-            _movementSpeed = _movementSpeed / 2;
+            moveSpeed = moveSpeed / 2;
             _animator.SetBool("isCrouching", true);
         }
         else if (isCrouching == true && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = false;
-            _movementSpeed = _movementSpeed * 2;
+            moveSpeed = moveSpeed * 2;
             _animator.SetBool("isCrouching", false);
         }
     }
-
-    
 }
 
