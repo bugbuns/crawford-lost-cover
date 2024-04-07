@@ -107,6 +107,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire (Tap)"",
+                    ""type"": ""Button"",
+                    ""id"": ""88e3ae3c-cd01-4ade-bb9e-dcbe3aaecd22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire (Hold)"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a683ec3-8584-4c4e-b0c3-06ac52de8571"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""c42a5110-dcf9-4ffa-a3f1-3ff9e514795b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -415,6 +442,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6ca0bfd-8d0c-4b99-976a-1be56ea55581"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire (Tap)"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec3ad607-46a7-4b4b-9670-6cc8cdcf561f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fire (Hold)"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fccde630-3f8b-476a-a8ff-70f0208bf12b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1011,6 +1071,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_EquipMelee = m_Player.FindAction("Equip Melee", throwIfNotFound: true);
         m_Player_EquipRanged = m_Player.FindAction("Equip Ranged", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_FireTap = m_Player.FindAction("Fire (Tap)", throwIfNotFound: true);
+        m_Player_FireHold = m_Player.FindAction("Fire (Hold)", throwIfNotFound: true);
+        m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1093,6 +1156,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_EquipMelee;
     private readonly InputAction m_Player_EquipRanged;
     private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_FireTap;
+    private readonly InputAction m_Player_FireHold;
+    private readonly InputAction m_Player_Reload;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1106,6 +1172,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @EquipMelee => m_Wrapper.m_Player_EquipMelee;
         public InputAction @EquipRanged => m_Wrapper.m_Player_EquipRanged;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @FireTap => m_Wrapper.m_Player_FireTap;
+        public InputAction @FireHold => m_Wrapper.m_Player_FireHold;
+        public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1142,6 +1211,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @FireTap.started += instance.OnFireTap;
+            @FireTap.performed += instance.OnFireTap;
+            @FireTap.canceled += instance.OnFireTap;
+            @FireHold.started += instance.OnFireHold;
+            @FireHold.performed += instance.OnFireHold;
+            @FireHold.canceled += instance.OnFireHold;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1173,6 +1251,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @FireTap.started -= instance.OnFireTap;
+            @FireTap.performed -= instance.OnFireTap;
+            @FireTap.canceled -= instance.OnFireTap;
+            @FireHold.started -= instance.OnFireHold;
+            @FireHold.performed -= instance.OnFireHold;
+            @FireHold.canceled -= instance.OnFireHold;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1364,6 +1451,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnEquipMelee(InputAction.CallbackContext context);
         void OnEquipRanged(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnFireTap(InputAction.CallbackContext context);
+        void OnFireHold(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

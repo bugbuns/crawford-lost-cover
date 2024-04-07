@@ -4,24 +4,27 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
     
-    //
-    
-    
-    
+    //bool
+    public bool meleeActive = false;
+    public bool gunActive = true;
+
     //MeleeHUD
     public GameObject meleeHUD;
     public GameObject[] meleeHealthTrackers;
-    public TextMeshProUGUI meleeHealthText;
-    public InventoryManager invManager;
+    public Image meleeSprite;
+    
     //GunHUD
     public GameObject GunHUD;
     public TextMeshProUGUI bulletCountText;
     public GameObject bulletuiprefab;
     public GameObject bulletHolder;
+    public GunSystem _GunSystem;
+    public Image gunSprite;
     //Input
     public PlayerControls input;
     private InputAction enableGunHUD;
@@ -32,38 +35,43 @@ public class HUDManager : MonoBehaviour
     void Awake()
     {
         GunHUD.SetActive(true);
-        refreshGunHud();
+        if(PlayerStats.Instance.activeRanged!=null)refreshGunHud();
         input = new PlayerControls();
     }
     //Toggle the hud based on what weapon is equipped
     private void toggleGUNHUD(InputAction.CallbackContext context)
     {
+        meleeActive = false;
+        gunActive = true;
         GunHUD.SetActive(true);
         meleeHUD.SetActive(false);
-        refreshGunHud();
+        if(PlayerStats.Instance.activeRanged!=null)refreshGunHud();
 
     }
     private void toggleMELEEHUD(InputAction.CallbackContext context)
     {
+        meleeActive = true;
+        gunActive = false;
         meleeHUD.SetActive(true);
         GunHUD.SetActive(false);
-        refreshMeleeHud();
+        if(PlayerStats.Instance.activeMelee!=null)refreshMeleeHud();
     }
 
     public void refreshGunHud()
     {
-        //ONLY WORKS FOR PISTOL RIGHT NOW, IMPLEMENT OTHER GUNS LATER
-        bulletCountText.text = "" + PlayerStats.Instance.bulletsInGun + "/" +
-                           (PlayerStats.Instance.pistolAmmo - PlayerStats.Instance.bulletsInGun);
+        bulletCountText.text = "" + _GunSystem.bulletsLeft + "/" +
+                               (PlayerStats.Instance.activeRanged.GetAmmo());
         foreach (Transform child in bulletHolder.transform)
         {
             Destroy(child.gameObject);
         }
-        for (int i = 0; i < PlayerStats.Instance.bulletsInGun; i++)
+        for (int i = 0; i < _GunSystem.bulletsLeft; i++)
         {
             GameObject temp = Instantiate(bulletuiprefab, transform);
             temp.transform.parent = bulletHolder.transform;
         }
+        gunSprite.sprite = PlayerStats.Instance.activeRanged.GetSprite();
+
     }
 
     public void refreshMeleeHud()
@@ -75,12 +83,9 @@ public class HUDManager : MonoBehaviour
         }
         
         //Set the proper markers active
-        int tempMeleeHealth = invManager.activeMelee.meleeHealth;
-        int numHealthMarkersShown = tempMeleeHealth / 10;
+        int tempMeleeHealth = PlayerStats.Instance.activeMelee.meleeHealth;
 
-        meleeHealthText.text = tempMeleeHealth + "%";
-        
-        for (int i = 0; i < numHealthMarkersShown; i++)
+        for (int i = 0; i < tempMeleeHealth; i++)
         {
             meleeHealthTrackers[i].SetActive(true);
         }

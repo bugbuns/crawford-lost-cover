@@ -24,18 +24,15 @@ public class InventoryManager : MonoBehaviour
   public GameObject inventory;
   public PlayerControls input;
   public HUDManager hudManager;
+  public GunSystem gunSystem;
   private InputAction toggleInventory;
-  public MeleeItem activeMelee;
-  public RangedItem activeRanged;
-  public HealingItem activeHealingItem;
+ 
   
 
   void Awake()
   {
     input = new PlayerControls();
-    activeMelee = new MeleeItem();
-    activeRanged = new RangedItem();
-    activeHealingItem = new HealingItem();
+   
     refreshInventory();
   }
 
@@ -72,7 +69,7 @@ public class InventoryManager : MonoBehaviour
     if (meleeWeaponSlot.GetComponentInChildren<MeleeInventoryItem>() == null)
     {
       SpawnMeleeItem(meleeWeapon,meleeWeaponSlot);
-      activeMelee = meleeWeapon;
+      PlayerStats.Instance.activeMelee = meleeWeapon;
       refreshInventory();
       hudManager.refreshMeleeHud();
     }
@@ -83,8 +80,9 @@ public class InventoryManager : MonoBehaviour
     if (meleeWeaponSlot.GetComponentInChildren<GunInventoryItem>() == null)
     {
       SpawnRangedItem(rangedWeapon,rangedWeaponSlot);
-      activeRanged = rangedWeapon;
+      PlayerStats.Instance.activeRanged = rangedWeapon;
       refreshInventory();
+      gunSystem.loadGunSystem();
       hudManager.refreshGunHud();
 
     }
@@ -94,7 +92,7 @@ public class InventoryManager : MonoBehaviour
     if (meleeWeaponSlot.GetComponentInChildren<HealsInventoryItem>() == null)
     {
       SpawnHealsItem(heals, healingItemSlot);
-      activeHealingItem = heals;
+      PlayerStats.Instance.ActiveHealingItem = heals;
       refreshInventory();
 
     }
@@ -119,9 +117,10 @@ public class InventoryManager : MonoBehaviour
 
   public void refreshInventory()
   {
-    meleeHealthText.text = activeMelee.meleeHealth + "%";
-    ammoText.text = activeRanged.GetAmmo() +"";
-    healsQuantityText.text = "1";
+    
+    if(PlayerStats.Instance.activeMelee!=null)meleeHealthText.text = PlayerStats.Instance.activeMelee.meleeHealth + "%";
+    if(PlayerStats.Instance.activeRanged!=null)ammoText.text = PlayerStats.Instance.activeRanged.GetAmmo() +"";
+    if(PlayerStats.Instance.ActiveHealingItem!=null)healsQuantityText.text = "1";
   }
 //Instantitate each item sprite as an InventoryItem
   void SpawnItem(Item item, InventorySlot slot)

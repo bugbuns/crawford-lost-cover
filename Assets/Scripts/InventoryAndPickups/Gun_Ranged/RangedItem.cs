@@ -39,6 +39,17 @@ public class RangedItem: MonoBehaviour, IInteractable
         }
     }
 
+    public int GetMagazineSize()
+    {
+        switch (itemType)
+        {
+            default:
+            case RangedItemType.Pistol: return 8;
+            case RangedItemType.Shotgun: return 5;
+            case RangedItemType.TommyGun: return 25;
+        }
+    }
+
     //Interaction System
     [SerializeField] private string prompt;
     public string InteractionPrompt => prompt;
