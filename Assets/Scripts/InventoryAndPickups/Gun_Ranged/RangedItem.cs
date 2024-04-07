@@ -50,6 +50,28 @@ public class RangedItem: MonoBehaviour, IInteractable
         }
     }
 
+    public int GetDamage()
+    {
+        switch (itemType)
+        {
+            default:
+            case RangedItemType.Pistol: return 2;
+            case RangedItemType.Shotgun: return 5;
+            case RangedItemType.TommyGun: return 3; 
+        }
+    }
+
+    public float GetRange()
+    {
+        switch (itemType)
+        {
+            default:
+            case RangedItemType.Pistol: return 15f;
+            case RangedItemType.Shotgun: return 7f;
+            case RangedItemType.TommyGun: return 15f;
+        }
+    }
+
     //Interaction System
     [SerializeField] private string prompt;
     public string InteractionPrompt => prompt;

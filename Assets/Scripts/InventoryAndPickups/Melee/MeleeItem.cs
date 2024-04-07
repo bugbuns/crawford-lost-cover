@@ -11,6 +11,7 @@ public class MeleeItem: MonoBehaviour,IInteractable
 {
     public enum MeleeItemType
     {
+        Fists,
         Crowbar,
         Bat
     }
@@ -26,8 +27,21 @@ public class MeleeItem: MonoBehaviour,IInteractable
         switch(itemType)
         {
             default:
+            case MeleeItemType.Fists: return ItemAssets.Instance.Item3Sprite;
             case MeleeItemType.Crowbar: return ItemAssets.Instance.Item1Sprite;
             case MeleeItemType.Bat: return ItemAssets.Instance.Item2Sprite;
+            
+        }
+    }
+
+    public int GetDamage()
+    {
+        switch(itemType)
+        {
+            default:
+            case MeleeItemType.Fists: return 1;
+            case MeleeItemType.Crowbar: return 3;
+            case MeleeItemType.Bat: return 2;
             
         }
     }

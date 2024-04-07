@@ -32,7 +32,9 @@ public class InventoryManager : MonoBehaviour
   void Awake()
   {
     input = new PlayerControls();
-   
+    MeleeItem melee = new MeleeItem();
+    melee.itemType = MeleeItem.MeleeItemType.Fists;
+    PlayerStats.Instance.activeMelee = melee;
     refreshInventory();
   }
 

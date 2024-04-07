@@ -118,6 +118,8 @@ public class GunSystem : MonoBehaviour
                 bulletsLeft = PlayerStats.Instance.activeRanged.GetAmmo();
                 PlayerStats.Instance.decreaseAmmo(PlayerStats.Instance.activeRanged.GetAmmo());
             }
+
+            damage = PlayerStats.Instance.activeRanged.GetDamage();
         }
     }
 
