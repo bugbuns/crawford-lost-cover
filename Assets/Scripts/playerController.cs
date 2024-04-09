@@ -91,13 +91,19 @@ public class playerController : MonoBehaviour
         if (isCrouching == false && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = true;
+<<<<<<< HEAD
             moveSpeed = moveSpeed / 2;
+=======
+>>>>>>> parent of 3a5a545 (Harvey Crouches and movement is slowed when crouched)
             _animator.SetBool("isCrouching", true);
         }
         else if (isCrouching == true && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = false;
+<<<<<<< HEAD
             moveSpeed = moveSpeed * 2;
+=======
+>>>>>>> parent of 3a5a545 (Harvey Crouches and movement is slowed when crouched)
             _animator.SetBool("isCrouching", false);
         }
     }
