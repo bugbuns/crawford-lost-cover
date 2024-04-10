@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 258582948}
   - component: {fileID: 258582947}
   - component: {fileID: 258582946}
-  - component: {fileID: 258582945}
+  - component: {fileID: 258582950}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -143,26 +143,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &258582945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258582944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de323b970651f440b35bf88cb38fa2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTarget: {fileID: 1586931212}
-  rotationSpeed: 2
-  distanceX: -0.7
-  distanceY: -2.5
-  distanceZ: 2
-  minVert: -25
-  maxVert: 45
-  frameOffset: {x: 0, y: 0}
 --- !u!114 &258582946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,11 +226,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -275,12 +255,27 @@ Transform:
   m_GameObject: {fileID: 258582944}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.58, y: 2.419, z: -5.3}
+  m_LocalPosition: {x: 0.4, y: 2.33, z: -3.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1586931212}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &258582950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258582944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de323b970651f440b35bf88cb38fa2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitive: 1
+  target: {fileID: 258582949}
+  player: {fileID: 1586931212}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +865,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6030938872932840916, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 258582949}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2601572404105892254, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
@@ -1109,7 +1108,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 258582949}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 521732227}

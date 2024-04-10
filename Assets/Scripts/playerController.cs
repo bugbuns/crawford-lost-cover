@@ -53,20 +53,8 @@ public class playerController : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        float moveAmount = Mathf.Abs(h) + Mathf.Abs(v);
-
-        var moveInput = (new Vector3(h, 0, v)).normalized;
-
-        var moveDir = cameraController.PlanarRotation * moveInput;
-
-        if (moveAmount > 0)
-        {
-            transform.position += moveDir * moveSpeed * Time.deltaTime;
-            targetRotation = Quaternion.LookRotation(moveDir);
-        }
-
-        transform.rotation = Quaternion.RotateTowards(
-            transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Vector3 move = new Vector3(h, 0f, v) * moveSpeed * Time.deltaTime;
+        transform.Translate(move, Space.Self);
 
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
 
@@ -91,19 +79,17 @@ public class playerController : MonoBehaviour
         if (isCrouching == false && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = true;
-<<<<<<< HEAD
+
             moveSpeed = moveSpeed / 2;
-=======
->>>>>>> parent of 3a5a545 (Harvey Crouches and movement is slowed when crouched)
+
             _animator.SetBool("isCrouching", true);
         }
         else if (isCrouching == true && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = false;
-<<<<<<< HEAD
+
             moveSpeed = moveSpeed * 2;
-=======
->>>>>>> parent of 3a5a545 (Harvey Crouches and movement is slowed when crouched)
+
             _animator.SetBool("isCrouching", false);
         }
     }
