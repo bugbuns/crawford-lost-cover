@@ -19,6 +19,7 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
+        //Add any interactable objects in to the collider array
         _numFound = Physics.OverlapSphereNonAlloc(interactionPoint.position, interactionPointRadius, colliders,
             interactableMask);
         if (_numFound > 0)
@@ -26,6 +27,7 @@ public class Interactor : MonoBehaviour
            _interactable = colliders[0].GetComponent<IInteractable>();
             if (_interactable != null)
             {
+                //Display the interaction prompt if there are interactable objects in the area
                 if (!_interactionPromptUI.isDisplayed)
                 {
                     _interactionPromptUI.SetUp(_interactable.InteractionPrompt);
