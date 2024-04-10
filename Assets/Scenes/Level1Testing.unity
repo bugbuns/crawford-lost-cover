@@ -9634,7 +9634,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: afdb32cf65787b8479b599940bd826f1, type: 2}
+      objectReference: {fileID: 9100000, guid: 159ae4e52da8f2747a21222728df5b67, type: 2}
     - target: {fileID: 4961333607857704160, guid: 9357ea69dd31e6644bc8de3da365c4a4,
         type: 3}
       propertyPath: m_Name
@@ -13372,8 +13372,8 @@ MonoBehaviour:
   sensitive: 1
   target: {fileID: 1344299185}
   player: {fileID: 892113525}
-  lookMin: -9
-  lookMax: 19
+  lookMin: -21
+  lookMax: 9
 --- !u!1 &1361220574
 GameObject:
   m_ObjectHideFlags: 0
