@@ -8,17 +8,14 @@ using UnityEngine.InputSystem;
 public class playerController : MonoBehaviour
 {
     // Serialized variables
-    [SerializeField] private float _movementSpeed = 5f;
-    [SerializeField] private GameObject _camFocus;
-    
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float rotationSpeed = 500f;
+
     // Basic movement variables
     private Vector3 _movementInput;
-    private Vector3 _forward;
-    private Vector3 _right;
     private Rigidbody _rigidBody;
-    private Vector3 _camForward;
-    private Vector3 _camRight;
-    
+
+
     // Input system
     private PlayerInput _playerInput;
 
@@ -27,12 +24,18 @@ public class playerController : MonoBehaviour
     private Vector3 temp;
 
     public bool isCrouching;
+
+    private CamControl cameraController;
+    private Quaternion targetRotation;
     
-    void Awake()
+    private void Awake()
     {
+        //CamControl
+        cameraController = Camera.main.GetComponent<CamControl>();
+
         //Create and Setup Inventory
-        
-        
+
+
     }
     // Start is called before the first frame update
     void Start()
@@ -47,6 +50,12 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+
+        Vector3 move = new Vector3(h, 0f, v) * moveSpeed * Time.deltaTime;
+        transform.Translate(move, Space.Self);
+
         _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
 
         _animator.SetFloat("hzInput", _movementInput.x, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
@@ -66,31 +75,21 @@ public class playerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _camForward = _camFocus.transform.forward - new Vector3(0, _camFocus.transform.forward.y, 0);
-        _camRight = _camFocus.transform.right - new Vector3(0, _camFocus.transform.right.y, 0);
-        _camForward.Normalize();
-        _camRight.Normalize();
         
-        _forward = _movementInput.normalized.y * _movementSpeed * _camForward;
-        _right = _movementInput.normalized.x * _movementSpeed * _camRight;
-
-        transform.forward = _camForward;
-
-        if (_movementInput.magnitude > .1f)
-        {
-            _rigidBody.velocity = _forward + _right + new Vector3(0, _rigidBody.velocity.y, 0);
-        }
-
         if (isCrouching == false && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = true;
-            _movementSpeed = _movementSpeed / 2;
+
+            moveSpeed = moveSpeed / 2;
+
             _animator.SetBool("isCrouching", true);
         }
         else if (isCrouching == true && _playerInput.actions["Crouch"].WasPressedThisFrame())
         {
             isCrouching = false;
-            _movementSpeed = _movementSpeed * 2;
+
+            moveSpeed = moveSpeed * 2;
+
             _animator.SetBool("isCrouching", false);
         }
     }
