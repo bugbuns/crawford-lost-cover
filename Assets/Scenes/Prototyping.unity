@@ -273,9 +273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de323b970651f440b35bf88cb38fa2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitive: 1
+  sensitive: 1.5
   target: {fileID: 258582949}
   player: {fileID: 1586931212}
+  lookMin: -23
+  lookMax: 9
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

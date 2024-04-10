@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class CamControl : MonoBehaviour
 {
-    public float sensitive = 1;
+    [SerializeField] float sensitive = 1;
     public Transform target;
     public Transform player;
 
     private float mouseX;
     private float mouseY;
+
+    [SerializeField] private float lookMin = -9;
+    [SerializeField] private float lookMax = 19;
 
 
     private void Start()
@@ -28,13 +31,13 @@ public class CamControl : MonoBehaviour
     {
         mouseX += Input.GetAxis("Mouse X") * sensitive;
         mouseY += Input.GetAxis("Mouse Y") * sensitive;
-        mouseY = Mathf.Clamp(mouseY, -9, 19);
+        mouseY = Mathf.Clamp(mouseY, lookMin, lookMax);
         
         
         transform.LookAt(target);
         
         player.rotation = Quaternion.Euler(0, mouseX, 0);
         
-        target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+        target.rotation = Quaternion.Euler(-mouseY, mouseX, 0);
     }
 }
