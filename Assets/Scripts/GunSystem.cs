@@ -51,6 +51,7 @@ public class GunSystem : MonoBehaviour
                 Debug.Log(rayHit.collider.name);
                 if(rayHit.collider.CompareTag("Enemy"))
                     rayHit.collider.GetComponent<EnemyAI>().TakeDamage(damage);
+                    rayHit.collider.GetComponent<Rigidbody>().AddForce(Vector3.back*100);
             }
             //Graphics
             
