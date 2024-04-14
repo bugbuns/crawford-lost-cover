@@ -18149,6 +18149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7738130da68c7e542a03a68f7d8fe85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Crowbar: {fileID: 0}
+  Bat: {fileID: 0}
+  Pistol: {fileID: 0}
+  Shotgun: {fileID: 0}
   Item1Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Item2Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   Item3Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
@@ -21127,7 +21131,7 @@ PrefabInstance:
     - target: {fileID: 6702592823815732093, guid: aa21cde744a180449b2841138b361efa,
         type: 3}
       propertyPath: itemType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6702592823815732093, guid: aa21cde744a180449b2841138b361efa,
         type: 3}

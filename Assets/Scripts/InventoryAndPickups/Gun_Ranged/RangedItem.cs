@@ -22,9 +22,9 @@ public class RangedItem: MonoBehaviour, IInteractable
         switch(itemType)
         {
             default:
-            case RangedItemType.Pistol: return ItemAssets.Instance.Item1Sprite;
-            case RangedItemType.Shotgun: return ItemAssets.Instance.Item2Sprite;
-            case RangedItemType.TommyGun: return ItemAssets.Instance.Item3Sprite;
+            case RangedItemType.Pistol: return ItemAssets.Instance.Pistol;
+            case RangedItemType.Shotgun: return ItemAssets.Instance.Shotgun;
+            case RangedItemType.TommyGun: return ItemAssets.Instance.TommyGun;
         }
     }
 

@@ -27,9 +27,9 @@ public class MeleeItem: MonoBehaviour,IInteractable
         switch(itemType)
         {
             default:
-            case MeleeItemType.Fists: return ItemAssets.Instance.Item3Sprite;
-            case MeleeItemType.Crowbar: return ItemAssets.Instance.Item1Sprite;
-            case MeleeItemType.Bat: return ItemAssets.Instance.Item2Sprite;
+            case MeleeItemType.Fists: return ItemAssets.Instance.Fists;
+            case MeleeItemType.Crowbar: return ItemAssets.Instance.Crowbar;
+            case MeleeItemType.Bat: return ItemAssets.Instance.Bat;
             
         }
     }

@@ -27,7 +27,7 @@ public class HealingItem: MonoBehaviour, IInteractable
         switch(itemType)
         {
             default:
-            case HealingItemType.Medkit: return ItemAssets.Instance.Item1Sprite;
+            case HealingItemType.Medkit: return ItemAssets.Instance.Medkit;
             
         }
     }
