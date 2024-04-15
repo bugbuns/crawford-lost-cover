@@ -18,8 +18,10 @@ public class ItemAssets : MonoBehaviour
 
    [Header("Guns")] 
    public Sprite Pistol;
+   public Sprite Revolver;
    public Sprite Shotgun;
    public Sprite TommyGun;
+   
 
    [Header("Heals")] 
    public Sprite Medkit;

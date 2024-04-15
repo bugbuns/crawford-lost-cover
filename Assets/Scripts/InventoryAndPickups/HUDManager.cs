@@ -11,7 +11,7 @@ public class HUDManager : MonoBehaviour
 
     //bool
     [HideInInspector] public bool meleeActive = false;
-    [HideInInspector] public bool gunActive = true;
+    [HideInInspector] public bool gunActive = false;
 
     //MeleeHUD
     [Header("MeleeHUD")]
@@ -38,12 +38,18 @@ public class HUDManager : MonoBehaviour
     
     void Awake()
     {
-        GunHUD.SetActive(true);
-        gunActive = true;
-        setHealthBar();
         if(PlayerStats.Instance.activeRanged!=null)refreshGunHud();
         input = new PlayerControls();
     }
+
+    private void Start()
+    {
+        meleeHUD.SetActive(true);
+        meleeActive = true;
+        meleeSprite.sprite = PlayerStats.Instance.activeMelee.GetSprite();
+        setHealthBar();
+    }
+
     //Toggle the hud based on what weapon is equipped
     private void toggleGUNHUD(InputAction.CallbackContext context)
     {
@@ -92,6 +98,8 @@ public class HUDManager : MonoBehaviour
         
         //Set the proper markers active
         int tempMeleeHealth = PlayerStats.Instance.activeMelee.meleeHealth;
+        //Set Sprite
+        meleeSprite.sprite=PlayerStats.Instance.activeMelee.GetSprite();
 
         for (int i = 0; i < tempMeleeHealth; i++)
         {

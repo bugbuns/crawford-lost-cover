@@ -8645,7 +8645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &959906850
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8748,7 +8748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1003837178
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18476,13 +18476,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7738130da68c7e542a03a68f7d8fe85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fists: {fileID: 0}
-  Crowbar: {fileID: 0}
-  Bat: {fileID: 0}
-  Pistol: {fileID: 0}
-  Shotgun: {fileID: 0}
-  TommyGun: {fileID: 0}
-  Medkit: {fileID: 0}
+  Fists: {fileID: -192770216, guid: 09ed63aef75db7e4d8b189fe9b9e2dd5, type: 3}
+  Crowbar: {fileID: -1814693695, guid: 09ed63aef75db7e4d8b189fe9b9e2dd5, type: 3}
+  Bat: {fileID: -1105203318, guid: 09ed63aef75db7e4d8b189fe9b9e2dd5, type: 3}
+  Pistol: {fileID: 792024622, guid: 09ed63aef75db7e4d8b189fe9b9e2dd5, type: 3}
+  Revolver: {fileID: -1359074797, guid: 09ed63aef75db7e4d8b189fe9b9e2dd5, type: 3}
+  Shotgun: {fileID: 2062503471, guid: 09ed63aef75db7e4d8b189fe9b9e2dd5, type: 3}
+  TommyGun: {fileID: -430042565, guid: 09ed63aef75db7e4d8b189fe9b9e2dd5, type: 3}
+  Medkit: {fileID: 1281869850, guid: 09ed63aef75db7e4d8b189fe9b9e2dd5, type: 3}
   Item1Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Item2Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   Item3Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
@@ -21516,6 +21517,11 @@ PrefabInstance:
     - target: {fileID: 9219050291946172334, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
       propertyPath: health
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219050291946172334, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
+      propertyPath: pistolAmmo
       value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []

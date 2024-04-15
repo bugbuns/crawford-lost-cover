@@ -10,6 +10,7 @@ public class RangedItem: MonoBehaviour, IInteractable
     public enum RangedItemType
     {
        Pistol,
+       Revolver,
        Shotgun,
        TommyGun
     }
@@ -23,6 +24,7 @@ public class RangedItem: MonoBehaviour, IInteractable
         {
             default:
             case RangedItemType.Pistol: return ItemAssets.Instance.Pistol;
+            case RangedItemType.Revolver: return ItemAssets.Instance.Revolver;
             case RangedItemType.Shotgun: return ItemAssets.Instance.Shotgun;
             case RangedItemType.TommyGun: return ItemAssets.Instance.TommyGun;
         }
@@ -34,6 +36,7 @@ public class RangedItem: MonoBehaviour, IInteractable
         {
             default:
             case RangedItemType.Pistol: return PlayerStats.Instance.pistolAmmo;
+            case RangedItemType.Revolver: return PlayerStats.Instance.pistolAmmo;
             case RangedItemType.Shotgun: return PlayerStats.Instance.shotgunAmmo;
             case RangedItemType.TommyGun: return PlayerStats.Instance.TommyGunAmmo;    
         }
@@ -45,6 +48,7 @@ public class RangedItem: MonoBehaviour, IInteractable
         {
             default:
             case RangedItemType.Pistol: return 8;
+            case RangedItemType.Revolver: return 6;
             case RangedItemType.Shotgun: return 5;
             case RangedItemType.TommyGun: return 25;
         }
@@ -56,7 +60,8 @@ public class RangedItem: MonoBehaviour, IInteractable
         {
             default:
             case RangedItemType.Pistol: return 2;
-            case RangedItemType.Shotgun: return 5;
+            case RangedItemType.Revolver: return 4;
+            case RangedItemType.Shotgun: return 6;
             case RangedItemType.TommyGun: return 3; 
         }
     }
@@ -67,6 +72,7 @@ public class RangedItem: MonoBehaviour, IInteractable
         {
             default:
             case RangedItemType.Pistol: return 15f;
+            case RangedItemType.Revolver: return 15f;
             case RangedItemType.Shotgun: return 7f;
             case RangedItemType.TommyGun: return 15f;
         }

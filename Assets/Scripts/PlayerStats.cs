@@ -10,7 +10,8 @@ public class PlayerStats:MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        
+        activeMelee = new MeleeItem();
+        activeMelee.itemType = MeleeItem.MeleeItemType.Fists;
 
     }
 
