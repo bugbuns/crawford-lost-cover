@@ -8,24 +8,28 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    
+
     //bool
-    public bool meleeActive = false;
-    public bool gunActive = true;
+    [HideInInspector] public bool meleeActive = false;
+    [HideInInspector] public bool gunActive = true;
 
     //MeleeHUD
+    [Header("MeleeHUD")]
     public GameObject meleeHUD;
+    public Image MeleeHUDPlayerHealth;
     public GameObject[] meleeHealthTrackers;
     public Image meleeSprite;
     
-    //GunHUD
+    [Header("GunHUD")]
     public GameObject GunHUD;
+    public Image GunHUDPlayerHealth;
     public TextMeshProUGUI bulletCountText;
     public GameObject bulletuiprefab;
     public GameObject bulletHolder;
     public GunSystem _GunSystem;
     public Image gunSprite;
     //Input
+    
     public PlayerControls input;
     private InputAction enableGunHUD;
     private InputAction enableMeleeHUD;
@@ -35,6 +39,8 @@ public class HUDManager : MonoBehaviour
     void Awake()
     {
         GunHUD.SetActive(true);
+        gunActive = true;
+        setHealthBar();
         if(PlayerStats.Instance.activeRanged!=null)refreshGunHud();
         input = new PlayerControls();
     }
@@ -45,6 +51,7 @@ public class HUDManager : MonoBehaviour
         gunActive = true;
         GunHUD.SetActive(true);
         meleeHUD.SetActive(false);
+        setHealthBar();
         if(PlayerStats.Instance.activeRanged!=null)refreshGunHud();
 
     }
@@ -54,6 +61,7 @@ public class HUDManager : MonoBehaviour
         gunActive = false;
         meleeHUD.SetActive(true);
         GunHUD.SetActive(false);
+        setHealthBar();
         if(PlayerStats.Instance.activeMelee!=null)refreshMeleeHud();
     }
 
@@ -88,6 +96,18 @@ public class HUDManager : MonoBehaviour
         for (int i = 0; i < tempMeleeHealth; i++)
         {
             meleeHealthTrackers[i].SetActive(true);
+        }
+    }
+
+    public void setHealthBar()
+    {
+        if (gunActive)
+        {
+            GunHUDPlayerHealth.fillAmount = PlayerStats.Instance.health/100f;
+        }
+        else if (meleeActive)
+        {
+            MeleeHUDPlayerHealth.fillAmount = PlayerStats.Instance.health/100f;
         }
     }
     

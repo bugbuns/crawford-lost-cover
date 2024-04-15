@@ -10,6 +10,19 @@ public class Door : MonoBehaviour, IInteractable
     public bool Interact(Interactor interactor)
     {
         Debug.Log("Opening Door");
+        if (PlayerStats.Instance.activeMelee.itemType == MeleeItem.MeleeItemType.Crowbar)
+        {
+            openDoor();
+        }
+        else
+        {
+            prompt = "Door Locked";
+        }
         return true;
+    }
+
+    public void openDoor()
+    {
+        Destroy(gameObject);
     }
 }
