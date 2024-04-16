@@ -14,6 +14,7 @@ public class playerController : MonoBehaviour
     // Basic movement variables
     private Vector3 _movementInput;
     private Rigidbody _rigidBody;
+    
 
 
     // Input system
@@ -25,14 +26,17 @@ public class playerController : MonoBehaviour
 
     public bool isCrouching;
 
+    
+
     private CamControl cameraController;
     private Quaternion targetRotation;
+    
     
     private void Awake()
     {
         //CamControl
         cameraController = Camera.main.GetComponent<CamControl>();
-
+        
        
 
 
@@ -45,6 +49,8 @@ public class playerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
 
         isCrouching = false;
+
+        
     }
 
     // Update is called once per frame
@@ -92,6 +98,13 @@ public class playerController : MonoBehaviour
 
             _animator.SetBool("isCrouching", false);
         }
+
+        if (_playerInput.actions["Dodge"].WasPressedThisFrame())
+        {
+            _animator.SetTrigger("isDodging");
+        }
     }
+
+    
 }
 
