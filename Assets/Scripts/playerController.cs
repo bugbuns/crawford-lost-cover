@@ -33,7 +33,7 @@ public class playerController : MonoBehaviour
         //CamControl
         cameraController = Camera.main.GetComponent<CamControl>();
 
-        //Create and Setup Inventory
+       
 
 
     }
