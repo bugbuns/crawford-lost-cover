@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,13 +20,15 @@ public class playerController : MonoBehaviour
 
     // Input system
     private PlayerInput _playerInput;
+    private float h;
+    private float v;
 
     private Animator _animator;
 
     private Vector3 temp;
 
     public bool isCrouching;
-
+    public bool isDodging;
     
 
     private CamControl cameraController;
@@ -56,8 +59,8 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(h, 0f, v) * moveSpeed * Time.deltaTime;
         transform.Translate(move, Space.Self);
@@ -99,9 +102,10 @@ public class playerController : MonoBehaviour
             _animator.SetBool("isCrouching", false);
         }
 
-        if (_playerInput.actions["Dodge"].WasPressedThisFrame())
+        if (_playerInput.actions["Dodge"].WasPressedThisFrame()) 
         {
             _animator.SetTrigger("isDodging");
+            
         }
     }
 
