@@ -17,6 +17,9 @@ public class EnemyAI : MonoBehaviour
   public Transform walkPoint;
   public bool walkPointSet;
   public float walkPointRange;
+
+    private float h;
+    private float v;
   
 
   //Attacking
@@ -28,7 +31,14 @@ public class EnemyAI : MonoBehaviour
   public bool playerInSightRange;
   public bool playerInAttackRange;
 
-  private void Awake()
+    public Animator _animator;
+
+    void Start()
+    {
+        _animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Awake()
   {
     player=GameObject.Find("Player").transform;
     agent = GetComponent<NavMeshAgent>();
@@ -36,8 +46,14 @@ public class EnemyAI : MonoBehaviour
 
   private void Update()
   {
-    //check for range
-    playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
+        _animator.SetFloat("hzInput", 1, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
+        _animator.SetFloat("vInput", 1, 0.1f, Time.deltaTime);
+
+        //check for range
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
     playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 
     if (!playerInAttackRange && !playerInSightRange)
