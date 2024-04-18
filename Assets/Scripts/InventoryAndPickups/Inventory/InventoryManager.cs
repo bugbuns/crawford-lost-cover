@@ -96,12 +96,20 @@ public class InventoryManager : MonoBehaviour
   }
   public void SetHeals(HealingItem heals)
   {
-    if (meleeWeaponSlot.GetComponentInChildren<HealsInventoryItem>() == null)
+    if (healingItemSlot.GetComponentInChildren<HealsInventoryItem>()==null)
     {
       SpawnHealsItem(heals, healingItemSlot);
       PlayerStats.Instance.ActiveHealingItem = heals;
       refreshInventory();
 
+    }
+    else if (healingItemSlot.GetComponentInChildren<HealsInventoryItem>().item.itemType == heals.itemType)
+    {
+      //Stack
+    }
+    else
+    {
+      //replace
     }
   }
 //Do the same for collectible items in the 10 available item slots

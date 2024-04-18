@@ -10,10 +10,10 @@ public class checkPointCheck : MonoBehaviour
     public Transform spawnPosition;
     public Transform playerTransform;
     public Transform playerCheckpoint;
+    public bool enemySpawned;
+    public Transform enemyWalkPoint;
     public float timeDelay;
     public float spawnOffset;
-    public int numEnemies;
-    private bool enemySpawned = false;
 
 
     private void Awake()
@@ -37,9 +37,8 @@ public class checkPointCheck : MonoBehaviour
         yield return new WaitForSeconds(timeDelay);
         //Spawn the enemies with an offset
         //int offset = 0;
-        for (int i = 0; i < numEnemies; i++)
-        {
-            Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
-        }
+        GameObject enemy=Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
+        enemy.GetComponent<EnemyAI>().walkPoint = enemyWalkPoint;
+        Destroy(this.gameObject);
     }
 }
