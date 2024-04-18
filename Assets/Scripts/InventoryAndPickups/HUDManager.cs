@@ -10,7 +10,7 @@ public class HUDManager : MonoBehaviour
 {
 
     //bool
-    [HideInInspector] public bool meleeActive = false;
+    [HideInInspector] public bool meleeActive = true;
     [HideInInspector] public bool gunActive = false;
 
     //MeleeHUD
@@ -39,13 +39,13 @@ public class HUDManager : MonoBehaviour
     void Awake()
     {
         if(PlayerStats.Instance.activeRanged!=null)refreshGunHud();
+        meleeActive = true;
         input = new PlayerControls();
     }
 
     private void Start()
     {
         meleeHUD.SetActive(true);
-        meleeActive = true;
         meleeSprite.sprite = PlayerStats.Instance.activeMelee.GetSprite();
         setHealthBar();
     }
@@ -100,6 +100,7 @@ public class HUDManager : MonoBehaviour
         int tempMeleeHealth = PlayerStats.Instance.activeMelee.meleeHealth;
         //Set Sprite
         meleeSprite.sprite=PlayerStats.Instance.activeMelee.GetSprite();
+        meleeSprite.color=Color.white;
 
         for (int i = 0; i < tempMeleeHealth; i++)
         {
@@ -109,14 +110,8 @@ public class HUDManager : MonoBehaviour
 
     public void setHealthBar()
     {
-        if (gunActive)
-        {
-            GunHUDPlayerHealth.fillAmount = PlayerStats.Instance.health/100f;
-        }
-        else if (meleeActive)
-        {
-            MeleeHUDPlayerHealth.fillAmount = PlayerStats.Instance.health/100f;
-        }
+        GunHUDPlayerHealth.fillAmount = PlayerStats.Instance.health/100f; 
+        MeleeHUDPlayerHealth.fillAmount = PlayerStats.Instance.health/100f;
     }
     
    

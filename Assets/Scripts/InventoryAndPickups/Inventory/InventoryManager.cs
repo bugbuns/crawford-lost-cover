@@ -32,10 +32,14 @@ public class InventoryManager : MonoBehaviour
   void Awake()
   {
     input = new PlayerControls();
-    MeleeItem melee = new MeleeItem();
-    melee.itemType = MeleeItem.MeleeItemType.Fists;
-    PlayerStats.Instance.activeMelee = melee;
+    
+    
+    //Start with fists as weapon
+    MeleeItem fistsStart = new MeleeItem();
+    fistsStart.itemType = MeleeItem.MeleeItemType.Fists;
+    PlayerStats.Instance.activeMelee = fistsStart;
     refreshInventory();
+    
   }
 
   private void OnEnable()
@@ -68,26 +72,27 @@ public class InventoryManager : MonoBehaviour
 //Spawning Sprites into their respective locations for melee and ranged weapons and healing items
   public void SetMeleeWeapon(MeleeItem meleeWeapon)
   {
-    if (meleeWeaponSlot.GetComponentInChildren<MeleeInventoryItem>() == null)
+    if (meleeWeaponSlot.GetComponentInChildren<MeleeInventoryItem>() != null)
     {
-      SpawnMeleeItem(meleeWeapon,meleeWeaponSlot);
-      PlayerStats.Instance.activeMelee = meleeWeapon;
-      refreshInventory();
-      hudManager.refreshMeleeHud();
+      Destroy(meleeWeaponSlot.transform.GetChild(0).gameObject);
     }
+    SpawnMeleeItem(meleeWeapon,meleeWeaponSlot);
+    PlayerStats.Instance.activeMelee = meleeWeapon;
+    refreshInventory();
+    hudManager.refreshMeleeHud();
     
   }
   public void SetRangedWeapon(RangedItem rangedWeapon)
   {
-    if (meleeWeaponSlot.GetComponentInChildren<GunInventoryItem>() == null)
+    if (rangedWeaponSlot.GetComponentInChildren<GunInventoryItem>() != null)
     {
-      SpawnRangedItem(rangedWeapon,rangedWeaponSlot);
-      PlayerStats.Instance.activeRanged = rangedWeapon;
-      refreshInventory();
-      gunSystem.loadGunSystem();
-      hudManager.refreshGunHud();
-
+      Destroy(rangedWeaponSlot.transform.GetChild(0).gameObject);
     }
+    SpawnRangedItem(rangedWeapon,rangedWeaponSlot);
+    PlayerStats.Instance.activeRanged = rangedWeapon;
+    refreshInventory();
+    gunSystem.loadGunSystem();
+    hudManager.refreshGunHud();
   }
   public void SetHeals(HealingItem heals)
   {
@@ -119,8 +124,12 @@ public class InventoryManager : MonoBehaviour
 
   public void refreshInventory()
   {
-    
-    if(PlayerStats.Instance.activeMelee!=null)meleeHealthText.text = PlayerStats.Instance.activeMelee.meleeHealth + "%";
+
+    if (PlayerStats.Instance.activeMelee != null)
+    {
+      meleeHealthText.text = PlayerStats.Instance.activeMelee.meleeHealth+"";
+      
+    }
     if(PlayerStats.Instance.activeRanged!=null)ammoText.text = PlayerStats.Instance.activeRanged.GetAmmo() +"";
     if(PlayerStats.Instance.ActiveHealingItem!=null)healsQuantityText.text = "1";
   }
