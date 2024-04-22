@@ -41,9 +41,10 @@ public class checkPointCheck : MonoBehaviour
         //int offset = 0;
         GameObject enemy=Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
         
-        enemy.GetComponent<ScriptedMovement>().patrolPoints = scriptedWalkpoints;
+        enemy.GetComponent<EnemyAI>().scriptedPoints = scriptedWalkpoints;
         enemy.GetComponent<EnemyAI>().patrolPoints = patrolPoints;
-        enemy.GetComponent<ScriptedMovement>().enabled = true;
+        enemy.GetComponent<EnemyAI>().hasScriptedMovement = true;
+        //enemy.GetComponent<ScriptedMovement>().enabled = true;
         //enemy.GetComponent<EnemyAI>().walkPoint = enemyWalkPoint;
         Destroy(this.gameObject);
     }

@@ -16,12 +16,13 @@ public class EnemyAI : MonoBehaviour
   //Patroling
   public Transform walkPoint;
   public Transform[] patrolPoints;
+  public Transform[] scriptedPoints;
   public int currentWalkpoint=0;
-  public bool walkPointSet;
+  public bool walkPointSet=false;
   public float walkPointRange;
   
   //ScriptedMovement
-  public bool hasScriptedMovement;
+  public bool hasScriptedMovement=true;
 
   private float h;
     private float v;
@@ -54,10 +55,7 @@ public class EnemyAI : MonoBehaviour
     //check for range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
     playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
-    if (hasScriptedMovement)
-    {
-      return;
-    }
+  
     if (!playerInAttackRange && !playerInSightRange)
     {
       StartCoroutine(Patroling());
@@ -82,13 +80,15 @@ public class EnemyAI : MonoBehaviour
     if (walkPointSet)
     {
       agent.SetDestination(walkPoint.position);
+      _animator.SetBool("isWalking", true);
+      Debug.Log("Moving");
     }
 
     Vector3 distanceToWalkPoint = transform.position-walkPoint.position;
 
     if (distanceToWalkPoint.magnitude < 1f)
     {
-      
+      _animator.SetBool("isWalking", false);
       agent.SetDestination(transform.position);
       yield return new WaitForSeconds(2f);
       walkPointSet = false;
@@ -98,6 +98,23 @@ public class EnemyAI : MonoBehaviour
 
   private void setWalkPoint()
   {
+    if (hasScriptedMovement)
+    {
+      walkPoint = scriptedPoints[currentWalkpoint];
+      if (currentWalkpoint < scriptedPoints.Length - 1)
+      {
+        currentWalkpoint++;
+      }
+      else
+      {
+        hasScriptedMovement = false;
+      }
+
+      walkPointSet = true;
+
+      return;
+    }
+    
     walkPoint = patrolPoints[currentWalkpoint];
     if (currentWalkpoint < patrolPoints.Length - 1)
     {
