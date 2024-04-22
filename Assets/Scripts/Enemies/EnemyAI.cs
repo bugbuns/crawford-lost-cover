@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = System.Random;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -41,13 +42,16 @@ public class EnemyAI : MonoBehaviour
 
     public Animator _animator;
 
+    
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
+        
     }
 
     private void Awake()
   {
+    setWalkPoint();
     player=GameObject.Find("Player").transform;
     agent = GetComponent<NavMeshAgent>();
   }
@@ -60,7 +64,7 @@ public class EnemyAI : MonoBehaviour
   
     if (!playerInAttackRange && !playerInSightRange)
     {
-      StartCoroutine(Patroling());
+      Patroling();
     }
     else if (playerInSightRange&&!playerInAttackRange)
     {
@@ -72,7 +76,7 @@ public class EnemyAI : MonoBehaviour
     }
   }
 
-  IEnumerator Patroling()
+  public void Patroling()
   {
     if (!walkPointSet)
     {
@@ -83,22 +87,25 @@ public class EnemyAI : MonoBehaviour
     {
       agent.SetDestination(walkPoint.position);
       _animator.SetBool("isWalking", true);
-      Debug.Log("Moving");
+      
     }
 
     Vector3 distanceToWalkPoint = transform.position-walkPoint.position;
-
+    Debug.Log(distanceToWalkPoint);
     if (distanceToWalkPoint.magnitude < 1f)
     {
+      Debug.Log("PointReached");
       _animator.SetBool("isWalking", false);
       agent.SetDestination(transform.position);
-      yield return new WaitForSeconds(2f);
       walkPointSet = false;
+      
+
+
     }
     
   }
 
-  private void setWalkPoint()
+  public void setWalkPoint()
   {
     if (hasScriptedMovement)
     {
@@ -106,6 +113,7 @@ public class EnemyAI : MonoBehaviour
       if (currentWalkpoint < scriptedPoints.Length - 1)
       {
         currentWalkpoint++;
+        
       }
       else
       {
@@ -113,10 +121,10 @@ public class EnemyAI : MonoBehaviour
       }
 
       walkPointSet = true;
-
+      Debug.Log("walkpoint set");
       return;
     }
-    
+    Debug.Log("Patrol Points");
     walkPoint = patrolPoints[currentWalkpoint];
     if (currentWalkpoint < patrolPoints.Length - 1)
     {
