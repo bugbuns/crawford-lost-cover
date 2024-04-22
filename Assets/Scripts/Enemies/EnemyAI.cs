@@ -161,7 +161,7 @@ public class EnemyAI : MonoBehaviour
 
   public void HitPlayer()
   {
-    player.GetComponent<playerController>().takeDamage(damageDealt);
+    //player.GetComponent<playerController>().takeDamage(damageDealt);
     
   }
   
