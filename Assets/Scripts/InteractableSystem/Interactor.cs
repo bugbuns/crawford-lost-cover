@@ -18,7 +18,14 @@ public class Interactor : MonoBehaviour
 
         private IInteractable _interactable;
 
-        private void Update()
+    private Animator _animator;
+
+    private void Start()
+    {
+        _animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Update()
         {
             //Add any interactable objects to the collider array
             _numFound = Physics.OverlapSphereNonAlloc(interactionPoint.position, interactionPointRadius, colliders,
@@ -33,9 +40,11 @@ public class Interactor : MonoBehaviour
                         _interactionPromptUI.SetUp(_interactable.InteractionPrompt); //Setup the interaction prompt
                     }
 
-                    if (Keyboard.current.eKey.wasPressedThisFrame)
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
-                        _interactable.Interact(this); //complete the interaction
+                     _animator.SetTrigger("isGrabbing");
+                     _interactable.Interact(this); //complete the interaction
+                    
                     }
                 }
                 
