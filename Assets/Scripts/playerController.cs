@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = System.Random;
+
 
 public class playerController : MonoBehaviour
 {
@@ -17,7 +19,6 @@ public class playerController : MonoBehaviour
     private Rigidbody _rigidBody;
     
 
-    
 
     // Input system
     private PlayerInput _playerInput;
@@ -30,11 +31,12 @@ public class playerController : MonoBehaviour
 
     public bool isCrouching;
     public bool isDodging;
-    public HUDManager _HUDManager;
     
 
     private CamControl cameraController;
     private Quaternion targetRotation;
+
+    public Random rand;
     
     
     private void Awake()
@@ -55,7 +57,6 @@ public class playerController : MonoBehaviour
 
         isCrouching = false;
 
-        
     }
 
     // Update is called once per frame
@@ -79,6 +80,11 @@ public class playerController : MonoBehaviour
         else
         {
             _animator.SetBool("isWalking", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Melee();
         }
 
         //Debug.Log(_movementInput);
@@ -111,22 +117,12 @@ public class playerController : MonoBehaviour
         }
     }
 
-
-    public void takeDamage(int damage)
+    void Melee()
     {
-        PlayerStats.Instance.health -= damage;
-        _HUDManager.setHealthBar();
-        Debug.Log("Hit");
-        if (PlayerStats.Instance.health <= 0)
-        {
-            defeatPlayer();
-        }
-    }
-
-    public void defeatPlayer()
-    {
-        Debug.Log("game over");
-        
+        rand = new Random();
+        int attackMode = rand.Next(1, 3);
+        _animator.Play("barehand " + attackMode);
+        Debug.Log("Punch");
     }
 
     
