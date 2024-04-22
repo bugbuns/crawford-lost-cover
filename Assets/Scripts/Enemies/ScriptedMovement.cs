@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class ScriptedMovement : MonoBehaviour
 {
-  public NavMeshAgent agent;
+    // Start is called before the first frame update
+
+   
+ public NavMeshAgent agent;
 
   public Transform player;
 
@@ -20,8 +23,7 @@ public class EnemyAI : MonoBehaviour
   public bool walkPointSet;
   public float walkPointRange;
   
-  //ScriptedMovement
-  public bool hasScriptedMovement;
+  
 
   private float h;
     private float v;
@@ -38,6 +40,7 @@ public class EnemyAI : MonoBehaviour
 
     public Animator _animator;
 
+  
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
@@ -45,8 +48,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
   {
+    
     player=GameObject.Find("Player").transform;
     agent = GetComponent<NavMeshAgent>();
+    GetComponent<EnemyAI>().enabled = false;
+    
   }
 
   private void Update()
@@ -60,10 +66,7 @@ public class EnemyAI : MonoBehaviour
         //check for range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
     playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
-    if (hasScriptedMovement)
-    {
-      return;
-    }
+   
     if (!playerInAttackRange && !playerInSightRange)
     {
       StartCoroutine(Patroling());
@@ -97,6 +100,7 @@ public class EnemyAI : MonoBehaviour
       
       agent.SetDestination(transform.position);
       yield return new WaitForSeconds(2f);
+      Debug.Log("WayPoint Reached");
       walkPointSet = false;
     }
     
@@ -105,16 +109,18 @@ public class EnemyAI : MonoBehaviour
   private void setWalkPoint()
   {
     walkPoint = patrolPoints[currentWalkpoint];
+    walkPointSet = true;
     if (currentWalkpoint < patrolPoints.Length - 1)
     {
       currentWalkpoint++;
+      
     }
     else
     {
-      currentWalkpoint = 0;
+      gameObject.GetComponent<EnemyAI>().enabled = true;
+      gameObject.GetComponent<EnemyAI>().health = health;
+      Destroy(this);
     }
-
-    walkPointSet = true;
   }
 
   private void ChasePlayer()

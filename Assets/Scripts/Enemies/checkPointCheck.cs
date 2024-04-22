@@ -11,7 +11,8 @@ public class checkPointCheck : MonoBehaviour
     public Transform playerTransform;
     public Transform playerCheckpoint;
     public bool enemySpawned;
-    public Transform enemyWalkPoint;
+    public Transform[] scriptedWalkpoints;
+    public Transform[] patrolPoints;
     public float timeDelay;
     public float spawnOffset;
 
@@ -19,6 +20,7 @@ public class checkPointCheck : MonoBehaviour
     private void Awake()
     {
         playerTransform = GameObject.Find("Player").transform;
+        
     }
 
     // Update is called once per frame
@@ -38,7 +40,11 @@ public class checkPointCheck : MonoBehaviour
         //Spawn the enemies with an offset
         //int offset = 0;
         GameObject enemy=Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
-        enemy.GetComponent<EnemyAI>().walkPoint = enemyWalkPoint;
+        
+        enemy.GetComponent<ScriptedMovement>().patrolPoints = scriptedWalkpoints;
+        enemy.GetComponent<EnemyAI>().patrolPoints = patrolPoints;
+        enemy.GetComponent<ScriptedMovement>().enabled = true;
+        //enemy.GetComponent<EnemyAI>().walkPoint = enemyWalkPoint;
         Destroy(this.gameObject);
     }
 }
