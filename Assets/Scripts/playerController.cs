@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour
     private Rigidbody _rigidBody;
     
 
+    
 
     // Input system
     private PlayerInput _playerInput;
@@ -29,6 +30,7 @@ public class playerController : MonoBehaviour
 
     public bool isCrouching;
     public bool isDodging;
+    public HUDManager _HUDManager;
     
 
     private CamControl cameraController;
@@ -113,6 +115,7 @@ public class playerController : MonoBehaviour
     public void takeDamage(int damage)
     {
         PlayerStats.Instance.health -= damage;
+        _HUDManager.setHealthBar();
         Debug.Log("Hit");
         if (PlayerStats.Instance.health <= 0)
         {
