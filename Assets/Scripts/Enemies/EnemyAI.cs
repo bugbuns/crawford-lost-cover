@@ -46,13 +46,7 @@ public class EnemyAI : MonoBehaviour
 
   private void Update()
   {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
-
-        _animator.SetFloat("hzInput", 1, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
-        _animator.SetFloat("vInput", 1, 0.1f, Time.deltaTime);
-
-        //check for range
+    //check for range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
     playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 
@@ -100,6 +94,7 @@ public class EnemyAI : MonoBehaviour
   private void ChasePlayer()
   {
     agent.SetDestination(player.position);
+    _animator.SetBool("isWalking", true);
   }
 
   private void AttackPlayer()
@@ -114,6 +109,7 @@ public class EnemyAI : MonoBehaviour
       alreadyAttacked = true;
       Invoke(nameof(ResetAttack),timeBetweenAttacks);
     }
+    _animator.SetBool("isWalking", false);
   }
 
   private void ResetAttack()

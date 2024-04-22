@@ -8,31 +8,40 @@ using UnityEngine.UIElements;
 public class PauseManager : MonoBehaviour
 {
     public GameObject PausePanel;
-    public PlayerInput _PlayerInput;
+    public bool isPaused;
 
     private void Start()
     {
-        _PlayerInput = GetComponent<PlayerInput>();
+        PausePanel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_PlayerInput.actions["Pause"].WasPressedThisFrame())
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            if (isPaused)
+            {
+                Continue();
+            }
+            else
+            {
+                Pause();
+            }
         }
     }
 
     public void Pause()
     {
         PausePanel.SetActive(true);
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
+        isPaused = true;
     }
 
     public void Continue()
     {
         PausePanel.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
+        isPaused = false;
     }
 }
