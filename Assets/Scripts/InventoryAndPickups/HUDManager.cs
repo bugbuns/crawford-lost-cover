@@ -40,6 +40,7 @@ public class HUDManager : MonoBehaviour
     {
         if(PlayerStats.Instance.activeRanged!=null)refreshGunHud();
         meleeActive = true;
+        gunActive = false;
         input = new PlayerControls();
     }
 
