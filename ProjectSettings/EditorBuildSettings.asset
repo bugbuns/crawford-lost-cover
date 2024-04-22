@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Prototyping.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
-    guid: e5cf1ab0f1e31374e90bb08347425ff7
   - enabled: 0
     path: Assets/Scenes/Level 1.unity
     guid: 6ef549f43da618d4b876d3b68a4db6db
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: e5cf1ab0f1e31374e90bb08347425ff7
+  - enabled: 1
+    path: Assets/Scenes/Intro Cutscene.unity
+    guid: 1b2b1b1b5ba6ea941a7a3fdfccecfc60
   - enabled: 1
     path: Assets/Scenes/Level1Testing.unity
     guid: 2ebd0cb62a004d84389f057c4b4865de
