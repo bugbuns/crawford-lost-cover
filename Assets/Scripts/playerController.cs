@@ -109,6 +109,23 @@ public class playerController : MonoBehaviour
         }
     }
 
+
+    public void takeDamage(int damage)
+    {
+        PlayerStats.Instance.health -= damage;
+        Debug.Log("Hit");
+        if (PlayerStats.Instance.health <= 0)
+        {
+            defeatPlayer();
+        }
+    }
+
+    public void defeatPlayer()
+    {
+        Debug.Log("game over");
+        
+    }
+
     
 }
 

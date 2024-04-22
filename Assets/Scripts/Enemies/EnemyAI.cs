@@ -13,6 +13,8 @@ public class EnemyAI : MonoBehaviour
   public LayerMask playerMask, groundMask;
 
   public int health;
+
+  public int damageDealt=10;
   //Patroling
   public Transform walkPoint;
   public Transform[] patrolPoints;
@@ -141,6 +143,7 @@ public class EnemyAI : MonoBehaviour
     if (!alreadyAttacked)
     {
       //AttackCode
+      HitPlayer();
       
       //
       alreadyAttacked = true;
@@ -154,6 +157,12 @@ public class EnemyAI : MonoBehaviour
   private void ResetAttack()
   {
     alreadyAttacked = false;
+  }
+
+  public void HitPlayer()
+  {
+    player.GetComponent<playerController>().takeDamage(damageDealt);
+    
   }
   
   

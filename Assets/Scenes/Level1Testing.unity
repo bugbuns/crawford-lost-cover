@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5575,7 +5575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a2798dc1a22b14f9df8f7f9f6bc4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2204435863579899874, guid: b9deb86f0d3bff8428bc94165599eb16,
+  enemyPrefab: {fileID: 2204435863579899874, guid: e09946676b393fd4c8319a8c230005ae,
     type: 3}
   spawnPosition: {fileID: 1694865400}
   playerTransform: {fileID: 892113525}
@@ -15014,7 +15014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a2798dc1a22b14f9df8f7f9f6bc4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2204435863579899874, guid: b9deb86f0d3bff8428bc94165599eb16,
+  enemyPrefab: {fileID: 2204435863579899874, guid: e09946676b393fd4c8319a8c230005ae,
     type: 3}
   spawnPosition: {fileID: 1694865400}
   playerTransform: {fileID: 892113525}
@@ -15026,7 +15026,7 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 57663386}
   - {fileID: 1975894893}
-  timeDelay: 15
+  timeDelay: 5
   spawnOffset: 0
 --- !u!4 &1430783561
 Transform:
@@ -15087,7 +15087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a2798dc1a22b14f9df8f7f9f6bc4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2204435863579899874, guid: b9deb86f0d3bff8428bc94165599eb16,
+  enemyPrefab: {fileID: 2204435863579899874, guid: e09946676b393fd4c8319a8c230005ae,
     type: 3}
   spawnPosition: {fileID: 1694865400}
   playerTransform: {fileID: 892113525}
@@ -15099,7 +15099,7 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 351032836}
   - {fileID: 1737080466}
-  timeDelay: 15
+  timeDelay: 5
   spawnOffset: 0
 --- !u!1 &1436183124
 GameObject:
