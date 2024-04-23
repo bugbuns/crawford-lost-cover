@@ -45,13 +45,14 @@ public class EnemyAI : MonoBehaviour
     
     void Start()
     {
+        setWalkPoint();
         _animator = GetComponentInChildren<Animator>();
         
     }
 
     private void Awake()
   {
-    setWalkPoint();
+    
     player=GameObject.Find("Player").transform;
     agent = GetComponent<NavMeshAgent>();
   }
@@ -74,13 +75,14 @@ public class EnemyAI : MonoBehaviour
     {
       AttackPlayer();
     }
+    
   }
 
   public void Patroling()
   {
     if (!walkPointSet)
     {
-      setWalkPoint();
+      Invoke(nameof(setWalkPoint),2f);
     }
 
     if (walkPointSet)
@@ -102,10 +104,12 @@ public class EnemyAI : MonoBehaviour
 
 
     }
+
+  
     
   }
 
-  public void setWalkPoint()
+  private void setWalkPoint()
   {
     if (hasScriptedMovement)
     {
