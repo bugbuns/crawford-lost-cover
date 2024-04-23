@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour
   
   //ScriptedMovement
   public bool hasScriptedMovement=true;
+  public bool isStandStillEnemy=false;
 
   private float h;
     private float v;
@@ -45,7 +46,7 @@ public class EnemyAI : MonoBehaviour
     
     void Start()
     {
-        setWalkPoint();
+        if(!isStandStillEnemy)setWalkPoint();
         _animator = GetComponentInChildren<Animator>();
         
     }
@@ -65,6 +66,7 @@ public class EnemyAI : MonoBehaviour
   
     if (!playerInAttackRange && !playerInSightRange)
     {
+      if (isStandStillEnemy) {agent.SetDestination(transform.position); return;} //If the enemy has no movement, stand still
       Patroling();
     }
     else if (playerInSightRange&&!playerInAttackRange)
@@ -93,10 +95,10 @@ public class EnemyAI : MonoBehaviour
     }
 
     Vector3 distanceToWalkPoint = transform.position-walkPoint.position;
-    Debug.Log(distanceToWalkPoint);
+    
     if (distanceToWalkPoint.magnitude < 1f)
     {
-      Debug.Log("PointReached");
+     
       _animator.SetBool("isWalking", false);
       agent.SetDestination(transform.position);
       walkPointSet = false;

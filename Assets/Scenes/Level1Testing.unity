@@ -23893,6 +23893,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.46
       objectReference: {fileID: 0}
+    - target: {fileID: 198975116647094468, guid: e09946676b393fd4c8319a8c230005ae,
+        type: 3}
+      propertyPath: isStandStillEnemy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2204435863579899874, guid: e09946676b393fd4c8319a8c230005ae,
         type: 3}
       propertyPath: m_Name
@@ -23901,7 +23906,7 @@ PrefabInstance:
     - target: {fileID: 2204435863579899874, guid: e09946676b393fd4c8319a8c230005ae,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
