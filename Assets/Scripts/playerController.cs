@@ -5,19 +5,15 @@ using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = System.Random;
-
 
 public class playerController : MonoBehaviour
 {
     // Serialized variables
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float rotationSpeed = 500f;
 
     // Basic movement variables
     private Vector3 _movementInput;
-    private Rigidbody _rigidBody;
-    
+
 
 
     // Input system
@@ -37,23 +33,11 @@ public class playerController : MonoBehaviour
     private CamControl cameraController;
     private Quaternion targetRotation;
 
-    public Random rand;
-    
-    
-    private void Awake()
-    {
-        //CamControl
-        cameraController = Camera.main.GetComponent<CamControl>();
-        
-       
 
-
-    }
     // Start is called before the first frame update
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
-        _rigidBody = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
 
         isCrouching = false;
@@ -121,9 +105,8 @@ public class playerController : MonoBehaviour
 
     void Melee()
     {
-        rand = new Random();
-        int attackMode = rand.Next(1, 3);
-        _animator.Play("barehand " + attackMode);
+        int attackMode = UnityEngine.Random.Range(1, 4);
+        _animator.SetTrigger("Punch " + attackMode);
         Debug.Log("Punch");
     }
 
