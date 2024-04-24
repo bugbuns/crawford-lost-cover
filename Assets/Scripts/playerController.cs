@@ -31,6 +31,7 @@ public class playerController : MonoBehaviour
 
     public bool isCrouching;
     public bool isDodging;
+    public HUDManager _HUDManager;
     
 
     private CamControl cameraController;
@@ -110,10 +111,11 @@ public class playerController : MonoBehaviour
             _animator.SetBool("isCrouching", false);
         }
 
-        if (_playerInput.actions["Dodge"].WasPressedThisFrame()) 
+        if (_playerInput.actions["Dodge"].WasPressedThisFrame())
         {
-            _animator.SetTrigger("isDodging");
-            
+            //gameObject.GetComponent<Rigidbody>().velocity =new Vector3();
+            //_animator.SetTrigger("isDodging");
+
         }
     }
 
@@ -123,6 +125,22 @@ public class playerController : MonoBehaviour
         int attackMode = rand.Next(1, 3);
         _animator.Play("barehand " + attackMode);
         Debug.Log("Punch");
+    }
+
+    public void takeDamage(int damage)
+    {
+        PlayerStats.Instance.health -= damage;
+        _HUDManager.setHealthBar();
+        if (PlayerStats.Instance.health <= 0)
+        {
+            gameOver();
+        }
+        
+    }
+
+    public void gameOver()
+    {
+        //Game Over
     }
 
     
