@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class PauseManager : MonoBehaviour
 {
     public GameObject PausePanel;
+    public GameObject Hud;
     public bool isPaused;
 
     private void Start()
@@ -34,14 +35,20 @@ public class PauseManager : MonoBehaviour
     public void Pause()
     {
         PausePanel.SetActive(true);
+        Hud.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
     }
 
     public void Continue()
     {
         PausePanel.SetActive(false);
+        Hud.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 }
