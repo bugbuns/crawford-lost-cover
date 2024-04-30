@@ -28775,9 +28775,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8216702888202050788, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
+      propertyPath: _dodgeTime
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216702888202050788, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
       propertyPath: _HUDManager
       value: 
       objectReference: {fileID: 1339942411}
+    - target: {fileID: 8216702888202050788, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
+      propertyPath: isCrouching
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8293525362951030854, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

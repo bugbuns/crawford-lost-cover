@@ -13,23 +13,26 @@ public class playerController : MonoBehaviour
 
     // Basic movement variables
     private Vector3 _movementInput;
-
-
-
+    
     // Input system
     private PlayerInput _playerInput;
     private float h;
     private float v;
+    private float tempH;
+    private float tempV;
+    [SerializeField] private float _dodgeSpeedMultiplier = 1.333333f;
+    [SerializeField] private float _dodgeTime;
+    private float _dodgeTimer;
 
     private Animator _animator;
 
     private Vector3 temp;
 
+    private bool beginningCrouch;
     public bool isCrouching;
     public bool isDodging;
     public HUDManager _HUDManager;
     
-
     private CamControl cameraController;
     private Quaternion targetRotation;
 
@@ -41,23 +44,58 @@ public class playerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
 
         isCrouching = false;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        if (!isDodging)
+        {
+            _dodgeTimer = 0;
+            
+            h = _playerInput.actions["Movement"].ReadValue<Vector2>().x;
+            v = _playerInput.actions["Movement"].ReadValue<Vector2>().y;
 
-        Vector3 move = new Vector3(h, 0f, v) * moveSpeed * Time.deltaTime;
-        transform.Translate(move, Space.Self);
+            _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
+            _animator.SetFloat("hzInput", _movementInput.x, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
+            _animator.SetFloat("vInput", _movementInput.y, 0.1f, Time.deltaTime);
 
-        _movementInput = _playerInput.actions["Movement"].ReadValue<Vector2>();
+            if (_movementInput.magnitude > .2)
+            {
+                _animator.SetBool("isWalking", true);
+            }
+            
+            Vector3 move = new Vector3(h, 0f, v) * (moveSpeed * Time.deltaTime);
+            transform.Translate(move, Space.Self);
+            gameObject.layer = 3;
+        }
+        else
+        {
+            _dodgeTimer += Time.deltaTime;
+            Vector3 move = new Vector3(h, 0f, v) * (moveSpeed * Time.deltaTime * _dodgeSpeedMultiplier);
+            transform.Translate(move, Space.Self);
+            gameObject.layer = 2;
 
-        _animator.SetFloat("hzInput", _movementInput.x, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
-        _animator.SetFloat("vInput", _movementInput.y, 0.1f, Time.deltaTime);
+            if (_dodgeTimer > _dodgeTime)
+            {
+                isDodging = false;
+            }
+        }
 
+        _animator.SetFloat("hzInput", h, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
+        _animator.SetFloat("vInput", v, 0.1f, Time.deltaTime);
+
+        if (_playerInput.actions["Crouch"].triggered)
+        {
+            beginningCrouch = true;
+        }
+
+        if (_playerInput.actions["Dodge"].triggered)
+        {
+            isDodging = true;
+            _animator.SetTrigger("isDodging");
+        }
+        
         if (_movementInput != Vector3.zero)
         {
             _animator.SetBool("isWalking", true);
@@ -71,35 +109,29 @@ public class playerController : MonoBehaviour
         {
             Melee();
         }
+        
+        _animator.SetBool("isCrouching", isCrouching);
 
         //Debug.Log(_movementInput);
     }
 
     void FixedUpdate()
     {
-        
-        if (isCrouching == false && _playerInput.actions["Crouch"].WasPressedThisFrame())
+        if (!isCrouching && beginningCrouch)
         {
             isCrouching = true;
 
-            moveSpeed = moveSpeed / 2;
+            moveSpeed /= 2;
 
-            _animator.SetBool("isCrouching", true);
+            beginningCrouch = false;
         }
-        else if (isCrouching == true && _playerInput.actions["Crouch"].WasPressedThisFrame())
+        else if (isCrouching && beginningCrouch)
         {
             isCrouching = false;
 
-            moveSpeed = moveSpeed * 2;
-
-            _animator.SetBool("isCrouching", false);
-        }
-
-        if (_playerInput.actions["Dodge"].WasPressedThisFrame())
-        {
-            //gameObject.GetComponent<Rigidbody>().velocity =new Vector3();
-            //_animator.SetTrigger("isDodging");
-
+            moveSpeed *= 2;
+            
+            beginningCrouch = false;
         }
     }
 
@@ -125,7 +157,5 @@ public class playerController : MonoBehaviour
     {
         //Game Over
     }
-
-    
 }
 
