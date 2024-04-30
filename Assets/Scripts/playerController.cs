@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -93,7 +94,9 @@ public class playerController : MonoBehaviour
         if (_playerInput.actions["Dodge"].triggered)
         {
             isDodging = true;
+            StartCoroutine(changeLayerForDodge());
             _animator.SetTrigger("isDodging");
+            
         }
         
         if (_movementInput != Vector3.zero)
@@ -140,6 +143,16 @@ public class playerController : MonoBehaviour
         int attackMode = UnityEngine.Random.Range(1, 4);
         _animator.SetTrigger("Punch " + attackMode);
         Debug.Log("Punch");
+    }
+
+    IEnumerator changeLayerForDodge()
+    {
+        gameObject.layer = 2;
+        Debug.Log("Safe");
+        yield return new WaitForSeconds(.5f);
+        Debug.Log("Unsafe");
+        gameObject.layer = 3;
+
     }
 
     public void takeDamage(int damage)
