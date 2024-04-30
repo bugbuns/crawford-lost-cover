@@ -35,6 +35,10 @@ public class EnemyAI : MonoBehaviour
   //Attacking
   public float timeBetweenAttacks;
   public bool alreadyAttacked;
+  public RaycastHit rayhit;
+  public Transform attackPoint;
+  public LayerMask whatIsPlayer;
+  
   
   //States
   public float sightRange, attackRange;
@@ -153,17 +157,29 @@ public class EnemyAI : MonoBehaviour
   private void AttackPlayer()
   {
     agent.SetDestination(transform.position);
+    _animator.SetBool("isWalking", false);
     transform.LookAt(player);
     if (!alreadyAttacked)
     {
+      if (Physics.Raycast(attackPoint.transform.position, attackPoint.transform.forward, out rayhit, attackRange+5, whatIsPlayer))
+      {
+        Debug.Log(rayhit.collider.name);
+        if(rayhit.collider.CompareTag("Player"))
+          rayhit.collider.GetComponent<playerController>().takeDamage(damageDealt);
+        rayhit.collider.GetComponent<Rigidbody>().AddForce(Vector3.back*100);
+        HitPlayer();
+      }
       //AttackCode
-      HitPlayer();
-      
+
+      else
+      {
+        Debug.Log("Missed");
+      }
       //
       alreadyAttacked = true;
       Invoke(nameof(ResetAttack),timeBetweenAttacks);
     }
-    _animator.SetBool("isWalking", false);
+    
   }
 
 

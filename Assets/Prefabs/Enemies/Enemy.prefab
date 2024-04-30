@@ -34,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1293923163694534966}
+  - {fileID: 8536085826001321947}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0.169, y: -0.468, z: 0.46}
 --- !u!54 &6580969083777024172
@@ -114,8 +115,13 @@ MonoBehaviour:
   walkPointSet: 0
   walkPointRange: 5
   hasScriptedMovement: 1
+  isStandStillEnemy: 1
   timeBetweenAttacks: 1
   alreadyAttacked: 0
+  attackPoint: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   sightRange: 10
   attackRange: 3
   playerInSightRange: 1
@@ -143,6 +149,37 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &7203356338812144305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8536085826001321947}
+  m_Layer: 0
+  m_Name: AttackPoinit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8536085826001321947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7203356338812144305}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.042, y: 2.601, z: 0.683}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 45511013091857274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1620813448484288221
 PrefabInstance:
   m_ObjectHideFlags: 0
