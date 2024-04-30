@@ -29052,6 +29052,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3438148755880962024, guid: e09946676b393fd4c8319a8c230005ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Armature.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121961219738323788, guid: e09946676b393fd4c8319a8c230005ae,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: c34d082fda0f9c54bbc40a7b6beb859e, type: 3}
     - target: {fileID: 7203356338812144305, guid: e09946676b393fd4c8319a8c230005ae,
         type: 3}
       propertyPath: m_Name
