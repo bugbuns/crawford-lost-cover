@@ -118,7 +118,7 @@ MonoBehaviour:
   isStandStillEnemy: 1
   timeBetweenAttacks: 1
   alreadyAttacked: 0
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 8536085826001321947}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 0

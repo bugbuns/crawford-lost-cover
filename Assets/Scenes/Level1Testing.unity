@@ -28161,6 +28161,11 @@ PrefabInstance:
       propertyPath: hudManager
       value: 
       objectReference: {fileID: 1339942411}
+    - target: {fileID: 1016270713927134938, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
+      propertyPath: invManager
+      value: 
+      objectReference: {fileID: 1139914929}
     - target: {fileID: 1088697504200056233, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

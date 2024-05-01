@@ -15,9 +15,9 @@ public class PlayerStats:MonoBehaviour
 
     }
 
-    public MeleeItem activeMelee=null;
-    public RangedItem activeRanged=null;
-    public HealingItem ActiveHealingItem=null;
+    public MeleeItem activeMelee;
+    public RangedItem activeRanged;
+    public HealingItem ActiveHealingItem;
     
     public int health;
     public int pistolAmmo;

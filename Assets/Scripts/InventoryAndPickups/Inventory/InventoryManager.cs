@@ -60,6 +60,8 @@ public class InventoryManager : MonoBehaviour
 
   public void toggleInv(InputAction.CallbackContext context)
   {
+    
+    refreshInventory();
     if (inventory.activeSelf == isActiveAndEnabled)
     {
       inventory.SetActive(false);
@@ -68,6 +70,7 @@ public class InventoryManager : MonoBehaviour
     {
       inventory.SetActive(true);
     }
+    
   }
 //Spawning Sprites into their respective locations for melee and ranged weapons and healing items
   public void SetMeleeWeapon(MeleeItem meleeWeapon)
@@ -132,9 +135,10 @@ public class InventoryManager : MonoBehaviour
 
   public void refreshInventory()
   {
-
-    if (PlayerStats.Instance.activeMelee != null)
+    Debug.Log(PlayerStats.Instance.activeMelee);
+    if (PlayerStats.Instance.activeMelee.itemType != null)
     {
+      Debug.Log("we have melee");
       meleeHealthText.text = PlayerStats.Instance.activeMelee.meleeHealth+"";
       
     }

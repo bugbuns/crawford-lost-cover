@@ -22,6 +22,7 @@ public class MeleeSystem : MonoBehaviour
    //References
    public Transform attackPoint;
    public HUDManager hudManager;
+   public InventoryManager invManager;
 
    private void Awake()
    {
@@ -49,6 +50,23 @@ public class MeleeSystem : MonoBehaviour
 
    void AttackRaycast()
    {
+       
+       if (PlayerStats.Instance.activeMelee.itemType != MeleeItem.MeleeItemType.Fists)
+       {
+           Debug.Log("Attack");
+           PlayerStats.Instance.activeMelee.meleeHealth--;
+           Debug.Log(PlayerStats.Instance.activeMelee.meleeHealth);
+           if (PlayerStats.Instance.activeMelee.meleeHealth == 0)
+           {
+               MeleeItem fistsStart = new MeleeItem();
+               fistsStart.itemType = MeleeItem.MeleeItemType.Fists;
+               PlayerStats.Instance.activeMelee = fistsStart;
+               invManager.SetMeleeWeapon(fistsStart);
+               
+               
+           }
+           hudManager.refreshMeleeHud();
+       }
        if (Physics.Raycast(attackPoint.position, attackPoint.forward, out RaycastHit hit, attackDistance, attackLayer))
        {
            Debug.Log("Swing");
@@ -61,6 +79,14 @@ public class MeleeSystem : MonoBehaviour
            if (PlayerStats.Instance.activeMelee.itemType != MeleeItem.MeleeItemType.Fists)
            {
                PlayerStats.Instance.activeMelee.meleeHealth--;
+               if (PlayerStats.Instance.activeMelee.meleeHealth == 0)
+               {
+                   MeleeItem fistsStart = new MeleeItem();
+                   fistsStart.itemType = MeleeItem.MeleeItemType.Fists;
+                   PlayerStats.Instance.activeMelee = fistsStart;
+                   invManager.SetMeleeWeapon(fistsStart);
+                   
+               }
            }
            
            hudManager.refreshMeleeHud();

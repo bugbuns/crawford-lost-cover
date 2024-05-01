@@ -51,7 +51,10 @@ public class MeleeItem: MonoBehaviour,IInteractable
     public string InteractionPrompt => prompt;
     public bool Interact(Interactor interactor)
     {
-        invManager.SetMeleeWeapon(this);
+        MeleeItem temp = new MeleeItem();
+        temp.itemType = itemType;
+        temp.meleeHealth = meleeHealth;
+        invManager.SetMeleeWeapon(temp);
         Destroy(this.gameObject);
         return true;
     }
