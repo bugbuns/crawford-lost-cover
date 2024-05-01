@@ -34,10 +34,14 @@ public class playerController : MonoBehaviour
     public bool isDodging;
     public HUDManager _HUDManager;
     
+    //Camera Variables
     private CamControl cameraController;
     private Quaternion targetRotation;
 
     public bool weaponEquipped;
+
+    public int currentEquip;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +51,7 @@ public class playerController : MonoBehaviour
 
         isCrouching = false;
         weaponEquipped = false;
+        currentEquip = 1;
     }
 
     // Update is called once per frame
@@ -84,6 +89,16 @@ public class playerController : MonoBehaviour
                 isDodging = false;
             }
         }
+        
+        //Keep track of if melee or range is equipped
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentEquip = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentEquip = 2;
+        }
 
         _animator.SetFloat("hzInput", h, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
         _animator.SetFloat("vInput", v, 0.1f, Time.deltaTime);
@@ -98,7 +113,6 @@ public class playerController : MonoBehaviour
             isDodging = true;
             StartCoroutine(changeLayerForDodge());
             _animator.SetTrigger("isDodging");
-            
         }
         
         if (_movementInput != Vector3.zero)
@@ -124,7 +138,14 @@ public class playerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Melee();
+            if (currentEquip == 1)
+            {
+                Melee();
+            }
+            else
+            {
+                
+            }
         }
 
         _animator.SetBool("isCrouching", isCrouching);
