@@ -258,6 +258,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4163730884033810741, guid: 971bd1dae17cd9240881ac2647910937,
+        type: 3}
+      propertyPath: m_Name
+      value: Armature.001
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 971bd1dae17cd9240881ac2647910937,
         type: 3}
       propertyPath: m_Controller

@@ -37,6 +37,7 @@ public class playerController : MonoBehaviour
     private CamControl cameraController;
     private Quaternion targetRotation;
 
+    public bool weaponEquipped;
 
     // Start is called before the first frame update
     void Start()
@@ -115,6 +116,12 @@ public class playerController : MonoBehaviour
         
         _animator.SetBool("isCrouching", isCrouching);
 
+        if (PlayerStats.Instance.activeMelee.itemType == MeleeItem.MeleeItemType.Crowbar)
+        {
+            _animator.SetBool("hasCrowPipe", true);
+            weaponEquipped = true;
+        }
+
         //Debug.Log(_movementInput);
     }
 
@@ -140,9 +147,18 @@ public class playerController : MonoBehaviour
 
     void Melee()
     {
-        int attackMode = UnityEngine.Random.Range(1, 4);
-        _animator.SetTrigger("Punch " + attackMode);
-        Debug.Log("Punch");
+        if (weaponEquipped = true)
+        {
+            int attackMode = UnityEngine.Random.Range(1, 4);
+            _animator.SetTrigger("Swing " + attackMode);
+            Debug.Log("Swing");
+        }
+        else
+        {
+            int attackMode = UnityEngine.Random.Range(1, 4);
+            _animator.SetTrigger("Punch " + attackMode);
+            Debug.Log("Punch");
+        }
     }
 
     IEnumerator changeLayerForDodge()
