@@ -46,6 +46,7 @@ public class playerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
 
         isCrouching = false;
+        weaponEquipped = false;
     }
 
     // Update is called once per frame
@@ -109,18 +110,24 @@ public class playerController : MonoBehaviour
             _animator.SetBool("isWalking", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        //Melee animation tracker
+        if (PlayerStats.Instance.activeMelee.itemType == MeleeItem.MeleeItemType.Fists)
         {
-            Melee();
+            _animator.SetBool("hasCrowPipe", false);
+            weaponEquipped = false;
         }
-        
-        _animator.SetBool("isCrouching", isCrouching);
-
-        if (PlayerStats.Instance.activeMelee.itemType == MeleeItem.MeleeItemType.Crowbar)
+        else if (PlayerStats.Instance.activeMelee.itemType == MeleeItem.MeleeItemType.Crowbar)
         {
             _animator.SetBool("hasCrowPipe", true);
             weaponEquipped = true;
         }
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Melee();
+        }
+
+        _animator.SetBool("isCrouching", isCrouching);
 
         //Debug.Log(_movementInput);
     }
@@ -147,17 +154,17 @@ public class playerController : MonoBehaviour
 
     void Melee()
     {
-        if (weaponEquipped = true)
-        {
-            int attackMode = UnityEngine.Random.Range(1, 4);
-            _animator.SetTrigger("Swing " + attackMode);
-            Debug.Log("Swing");
-        }
-        else
+        if (weaponEquipped = false)
         {
             int attackMode = UnityEngine.Random.Range(1, 4);
             _animator.SetTrigger("Punch " + attackMode);
             Debug.Log("Punch");
+        }
+        else if (weaponEquipped = true)
+        {
+            int attackMode = UnityEngine.Random.Range(1, 4);
+            _animator.SetTrigger("Swing " + attackMode);
+            Debug.Log("Swing");
         }
     }
 

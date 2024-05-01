@@ -36,7 +36,7 @@ public class PauseManager : MonoBehaviour
     {
         PausePanel.SetActive(true);
         Hud.SetActive(false);
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
         isPaused = true;
         UnityEngine.Cursor.visible = true;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
