@@ -94,9 +94,11 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentEquip = 1;
+            _animator.SetTrigger("isMeleeEquipped");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            _animator.SetTrigger("isMeleeUnequip");
             currentEquip = 2;
         }
 
@@ -140,7 +142,6 @@ public class playerController : MonoBehaviour
         {
             if (currentEquip == 1)
             {
-                _animator.SetBool("isMeleeEquipping", true);
                 Melee();
             }
             else
