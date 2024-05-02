@@ -66,10 +66,16 @@ public class InventoryManager : MonoBehaviour
     if (inventory.activeSelf == isActiveAndEnabled)
     {
       inventory.SetActive(false);
+      
+      Cursor.visible = false;
+      Cursor.lockState = CursorLockMode.Locked;
     }
     else
     {
       inventory.SetActive(true);
+      
+      Cursor.visible = true;
+      Cursor.lockState = CursorLockMode.None;
     }
     
   }
