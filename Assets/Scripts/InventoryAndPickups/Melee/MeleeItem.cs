@@ -51,11 +51,11 @@ public class MeleeItem: MonoBehaviour,IInteractable
     public string InteractionPrompt => prompt;
     public bool Interact(Interactor interactor)
     {
-        MeleeItem temp = new MeleeItem();
+        /*MeleeItem temp = new MeleeItem();
         temp.itemType = itemType;
-        temp.meleeHealth = meleeHealth;
-        invManager.SetMeleeWeapon(temp);
-        Destroy(this.gameObject);
+        temp.meleeHealth = meleeHealth;*/
+        invManager.SetMeleeWeapon(this);
+        gameObject.SetActive(false);
         return true;
     }
 }

@@ -53,9 +53,8 @@ public class MeleeSystem : MonoBehaviour
        
        if (PlayerStats.Instance.activeMelee.itemType != MeleeItem.MeleeItemType.Fists)
        {
-           Debug.Log("Attack");
+           
            PlayerStats.Instance.activeMelee.meleeHealth--;
-           Debug.Log(PlayerStats.Instance.activeMelee.meleeHealth);
            if (PlayerStats.Instance.activeMelee.meleeHealth == 0)
            {
                MeleeItem fistsStart = new MeleeItem();

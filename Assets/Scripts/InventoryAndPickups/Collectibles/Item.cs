@@ -35,7 +35,8 @@ public class Item: MonoBehaviour,IInteractable
     {
         Inventory.Instance.AddItem(this);
         invManager.AddItem(this);
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+        //Destroy(this.gameObject);
         return true;
     }
 }

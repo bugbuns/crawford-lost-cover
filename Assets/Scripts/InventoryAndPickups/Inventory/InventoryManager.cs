@@ -38,6 +38,7 @@ public class InventoryManager : MonoBehaviour
     MeleeItem fistsStart = new MeleeItem();
     fistsStart.itemType = MeleeItem.MeleeItemType.Fists;
     PlayerStats.Instance.activeMelee = fistsStart;
+    
     refreshInventory();
     
   }
@@ -81,7 +82,6 @@ public class InventoryManager : MonoBehaviour
     }
     SpawnMeleeItem(meleeWeapon,meleeWeaponSlot);
     PlayerStats.Instance.activeMelee = meleeWeapon;
-    refreshInventory();
     hudManager.refreshMeleeHud();
     
   }
@@ -93,7 +93,6 @@ public class InventoryManager : MonoBehaviour
     }
     SpawnRangedItem(rangedWeapon,rangedWeaponSlot);
     PlayerStats.Instance.activeRanged = rangedWeapon;
-    refreshInventory();
     gunSystem.loadGunSystem();
     hudManager.refreshGunHud();
   }
@@ -103,7 +102,6 @@ public class InventoryManager : MonoBehaviour
     {
       SpawnHealsItem(heals, healingItemSlot);
       PlayerStats.Instance.ActiveHealingItem = heals;
-      refreshInventory();
 
     }
     else if (healingItemSlot.GetComponentInChildren<HealsInventoryItem>().item.itemType == heals.itemType)
@@ -136,13 +134,16 @@ public class InventoryManager : MonoBehaviour
   public void refreshInventory()
   {
     Debug.Log(PlayerStats.Instance.activeMelee);
-    if (PlayerStats.Instance.activeMelee.itemType != null)
+    if (PlayerStats.Instance.activeMelee.itemType!= null&&PlayerStats.Instance.activeMelee.itemType!=MeleeItem.MeleeItemType.Fists)
     {
-      Debug.Log("we have melee");
       meleeHealthText.text = PlayerStats.Instance.activeMelee.meleeHealth+"";
-      
     }
-    if(PlayerStats.Instance.activeRanged!=null)ammoText.text = PlayerStats.Instance.activeRanged.GetAmmo() +"";
+
+    if (PlayerStats.Instance.activeRanged != null)
+    {
+      
+      ammoText.text = gunSystem.bulletsLeft+"/" + PlayerStats.Instance.activeRanged.GetAmmo();
+    }
     if(PlayerStats.Instance.ActiveHealingItem!=null)healsQuantityText.text = "1";
   }
 //Instantitate each item sprite as an InventoryItem

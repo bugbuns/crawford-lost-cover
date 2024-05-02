@@ -84,7 +84,8 @@ public class RangedItem: MonoBehaviour, IInteractable
     public bool Interact(Interactor interactor)
     {
         invManager.SetRangedWeapon(this);
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+        //Destroy(this.gameObject);
         return true;
     }
 }
