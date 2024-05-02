@@ -161,6 +161,9 @@ public class EnemyAI : MonoBehaviour
     transform.LookAt(player);
     if (!alreadyAttacked)
     {
+            int attackMode = UnityEngine.Random.Range(1, 4);
+            _animator.SetTrigger("Punch " + attackMode);
+            Debug.Log("Punch");
       if (Physics.Raycast(attackPoint.transform.position, attackPoint.transform.forward, out rayhit, attackRange+5, whatIsPlayer))
       {
         Debug.Log(rayhit.collider.name);
