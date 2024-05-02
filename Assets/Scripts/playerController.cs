@@ -140,6 +140,7 @@ public class playerController : MonoBehaviour
         {
             if (currentEquip == 1)
             {
+                _animator.SetBool("isMeleeEquipping", true);
                 Melee();
             }
             else
@@ -175,13 +176,13 @@ public class playerController : MonoBehaviour
 
     void Melee()
     {
-        if (weaponEquipped = false)
+        if (weaponEquipped == false)
         {
             int attackMode = UnityEngine.Random.Range(1, 4);
             _animator.SetTrigger("Punch " + attackMode);
             Debug.Log("Punch");
         }
-        else if (weaponEquipped = true)
+        else if (weaponEquipped == true)
         {
             int attackMode = UnityEngine.Random.Range(1, 4);
             _animator.SetTrigger("Swing " + attackMode);
