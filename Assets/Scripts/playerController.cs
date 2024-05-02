@@ -93,11 +93,13 @@ public class playerController : MonoBehaviour
         //Keep track of if melee or range is equipped
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            _animator.SetBool("hasCrowPipe", true);
             currentEquip = 1;
-            _animator.SetTrigger("isMeleeEquipped");
+            _animator.SetTrigger("isMeleeEquipping");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            _animator.SetBool("hasCrowPipe", false);
             _animator.SetTrigger("isMeleeUnequip");
             currentEquip = 2;
         }
