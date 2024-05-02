@@ -162,7 +162,7 @@ public class playerController : MonoBehaviour
         }
         else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.Revolver)
         {
-            _animator.SetBool("hasRevolver", true);
+            _animator.SetBool("hasPistol", true);
         }
         else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.Shotgun)
         {
@@ -174,16 +174,14 @@ public class playerController : MonoBehaviour
         }
 
         //Does Attacks
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        
+        if (currentEquip == 1)
         {
-            if (currentEquip == 1)
-            {
-                Melee();
-            }
-            else
-            {
-                
-            }
+            Melee();
+        }
+        else
+        {
+            Range();
         }
 
         _animator.SetBool("isCrouching", isCrouching);
@@ -213,17 +211,28 @@ public class playerController : MonoBehaviour
 
     void Melee()
     {
-        if (weaponEquipped == false)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            int attackMode = UnityEngine.Random.Range(1, 4);
-            _animator.SetTrigger("Punch " + attackMode);
-            Debug.Log("Punch");
+            if (weaponEquipped == false)
+            {
+                int attackMode = UnityEngine.Random.Range(1, 4);
+                _animator.SetTrigger("Punch " + attackMode);
+                Debug.Log("Punch");
+            }
+            else if (weaponEquipped == true)
+            {
+                int attackMode = UnityEngine.Random.Range(1, 4);
+                _animator.SetTrigger("Swing " + attackMode);
+                Debug.Log("Swing");
+            }
         }
-        else if (weaponEquipped == true)
+    }
+
+    void Range()
+    {
+        if (Input.GetMouseButtonDown(1))
         {
-            int attackMode = UnityEngine.Random.Range(1, 4);
-            _animator.SetTrigger("Swing " + attackMode);
-            Debug.Log("Swing");
+            _animator.SetBool("isAiming", true);
         }
     }
 
