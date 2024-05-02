@@ -94,13 +94,19 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentEquip = 1;
+            _animator.SetTrigger("isRangeUnequip");
             _animator.SetTrigger("isMeleeEquipping");
+
+            _animator.SetBool("hasRangeEquipped", false);
             _animator.SetBool("hasMeleeEquipped", true);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _animator.SetTrigger("isMeleeUnequip");
+            _animator.SetTrigger("isRangeEquipping");
+
             _animator.SetBool("hasMeleeEquipped", false);
+            _animator.SetBool("hasRangeEquipped", true);
             currentEquip = 2;
         }
 
@@ -139,7 +145,35 @@ public class playerController : MonoBehaviour
             _animator.SetBool("hasCrowPipe", true);
             weaponEquipped = true;
         }
-        
+        else if (PlayerStats.Instance.activeMelee.itemType == MeleeItem.MeleeItemType.Bat)
+        {
+            _animator.SetBool("hasBat", true);
+            weaponEquipped = true;
+        }
+
+        //Range animation Tracker
+        if (PlayerStats.Instance.activeRanged == null)
+        {
+
+        }
+        else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.Pistol)
+        {
+            _animator.SetBool("hasPistol", true);
+        }
+        else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.Revolver)
+        {
+            _animator.SetBool("hasRevolver", true);
+        }
+        else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.Shotgun)
+        {
+            _animator.SetBool("hasShotgun", true);
+        }
+        else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.TommyGun)
+        {
+            _animator.SetBool("hasRifle", true);
+        }
+
+        //Does Attacks
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (currentEquip == 1)
