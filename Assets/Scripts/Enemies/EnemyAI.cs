@@ -34,6 +34,8 @@ public class EnemyAI : MonoBehaviour
 
   //Attacking
   public float timeBetweenAttacks;
+  public float stunTime;
+  public bool isStunned;
   public bool alreadyAttacked;
   public RaycastHit rayhit;
   public Transform attackPoint;
@@ -161,7 +163,7 @@ public class EnemyAI : MonoBehaviour
     GetComponent<Rigidbody>().velocity = Vector3.zero;
     _animator.SetBool("isWalking", false);
     transform.LookAt(player);
-    if (!alreadyAttacked)
+    if (!alreadyAttacked&&!isStunned)
     {
             int attackMode = UnityEngine.Random.Range(1, 4);
             _animator.SetTrigger("Punch " + attackMode);
@@ -187,11 +189,30 @@ public class EnemyAI : MonoBehaviour
     
   }
 
+  public void Stun()
+  {
+    Random rand = new Random();
+    int temp = rand.Next(1, 6);
+    Debug.Log(temp);
+    if (temp > 1)
+    {
+      isStunned = true;
+    Invoke(nameof(unStun), stunTime);
+    Debug.Log("Stunned");
+    }
+
+}
+
 
 
   private void ResetAttack()
   {
     alreadyAttacked = false;
+  }
+
+  private void unStun()
+  {
+    isStunned = false;
   }
 
   public void HitPlayer()
