@@ -192,7 +192,7 @@ public class EnemyAI : MonoBehaviour
   public void Stun()
   {
     Random rand = new Random();
-    int temp = rand.Next(1, 6);
+    int temp = rand.Next(1, 5);
     Debug.Log(temp);
     if (temp > 1)
     {
