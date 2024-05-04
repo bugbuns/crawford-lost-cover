@@ -10,10 +10,42 @@ public class HealingSystem : MonoBehaviour
     public HUDManager _hudManager;
     public InventoryManager _InventoryManager;
     public bool isHealing;
+    public bool healCancelled;
+    public bool healComplete;
     private InputAction heal;
     void Awake()
     {
         input = new PlayerControls();
+    }
+
+    void Update()
+    {
+        if (healComplete)
+        {
+            if (!healCancelled)
+            {
+                PlayerStats.Instance.health += PlayerStats.Instance.ActiveHealingItem.HealAmount();
+                if (PlayerStats.Instance.health > 100) PlayerStats.Instance.health = 100;
+                isHealing = false;
+                PlayerStats.Instance.ActiveHealingItem.quantity--;
+                if (PlayerStats.Instance.ActiveHealingItem.quantity <= 0)
+                {
+                    _InventoryManager.removeHealingItem();
+                    HealingItem none = new HealingItem();
+                    none.itemType = HealingItem.HealingItemType.None;
+                    _InventoryManager.SetHeals(none);
+                }
+
+               
+                _hudManager.refreshHealingHud();
+                Debug.Log("End Healing");
+            }
+           
+
+            isHealing = false;
+            healComplete = false;
+            healCancelled = false;
+        }
     }
 
     public void Heal(InputAction.CallbackContext context)
@@ -26,12 +58,10 @@ public class HealingSystem : MonoBehaviour
             }
             else
             {
-                PlayerStats.Instance.health += PlayerStats.Instance.ActiveHealingItem.HealAmount();
-                if (PlayerStats.Instance.health > 100) PlayerStats.Instance.health = 100;
+                //PlayerStats.Instance.health += PlayerStats.Instance.ActiveHealingItem.HealAmount();
+                //if (PlayerStats.Instance.health > 100) PlayerStats.Instance.health = 100;
             }
-            
-            PlayerStats.Instance.ActiveHealingItem.quantity--;
-            
+
             _hudManager.refreshHealingHud();
         }
     }
@@ -42,18 +72,8 @@ public class HealingSystem : MonoBehaviour
         isHealing = true;
         Debug.Log("Begin Healing");
         yield return new WaitForSeconds(5f);
-        PlayerStats.Instance.health += PlayerStats.Instance.ActiveHealingItem.HealAmount();
-        if (PlayerStats.Instance.health > 100) PlayerStats.Instance.health = 100;
-        isHealing = false;
-        if (PlayerStats.Instance.ActiveHealingItem.quantity <= 0)
-        {
-            _InventoryManager.removeHealingItem();
-            HealingItem none = new HealingItem();
-            none.itemType = HealingItem.HealingItemType.None;
-            _InventoryManager.SetHeals(none);
-        }
-        _hudManager.refreshHealingHud();
-        Debug.Log("End Healing");
+        healComplete = true;
+
     }
 
     private void OnEnable()

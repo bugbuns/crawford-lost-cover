@@ -217,7 +217,7 @@ public class playerController : MonoBehaviour
             {
                 int attackMode = UnityEngine.Random.Range(1, 4);
                 _animator.SetTrigger("Punch " + attackMode);
-                Debug.Log("Punch");
+                //Debug.Log("Punch");
             }
             else if (weaponEquipped == true)
             {

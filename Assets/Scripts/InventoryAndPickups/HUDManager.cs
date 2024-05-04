@@ -31,6 +31,7 @@ public class HUDManager : MonoBehaviour
     public Image gunSprite;
 
     [Header("HealingHUD")] 
+    public HealingSystem healingSystem;
     public GameObject healingHUD;
     public Image HealingHUDPlayerHealth;
     public Image healsSprite;
@@ -62,6 +63,7 @@ public class HUDManager : MonoBehaviour
     //Toggle the hud based on what weapon is equipped
     private void toggleGUNHUD(InputAction.CallbackContext context)
     {
+        if (healingSystem.isHealing) healingSystem.healCancelled = true;
         meleeActive = false;
         gunActive = true;
         meleeHUD.SetActive(false);
@@ -73,12 +75,14 @@ public class HUDManager : MonoBehaviour
     }
     private void toggleMELEEHUD(InputAction.CallbackContext context)
     {
+        if (healingSystem.isHealing) healingSystem.healCancelled = true;
         meleeActive = true;
         gunActive = false;
         meleeHUD.SetActive(true);
         GunHUD.SetActive(false);
         healsActive = false;
         healingHUD.SetActive(false);
+        
         setHealthBar();
         if(PlayerStats.Instance.activeMelee!=null)refreshMeleeHud(); 
     }

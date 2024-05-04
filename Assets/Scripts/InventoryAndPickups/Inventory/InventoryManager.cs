@@ -108,6 +108,7 @@ public class InventoryManager : MonoBehaviour
     {
       SpawnHealsItem(heals, healingItemSlot);
       PlayerStats.Instance.ActiveHealingItem = heals;
+      hudManager.refreshHealingHud();
 
     }
     else if (healingItemSlot.GetComponentInChildren<HealsInventoryItem>().item.itemType == heals.itemType)

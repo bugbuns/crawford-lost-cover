@@ -36,6 +36,9 @@ public class PlayerStats:MonoBehaviour
             case RangedItem.RangedItemType.Pistol:
                 pistolAmmo -= ammoDec;
                 return;
+            case RangedItem.RangedItemType.Revolver:
+                pistolAmmo -= ammoDec;
+                return;
             case RangedItem.RangedItemType.Shotgun:
                 shotgunAmmo -= ammoDec;
                 return;
