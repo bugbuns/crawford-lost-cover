@@ -100,6 +100,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Equip Heals"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c2e6c39-a12c-4f9e-bfec-23a59bea8b73"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""b0b1b2de-398d-44fb-ba75-577e3afaa9f0"",
@@ -515,6 +524,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf083bc5-db54-40e1-8cc2-c924e56875a3"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip Heals"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1110,6 +1130,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_PickupInteract = m_Player.FindAction("Pickup/Interact", throwIfNotFound: true);
         m_Player_EquipMelee = m_Player.FindAction("Equip Melee", throwIfNotFound: true);
         m_Player_EquipRanged = m_Player.FindAction("Equip Ranged", throwIfNotFound: true);
+        m_Player_EquipHeals = m_Player.FindAction("Equip Heals", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_FireTap = m_Player.FindAction("Fire (Tap)", throwIfNotFound: true);
         m_Player_FireHold = m_Player.FindAction("Fire (Hold)", throwIfNotFound: true);
@@ -1197,6 +1218,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PickupInteract;
     private readonly InputAction m_Player_EquipMelee;
     private readonly InputAction m_Player_EquipRanged;
+    private readonly InputAction m_Player_EquipHeals;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_FireTap;
     private readonly InputAction m_Player_FireHold;
@@ -1215,6 +1237,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @PickupInteract => m_Wrapper.m_Player_PickupInteract;
         public InputAction @EquipMelee => m_Wrapper.m_Player_EquipMelee;
         public InputAction @EquipRanged => m_Wrapper.m_Player_EquipRanged;
+        public InputAction @EquipHeals => m_Wrapper.m_Player_EquipHeals;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @FireTap => m_Wrapper.m_Player_FireTap;
         public InputAction @FireHold => m_Wrapper.m_Player_FireHold;
@@ -1254,6 +1277,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EquipRanged.started += instance.OnEquipRanged;
             @EquipRanged.performed += instance.OnEquipRanged;
             @EquipRanged.canceled += instance.OnEquipRanged;
+            @EquipHeals.started += instance.OnEquipHeals;
+            @EquipHeals.performed += instance.OnEquipHeals;
+            @EquipHeals.canceled += instance.OnEquipHeals;
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
@@ -1300,6 +1326,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EquipRanged.started -= instance.OnEquipRanged;
             @EquipRanged.performed -= instance.OnEquipRanged;
             @EquipRanged.canceled -= instance.OnEquipRanged;
+            @EquipHeals.started -= instance.OnEquipHeals;
+            @EquipHeals.performed -= instance.OnEquipHeals;
+            @EquipHeals.canceled -= instance.OnEquipHeals;
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
@@ -1508,6 +1537,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnPickupInteract(InputAction.CallbackContext context);
         void OnEquipMelee(InputAction.CallbackContext context);
         void OnEquipRanged(InputAction.CallbackContext context);
+        void OnEquipHeals(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnFireTap(InputAction.CallbackContext context);
         void OnFireHold(InputAction.CallbackContext context);

@@ -113,11 +113,20 @@ public class InventoryManager : MonoBehaviour
     else if (healingItemSlot.GetComponentInChildren<HealsInventoryItem>().item.itemType == heals.itemType)
     {
       //Stack
+      PlayerStats.Instance.ActiveHealingItem.quantity++;
     }
     else
     {
-      //replace
+      removeHealingItem();
+      SpawnHealsItem(heals, healingItemSlot);
+      PlayerStats.Instance.ActiveHealingItem = heals;
+      hudManager.refreshHealingHud();
     }
+  }
+
+  public void removeHealingItem()
+  {
+    Destroy(healingItemSlot.transform.GetChild(0).gameObject);
   }
 //Do the same for collectible items in the 10 available item slots
   public bool AddItem(Item item)
@@ -150,7 +159,8 @@ public class InventoryManager : MonoBehaviour
       
       ammoText.text = gunSystem.bulletsLeft+"/" + PlayerStats.Instance.activeRanged.GetAmmo();
     }
-    if(PlayerStats.Instance.ActiveHealingItem!=null)healsQuantityText.text = "1";
+    if(PlayerStats.Instance.ActiveHealingItem!=null)healsQuantityText.text =
+      PlayerStats.Instance.ActiveHealingItem.quantity+ "";
   }
 //Instantitate each item sprite as an InventoryItem
   void SpawnItem(Item item, InventorySlot slot)

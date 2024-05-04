@@ -9,15 +9,15 @@ public class HealingItem: MonoBehaviour, IInteractable
 {
     public enum HealingItemType
     {
-        Medkit
+        Bandages,
+        None
     }
 
     public HealingItemType itemType;
     public InventoryManager invManager;
     public int quantity;
-    
-    
- 
+
+
 
     private bool inRangeToPickup = false;
 
@@ -27,8 +27,20 @@ public class HealingItem: MonoBehaviour, IInteractable
         switch(itemType)
         {
             default:
-            case HealingItemType.Medkit: return ItemAssets.Instance.Medkit;
+            case HealingItemType.Bandages: return ItemAssets.Instance.Bandages;
+            case HealingItemType.None: return ItemAssets.Instance.Fists;
             
+
+        }
+    }
+
+    public int HealAmount()
+    {
+        switch(itemType)
+        {
+            default:
+            case HealingItemType.Bandages: return 50;
+            case HealingItemType.None: return 0;
         }
     }
     //Interaction
@@ -37,7 +49,7 @@ public class HealingItem: MonoBehaviour, IInteractable
     public bool Interact(Interactor interactor)
     {
         invManager.SetHeals(this);
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
         return true;
     }
 }

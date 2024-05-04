@@ -78,6 +78,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Equip Heals",
+                    "type": "Button",
+                    "id": "6c2e6c39-a12c-4f9e-bfec-23a59bea8b73",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Crouch",
                     "type": "Button",
                     "id": "b0b1b2de-398d-44fb-ba75-577e3afaa9f0",
@@ -493,6 +502,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf083bc5-db54-40e1-8cc2-c924e56875a3",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Heals",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

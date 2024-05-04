@@ -24,7 +24,8 @@ public class ItemAssets : MonoBehaviour
    
 
    [Header("Heals")] 
-   public Sprite Medkit;
+   public Sprite Bandages;
+  
    
    
    [Header("Collectibles")]

@@ -12,6 +12,7 @@ public class HUDManager : MonoBehaviour
     //bool
     [HideInInspector] public bool meleeActive = true;
     [HideInInspector] public bool gunActive = false;
+    [HideInInspector] public bool healsActive = false;
 
     //MeleeHUD
     [Header("MeleeHUD")]
@@ -28,11 +29,18 @@ public class HUDManager : MonoBehaviour
     public GameObject bulletHolder;
     public GunSystem _GunSystem;
     public Image gunSprite;
+
+    [Header("HealingHUD")] 
+    public GameObject healingHUD;
+    public Image HealingHUDPlayerHealth;
+    public Image healsSprite;
+    public TextMeshProUGUI healsQuantity;
     //Input
     
     public PlayerControls input;
     private InputAction enableGunHUD;
     private InputAction enableMeleeHUD;
+    private InputAction enableHealHUD;
     
     
     
@@ -56,11 +64,12 @@ public class HUDManager : MonoBehaviour
     {
         meleeActive = false;
         gunActive = true;
-        GunHUD.SetActive(true);
         meleeHUD.SetActive(false);
+        GunHUD.SetActive(true);
+        healsActive = false;
+        healingHUD.SetActive(false);
         setHealthBar();
-        if(PlayerStats.Instance.activeRanged!=null)refreshGunHud();
-
+        if(PlayerStats.Instance.activeRanged!=null)refreshGunHud(); 
     }
     private void toggleMELEEHUD(InputAction.CallbackContext context)
     {
@@ -68,8 +77,22 @@ public class HUDManager : MonoBehaviour
         gunActive = false;
         meleeHUD.SetActive(true);
         GunHUD.SetActive(false);
+        healsActive = false;
+        healingHUD.SetActive(false);
         setHealthBar();
-        if(PlayerStats.Instance.activeMelee!=null)refreshMeleeHud();
+        if(PlayerStats.Instance.activeMelee!=null)refreshMeleeHud(); 
+    }
+
+    private void toggleHEALINGHUD(InputAction.CallbackContext context)
+    {
+        meleeActive = false;
+        gunActive = false;
+        meleeHUD.SetActive(false);
+        GunHUD.SetActive(false);
+        healsActive = true;
+        healingHUD.SetActive(true);
+        setHealthBar();
+        if(PlayerStats.Instance.ActiveHealingItem!=null)refreshHealingHud(); 
     }
 
     public void refreshGunHud()
@@ -109,10 +132,18 @@ public class HUDManager : MonoBehaviour
         }
     }
 
+    public void refreshHealingHud()
+    {
+        healsSprite.sprite = PlayerStats.Instance.ActiveHealingItem.GetSprite();
+        healsQuantity.text = PlayerStats.Instance.ActiveHealingItem.quantity+"x";
+        setHealthBar();
+    }
+
     public void setHealthBar()
     {
         GunHUDPlayerHealth.fillAmount = PlayerStats.Instance.health/100f; 
         MeleeHUDPlayerHealth.fillAmount = PlayerStats.Instance.health/100f;
+        HealingHUDPlayerHealth.fillAmount = PlayerStats.Instance.health / 100f;
     }
     
    
@@ -121,10 +152,14 @@ public class HUDManager : MonoBehaviour
     {
         enableMeleeHUD = input.Player.EquipMelee;
         enableGunHUD = input.Player.EquipRanged;
+        enableHealHUD = input.Player.EquipHeals;
         enableGunHUD.Enable();
         enableMeleeHUD.Enable();
+        enableHealHUD.Enable();
+
         enableGunHUD.performed += toggleGUNHUD;
         enableMeleeHUD.performed += toggleMELEEHUD;
+        enableHealHUD.performed += toggleHEALINGHUD;
     }
 
     private void OnDisable()
