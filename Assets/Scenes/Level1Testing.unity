@@ -10061,6 +10061,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792138245}
   m_CullTransparentMesh: 1
+--- !u!1 &801509388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 42d0fa64434e5a547b0d074972628dec,
+    type: 3}
+  m_PrefabInstance: {fileID: 621313398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &818597787
 GameObject:
   m_ObjectHideFlags: 0
@@ -17613,6 +17619,8 @@ MonoBehaviour:
   HealingHUDPlayerHealth: {fileID: 1706436469}
   healsSprite: {fileID: 1170236030}
   healsQuantity: {fileID: 630791543}
+  _crowbarModel: {fileID: 1959787090}
+  _revolverModel: {fileID: 801509388}
 --- !u!1 &1345015387
 GameObject:
   m_ObjectHideFlags: 0
@@ -25529,6 +25537,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954521404}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1959787090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6264796668564231340, guid: d8579c22a6e24e34486755d0e748cafb,
+    type: 3}
+  m_PrefabInstance: {fileID: 649102313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1965462436
 GameObject:
   m_ObjectHideFlags: 0
