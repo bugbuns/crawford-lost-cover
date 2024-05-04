@@ -15,13 +15,13 @@ public class HUDManager : MonoBehaviour
     [HideInInspector] public bool healsActive = false;
 
     //MeleeHUD
-    [Header("MeleeHUD")]
+    [Header("Melee HUD")]
     public GameObject meleeHUD;
     public Image MeleeHUDPlayerHealth;
     public GameObject[] meleeHealthTrackers;
     public Image meleeSprite;
     
-    [Header("GunHUD")]
+    [Header("Gun HUD")]
     public GameObject GunHUD;
     public Image GunHUDPlayerHealth;
     public TextMeshProUGUI bulletCountText;
@@ -30,7 +30,7 @@ public class HUDManager : MonoBehaviour
     public GunSystem _GunSystem;
     public Image gunSprite;
 
-    [Header("HealingHUD")] 
+    [Header("Healing HUD")] 
     public HealingSystem healingSystem;
     public GameObject healingHUD;
     public Image HealingHUDPlayerHealth;
@@ -43,7 +43,9 @@ public class HUDManager : MonoBehaviour
     private InputAction enableMeleeHUD;
     private InputAction enableHealHUD;
     
-    
+    [Header("Weapon Models")] 
+    [SerializeField] private GameObject _crowbarModel;
+    [SerializeField] private GameObject _revolverModel;
     
     void Awake()
     {
@@ -170,5 +172,45 @@ public class HUDManager : MonoBehaviour
     {
         enableGunHUD.Disable();
         enableMeleeHUD.Disable();
+    }
+
+    private void Update()
+    {
+        if (meleeActive)
+        {
+            switch (PlayerStats.Instance.activeMelee.itemType)
+            {
+                case MeleeItem.MeleeItemType.Fists:
+                    _crowbarModel.SetActive(false);
+                    _revolverModel.SetActive(false);
+                    break;
+                case MeleeItem.MeleeItemType.Crowbar:
+                    _crowbarModel.SetActive(true);
+                    _revolverModel.SetActive(false);
+                    break;
+                default:
+                    _crowbarModel.SetActive(false);
+                    _revolverModel.SetActive(false);
+                    break;
+            }
+        }else if (gunActive)
+        {
+            switch (PlayerStats.Instance.activeRanged.itemType)
+            {
+                case RangedItem.RangedItemType.Revolver:
+                    _crowbarModel.SetActive(false);
+                    _revolverModel.SetActive(true);
+                    break;
+                default:
+                    _crowbarModel.SetActive(false);
+                    _revolverModel.SetActive(false);
+                    break;
+            }
+        }
+        else
+        {
+            _crowbarModel.SetActive(false);
+            _revolverModel.SetActive(false);
+        }
     }
 }

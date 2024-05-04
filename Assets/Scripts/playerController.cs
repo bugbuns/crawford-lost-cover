@@ -23,6 +23,7 @@ public class playerController : MonoBehaviour
     private float tempV;
     [SerializeField] private float _dodgeSpeedMultiplier = 1.333333f;
     [SerializeField] private float _dodgeTime;
+    
     private float _dodgeTimer;
 
     private Animator _animator;

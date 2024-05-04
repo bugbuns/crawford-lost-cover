@@ -62,7 +62,6 @@ public class GunSystem : MonoBehaviour
             bulletsLeft--;
             _HUDManager.refreshGunHud();
             
-            
             Invoke("ResetShot",timeBetweenShooting);
         }
     }

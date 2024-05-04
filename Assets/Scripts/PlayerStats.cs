@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -12,7 +13,6 @@ public class PlayerStats:MonoBehaviour
         Instance = this;
         activeMelee = new MeleeItem();
         activeMelee.itemType = MeleeItem.MeleeItemType.Fists;
-
     }
 
     public MeleeItem activeMelee;
@@ -24,7 +24,6 @@ public class PlayerStats:MonoBehaviour
     public int shotgunAmmo;
     public int TommyGunAmmo;
     
-
     public int maxPistolAmmo;
     public int maxShotgunAmmo;
     public int maxTommyGunAmmo;
@@ -48,6 +47,4 @@ public class PlayerStats:MonoBehaviour
             
         }
     }
-
-    
 }
