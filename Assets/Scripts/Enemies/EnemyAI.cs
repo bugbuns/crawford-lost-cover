@@ -105,6 +105,7 @@ public class EnemyAI : MonoBehaviour
      
       _animator.SetBool("isWalking", false);
       agent.SetDestination(transform.position);
+      GetComponent<Rigidbody>().velocity = Vector3.zero;
       walkPointSet = false;
       
 
@@ -157,6 +158,7 @@ public class EnemyAI : MonoBehaviour
   private void AttackPlayer()
   {
     agent.SetDestination(transform.position);
+    GetComponent<Rigidbody>().velocity = Vector3.zero;
     _animator.SetBool("isWalking", false);
     transform.LookAt(player);
     if (!alreadyAttacked)

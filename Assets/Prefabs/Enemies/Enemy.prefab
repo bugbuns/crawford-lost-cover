@@ -115,7 +115,7 @@ MonoBehaviour:
   walkPointSet: 0
   walkPointRange: 5
   hasScriptedMovement: 1
-  isStandStillEnemy: 1
+  isStandStillEnemy: 0
   timeBetweenAttacks: 1
   alreadyAttacked: 0
   attackPoint: {fileID: 8536085826001321947}
