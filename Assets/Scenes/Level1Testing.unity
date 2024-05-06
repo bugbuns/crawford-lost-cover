@@ -11443,6 +11443,18 @@ MonoBehaviour:
   isHealing: 0
   healCancelled: 0
   healComplete: 0
+--- !u!114 &892113554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985469534032097568, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+    type: 3}
+  m_PrefabInstance: {fileID: 252808666475440867}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58543091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &896100273
 GameObject:
   m_ObjectHideFlags: 0
@@ -18038,6 +18050,7 @@ MonoBehaviour:
   _camTransform: {fileID: 1361882358}
   _aimingDistanceChange: 0
   _playerTransform: {fileID: 892113525}
+  _playerInput: {fileID: 892113554}
   meleeActive: 0
   gunActive: 1
   healsActive: 0

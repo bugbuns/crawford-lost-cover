@@ -13,6 +13,8 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Transform _camTransform;
     [SerializeField] private float _aimingDistanceChange;
     [SerializeField] private Transform _playerTransform;
+    [SerializeField] private PlayerInput _playerInput;
+    
     
     
     //bool
@@ -206,8 +208,17 @@ public class HUDManager : MonoBehaviour
         }else if (gunActive&&PlayerStats.Instance.activeRanged!=null)
 
         {
-            _camTransform.position = _playerTransform.position + _playerTransform.forward * (-2.00804f + _aimingDistanceChange) + Vector3.up * 2.274593f + _playerTransform.right * 0.9825827f;
-            
+            if (_playerInput.actions["Aim"].ReadValue<float>() > 0)
+            {
+                _camTransform.position = _playerTransform.position +
+                                         _playerTransform.forward * (-2.00804f + _aimingDistanceChange) +
+                                         Vector3.up * 2.274593f + _playerTransform.right * 0.9825827f;
+            }
+            else
+            {
+                _camTransform.position = _playerTransform.position + _playerTransform.forward * -2.00804f + Vector3.up * 2.274593f + _playerTransform.right * 0.9825827f;
+            }
+
             switch (PlayerStats.Instance.activeRanged.itemType)
             {
                 case RangedItem.RangedItemType.Revolver:
