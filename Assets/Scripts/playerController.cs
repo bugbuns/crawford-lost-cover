@@ -42,6 +42,7 @@ public class playerController : MonoBehaviour
     public bool weaponEquipped;
 
     public int currentEquip;
+    public bool aiming = false;
     
 
     // Start is called before the first frame update
@@ -173,6 +174,8 @@ public class playerController : MonoBehaviour
         {
             _animator.SetBool("hasRifle", true);
         }
+        
+        
 
         //Does Attacks
         
@@ -231,9 +234,24 @@ public class playerController : MonoBehaviour
 
     void Range()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
             _animator.SetBool("isAiming", true);
+            aiming = true;
+        }
+        else
+        {
+            _animator.SetBool("isAiming", false);
+            aiming = false;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (aiming = true)
+            {
+                _animator.SetTrigger("shooting");
+            }
+            
         }
     }
 
