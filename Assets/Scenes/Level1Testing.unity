@@ -31610,6 +31610,7 @@ MonoBehaviour:
   prompt: Listen in
   progressBar: {fileID: 1284206895}
   doorEvent: {fileID: 722266020}
+  reticle: {fileID: 1292541240}
   hasListened: 0
 --- !u!1001 &8358687385805112279
 PrefabInstance:

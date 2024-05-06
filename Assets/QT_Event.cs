@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class QT_Event : MonoBehaviour
 {
+    
     public float fillAmount = 0;
 
     public float timeThreshold = 0;

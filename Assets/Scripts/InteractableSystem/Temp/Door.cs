@@ -11,7 +11,7 @@ public class Door : MonoBehaviour, IInteractable
 
     public string InteractionPrompt => prompt;
 
-
+    public GameObject reticle;
     public bool hasListened;
     public bool Interact(Interactor interactor)
     {
@@ -27,6 +27,7 @@ public class Door : MonoBehaviour, IInteractable
         Debug.Log("Opening Door");
         if (PlayerStats.Instance.activeMelee.itemType == MeleeItem.MeleeItemType.Crowbar)
         {
+            reticle.SetActive(false);
             progressBar.SetActive(true);
         }
         else
@@ -41,6 +42,7 @@ public class Door : MonoBehaviour, IInteractable
         if (doorEvent.eventSuccess)
         {
             progressBar.SetActive(false);
+            reticle.SetActive(true);
             openDoor();
         }
     }
