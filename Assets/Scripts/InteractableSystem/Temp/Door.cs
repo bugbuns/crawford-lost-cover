@@ -8,10 +8,12 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private string prompt;
     public GameObject progressBar;
     public QT_Event doorEvent;
+    public Animator _animator;
 
     public string InteractionPrompt => prompt;
 
     public GameObject reticle;
+    public bool doorOpen;
     public bool hasListened;
     public bool Interact(Interactor interactor)
     {
@@ -39,22 +41,31 @@ public class Door : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (doorEvent.eventSuccess)
+        if (doorEvent.eventSuccess&&!doorOpen)
         {
             progressBar.SetActive(false);
             reticle.SetActive(true);
+            doorOpen = true;
             openDoor();
         }
     }
 
     public void openDoor()
     {
-        Destroy(gameObject);
+        
+        //Destroy(gameObject);
         //open door animation
+        _animator.SetTrigger("isOpen");
     }
 
     public void listen()
     {
         //Play Dialogue
+    }
+
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
     }
 }
