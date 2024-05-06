@@ -201,7 +201,7 @@ public class HUDManager : MonoBehaviour
                     break;
             }
 
-        else if (gunActive)
+      
 
         }else if (gunActive&&PlayerStats.Instance.activeRanged!=null)
 
