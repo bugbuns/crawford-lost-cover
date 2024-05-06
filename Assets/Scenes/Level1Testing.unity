@@ -17649,6 +17649,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2213495cf9bf441ac5d07c002e8321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camTransform: {fileID: 1821513223}
+  _aimingDistanceChange: 1
+  _playerTransform: {fileID: 892113525}
   meleeActive: 0
   gunActive: 1
   healsActive: 0
@@ -23656,6 +23659,12 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!4 &1821513223 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 128305533394477791, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+    type: 3}
+  m_PrefabInstance: {fileID: 252808666475440867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1823055953
 GameObject:
   m_ObjectHideFlags: 0

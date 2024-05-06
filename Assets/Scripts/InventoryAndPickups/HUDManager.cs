@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine;
@@ -8,7 +9,12 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-
+    [Header("Aiming Offset")]
+    [SerializeField] private Transform _camTransform;
+    [SerializeField] private float _aimingDistanceChange;
+    [SerializeField] private Transform _playerTransform;
+    
+    
     //bool
     [HideInInspector] public bool meleeActive = true;
     [HideInInspector] public bool gunActive = false;
@@ -178,6 +184,7 @@ public class HUDManager : MonoBehaviour
     {
         if (meleeActive)
         {
+            _camTransform.position = _playerTransform.position + _playerTransform.forward * -2.00804f + Vector3.up * 2.274593f + _playerTransform.right * 0.9825827f;
             switch (PlayerStats.Instance.activeMelee.itemType)
             {
                 case MeleeItem.MeleeItemType.Fists:
@@ -193,8 +200,11 @@ public class HUDManager : MonoBehaviour
                     _revolverModel.SetActive(false);
                     break;
             }
-        }else if (gunActive)
+        }
+        else if (gunActive)
         {
+            _camTransform.position = _playerTransform.position + _playerTransform.forward * (-2.00804f + _aimingDistanceChange) + Vector3.up * 2.274593f + _playerTransform.right * 0.9825827f;
+            
             switch (PlayerStats.Instance.activeRanged.itemType)
             {
                 case RangedItem.RangedItemType.Revolver:
@@ -209,6 +219,7 @@ public class HUDManager : MonoBehaviour
         }
         else
         {
+            _camTransform.position = _playerTransform.position + _playerTransform.forward * -2.00804f + Vector3.up * 2.274593f + _playerTransform.right * 0.9825827f;
             _crowbarModel.SetActive(false);
             _revolverModel.SetActive(false);
         }
