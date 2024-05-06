@@ -51,21 +51,6 @@ public class MeleeSystem : MonoBehaviour
    void AttackRaycast()
    {
        
-       if (PlayerStats.Instance.activeMelee.itemType != MeleeItem.MeleeItemType.Fists)
-       {
-           
-           PlayerStats.Instance.activeMelee.meleeHealth--;
-           if (PlayerStats.Instance.activeMelee.meleeHealth == 0)
-           {
-               MeleeItem fistsStart = new MeleeItem();
-               fistsStart.itemType = MeleeItem.MeleeItemType.Fists;
-               PlayerStats.Instance.activeMelee = fistsStart;
-               invManager.SetMeleeWeapon(fistsStart);
-               
-               
-           }
-           hudManager.refreshMeleeHud();
-       }
        if (Physics.Raycast(attackPoint.position, attackPoint.forward, out RaycastHit hit, attackDistance, attackLayer))
        {
            Debug.Log("Swing");
