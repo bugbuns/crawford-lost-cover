@@ -188,7 +188,10 @@ public class playerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.R))
         {
-            _animator.SetTrigger("Reload");
+            if (currentEquip == 2)
+            {
+                _animator.SetTrigger("Reload");
+            }
         }
 
         _animator.SetBool("isCrouching", isCrouching);
