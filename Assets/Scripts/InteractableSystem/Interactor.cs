@@ -12,6 +12,9 @@ public class Interactor : MonoBehaviour
         [SerializeField] private LayerMask interactableMask;
         [SerializeField] private InteractionPromptUI _interactionPromptUI;
         
+        //Temporary, but necessary for time constraints
+        public GameObject door;
+        
         //This collider array will hold any objects that the player is allowed to interact with
         private Collider[] colliders = new Collider[3];
         [SerializeField] private int _numFound;
@@ -42,8 +45,13 @@ public class Interactor : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                     _animator.SetTrigger("isGrabbing");
-                     _interactable.Interact(this); //complete the interaction
+                        if (_interactable != door.GetComponent<IInteractable>())
+                        {
+                            
+                            _animator.SetTrigger("isGrabbing");
+                        }
+
+                        _interactable.Interact(this); //complete the interaction
                     
                     }
                 }

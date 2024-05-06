@@ -19,6 +19,7 @@ public class Door : MonoBehaviour, IInteractable
         {
             listen();
             hasListened = true;
+            prompt = "Open Door";
             return true;
         }
         

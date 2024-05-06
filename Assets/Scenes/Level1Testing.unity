@@ -5098,7 +5098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e91bf9ae5b3319469cc7c08db9f7b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prompt: Open Door
+  prompt: Listen In
   progressBar: {fileID: 1284206895}
   doorEvent: {fileID: 722266020}
   hasListened: 0
@@ -29253,6 +29253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3255849347753036764, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 466413472}
+    - target: {fileID: 3255849347753036764, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+        type: 3}
       propertyPath: interactionPointRadius
       value: 1
       objectReference: {fileID: 0}
@@ -30024,6 +30029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198975116647094468, guid: e09946676b393fd4c8319a8c230005ae,
+        type: 3}
+      propertyPath: sightRange
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 198975116647094468, guid: e09946676b393fd4c8319a8c230005ae,
         type: 3}
