@@ -184,7 +184,7 @@ public class HUDManager : MonoBehaviour
 
     private void Update()
     {
-        if (meleeActive)
+        if (meleeActive&&PlayerStats.Instance.activeMelee!=null)
         {
             _camTransform.position = _playerTransform.position + _playerTransform.forward * -2.00804f + Vector3.up * 2.274593f + _playerTransform.right * 0.9825827f;
             switch (PlayerStats.Instance.activeMelee.itemType)
@@ -202,8 +202,11 @@ public class HUDManager : MonoBehaviour
                     _revolverModel.SetActive(false);
                     break;
             }
-        }
-        else if (gunActive)
+
+      
+
+        }else if (gunActive&&PlayerStats.Instance.activeRanged!=null)
+
         {
             if (_playerInput.actions["Aim"].ReadValue<float>() > 0)
             {

@@ -95,17 +95,24 @@ public class playerController : MonoBehaviour
         //Keep track of if melee or range is equipped
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            currentEquip = 1;
-            _animator.SetTrigger("isRangeUnequip");
-            _animator.SetTrigger("isMeleeEquipping");
+            if (!_animator.GetBool("hasMeleeEquipped"))
+            {
+                currentEquip = 1;
+                _animator.SetTrigger("isRangeUnequip");
+                _animator.SetTrigger("isMeleeEquipping");
+            }
 
             _animator.SetBool("hasRangeEquipped", false);
-            _animator.SetBool("hasMeleeEquipped", true);
+                _animator.SetBool("hasMeleeEquipped", true);
+            
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            _animator.SetTrigger("isMeleeUnequip");
-            _animator.SetTrigger("isRangeEquipping");
+            if (!_animator.GetBool("hasRangeEquipped"))
+            {
+                _animator.SetTrigger("isMeleeUnequip");
+                _animator.SetTrigger("isRangeEquipping");
+            }
 
             _animator.SetBool("hasMeleeEquipped", false);
             _animator.SetBool("hasRangeEquipped", true);
@@ -174,8 +181,6 @@ public class playerController : MonoBehaviour
         {
             _animator.SetBool("hasRifle", true);
         }
-        
-        
 
         //Does Attacks
         
@@ -186,6 +191,14 @@ public class playerController : MonoBehaviour
         else
         {
             Range();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (currentEquip == 2)
+            {
+                _animator.SetTrigger("Reload");
+            }
         }
 
         _animator.SetBool("isCrouching", isCrouching);
