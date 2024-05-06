@@ -174,8 +174,6 @@ public class playerController : MonoBehaviour
         {
             _animator.SetBool("hasRifle", true);
         }
-        
-        
 
         //Does Attacks
         
@@ -186,6 +184,11 @@ public class playerController : MonoBehaviour
         else
         {
             Range();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _animator.SetTrigger("Reload");
         }
 
         _animator.SetBool("isCrouching", isCrouching);
