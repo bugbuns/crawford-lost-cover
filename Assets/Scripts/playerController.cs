@@ -26,7 +26,7 @@ public class playerController : MonoBehaviour
     
     private float _dodgeTimer;
 
-    private Animator _animator;
+    public Animator _animator;
 
     private Vector3 temp;
 
@@ -50,7 +50,7 @@ public class playerController : MonoBehaviour
     {
         _playerInput = GetComponent<PlayerInput>();
         _animator = GetComponentInChildren<Animator>();
-
+        
         isCrouching = false;
         weaponEquipped = false;
         currentEquip = 1;

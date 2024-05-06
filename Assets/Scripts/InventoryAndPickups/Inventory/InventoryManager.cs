@@ -25,9 +25,10 @@ public class InventoryManager : MonoBehaviour
   public PlayerControls input;
   public HUDManager hudManager;
   public GunSystem gunSystem;
+  public playerController _PlayerController;
   private InputAction toggleInventory;
- 
-  
+
+
 
   void Awake()
   {
@@ -88,6 +89,7 @@ public class InventoryManager : MonoBehaviour
     }
     SpawnMeleeItem(meleeWeapon,meleeWeaponSlot);
     PlayerStats.Instance.activeMelee = meleeWeapon;
+    _PlayerController.weaponEquipped = true;
     hudManager.refreshMeleeHud();
     
   }

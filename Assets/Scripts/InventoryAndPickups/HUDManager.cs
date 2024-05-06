@@ -54,6 +54,8 @@ public class HUDManager : MonoBehaviour
     [Header("Weapon Models")] 
     [SerializeField] private GameObject _crowbarModel;
     [SerializeField] private GameObject _revolverModel;
+    [Header("PlayerController")]
+    public playerController PlayerController;
     
     void Awake()
     {
@@ -94,6 +96,7 @@ public class HUDManager : MonoBehaviour
         healingHUD.SetActive(false);
         
         setHealthBar();
+        
         if(PlayerStats.Instance.activeMelee!=null)refreshMeleeHud(); 
     }
 
@@ -143,6 +146,11 @@ public class HUDManager : MonoBehaviour
         for (int i = 0; i < tempMeleeHealth; i++)
         {
             meleeHealthTrackers[i].SetActive(true);
+        }
+
+        if (PlayerController.weaponEquipped)
+        {
+            PlayerController._animator.SetBool("hasMeleeEquipped",true);
         }
     }
 
