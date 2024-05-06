@@ -10,7 +10,7 @@ public class Interactor : MonoBehaviour
         [SerializeField] private Transform interactionPoint;
         [SerializeField] private float interactionPointRadius=0.5f;
         [SerializeField] private LayerMask interactableMask;
-        [SerializeField] private InteractionPromptUI _interactionPromptUI;
+        [SerializeField] public InteractionPromptUI _interactionPromptUI;
         
         //Temporary, but necessary for time constraints
         public GameObject door;

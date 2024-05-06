@@ -20,6 +20,7 @@ public class Door : MonoBehaviour, IInteractable
             listen();
             hasListened = true;
             prompt = "Open Door";
+            interactor._interactionPromptUI.SetUp(prompt);
             return true;
         }
         
