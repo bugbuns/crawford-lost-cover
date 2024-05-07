@@ -7,6 +7,7 @@ using UnityEngine;
 public class checkPointCheck : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject elevatorDoor;
     public Transform spawnPosition;
     public Transform playerTransform;
     public Transform playerCheckpoint;
@@ -46,6 +47,9 @@ public class checkPointCheck : MonoBehaviour
         enemy.GetComponent<EnemyAI>().hasScriptedMovement = true;
         //enemy.GetComponent<ScriptedMovement>().enabled = true;
         //enemy.GetComponent<EnemyAI>().walkPoint = enemyWalkPoint;
+        yield return new WaitForSeconds(1f);
+        //Open Door
+        Destroy(elevatorDoor);
         Destroy(this.gameObject);
     }
 }
