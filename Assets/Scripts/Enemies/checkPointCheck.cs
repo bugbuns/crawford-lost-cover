@@ -16,6 +16,7 @@ public class checkPointCheck : MonoBehaviour
     public Transform[] patrolPoints;
     public float timeDelay;
     public float spawnOffset;
+    public Animator _animator;
 
 
     private void Awake()
@@ -47,11 +48,13 @@ public class checkPointCheck : MonoBehaviour
         enemy.GetComponent<EnemyAI>().hasScriptedMovement = true;
         //enemy.GetComponent<ScriptedMovement>().enabled = true;
         //enemy.GetComponent<EnemyAI>().walkPoint = enemyWalkPoint;
-        
+
         //Ding sound
         yield return new WaitForSeconds(1f);
+
         //Open Door Animation
-        Destroy(elevatorDoor);
-        Destroy(this.gameObject);
+        _animator.SetTrigger("Open");
+        //Destroy(elevatorDoor);
+        //Destroy(this.gameObject);
     }
 }
