@@ -47,8 +47,10 @@ public class checkPointCheck : MonoBehaviour
         enemy.GetComponent<EnemyAI>().hasScriptedMovement = true;
         //enemy.GetComponent<ScriptedMovement>().enabled = true;
         //enemy.GetComponent<EnemyAI>().walkPoint = enemyWalkPoint;
+        
+        //Ding sound
         yield return new WaitForSeconds(1f);
-        //Open Door
+        //Open Door Animation
         Destroy(elevatorDoor);
         Destroy(this.gameObject);
     }
