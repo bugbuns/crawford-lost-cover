@@ -46,6 +46,7 @@ public class EnemyAI : MonoBehaviour
   public float sightRange, attackRange;
   public bool playerInSightRange;
   public bool playerInAttackRange;
+  public bool startPauseDone;
 
     public Animator _animator;
 
@@ -69,7 +70,11 @@ public class EnemyAI : MonoBehaviour
     //check for range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
     playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
-  
+    if (hasScriptedMovement&&!startPauseDone)
+    {
+      StartCoroutine(StartPause());
+      return;
+    }
     if (!playerInAttackRange && !playerInSightRange)
     {
       if (isStandStillEnemy) {agent.SetDestination(transform.position); return;} //If the enemy has no movement, stand still
@@ -203,6 +208,12 @@ public class EnemyAI : MonoBehaviour
     }
 
 }
+
+  IEnumerator StartPause()
+  {
+    yield return new WaitForSeconds(1f);
+    startPauseDone = true;
+  }
 
 
 
