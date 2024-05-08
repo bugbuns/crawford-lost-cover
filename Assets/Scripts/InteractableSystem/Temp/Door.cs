@@ -12,6 +12,9 @@ public class Door : MonoBehaviour, IInteractable
 
     public string InteractionPrompt => prompt;
 
+    public AudioSource source;
+    public AudioClip clip;
+
     public GameObject reticle;
     public bool doorOpen;
     public bool hasListened;
@@ -61,6 +64,7 @@ public class Door : MonoBehaviour, IInteractable
     public void listen()
     {
         //Play Dialogue
+        source.PlayOneShot(clip);
     }
 
 
