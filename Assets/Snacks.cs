@@ -18,7 +18,7 @@ public class Snacks : MonoBehaviour, IInteractable
 
     public void Eat()
     {
-        PlayerStats.Instance.health += 10;
+        PlayerStats.Instance.health += 25;
         _HUDManager.setHealthBar();
         Destroy(gameObject);
 

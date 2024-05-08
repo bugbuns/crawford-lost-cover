@@ -13,6 +13,8 @@ public class HealingSystem : MonoBehaviour
     public bool healCancelled;
     public bool healComplete;
     private InputAction heal;
+    public Animator _animator;
+
     void Awake()
     {
         input = new PlayerControls();
@@ -70,6 +72,7 @@ public class HealingSystem : MonoBehaviour
     {
         //Animation
         isHealing = true;
+        _animator.SetTrigger("isHealing");
         Debug.Log("Begin Healing");
         yield return new WaitForSeconds(5f);
         healComplete = true;
