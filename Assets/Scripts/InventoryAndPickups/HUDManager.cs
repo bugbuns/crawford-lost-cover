@@ -54,6 +54,7 @@ public class HUDManager : MonoBehaviour
     [Header("Weapon Models")] 
     [SerializeField] private GameObject _crowbarModel;
     [SerializeField] private GameObject _revolverModel;
+    [SerializeField] private GameObject _ShotgunModel;
     [Header("PlayerController")]
     public playerController PlayerController;
     
@@ -200,14 +201,17 @@ public class HUDManager : MonoBehaviour
                 case MeleeItem.MeleeItemType.Fists:
                     _crowbarModel.SetActive(false);
                     _revolverModel.SetActive(false);
+                    _ShotgunModel.SetActive(false);
                     break;
                 case MeleeItem.MeleeItemType.Crowbar:
                     _crowbarModel.SetActive(true);
                     _revolverModel.SetActive(false);
+                    _ShotgunModel.SetActive(false);
                     break;
                 default:
                     _crowbarModel.SetActive(false);
                     _revolverModel.SetActive(false);
+                    _ShotgunModel.SetActive(false);
                     break;
             }
 
@@ -232,10 +236,17 @@ public class HUDManager : MonoBehaviour
                 case RangedItem.RangedItemType.Revolver:
                     _crowbarModel.SetActive(false);
                     _revolverModel.SetActive(true);
+                    _ShotgunModel.SetActive(false);
+                    break;
+                case RangedItem.RangedItemType.Shotgun:
+                    _crowbarModel.SetActive(false);
+                    _revolverModel.SetActive(true);
+                    _ShotgunModel.SetActive(true);
                     break;
                 default:
                     _crowbarModel.SetActive(false);
                     _revolverModel.SetActive(false);
+                    _ShotgunModel.SetActive(false);
                     break;
             }
         }
