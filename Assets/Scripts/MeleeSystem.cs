@@ -59,6 +59,7 @@ public class MeleeSystem : MonoBehaviour
                Debug.Log("Enemy");
                hit.collider.GetComponent<EnemyAI>().TakeDamage(PlayerStats.Instance.activeMelee.GetDamage());
                hit.collider.GetComponent<EnemyAI>().Stun();
+               GetComponent<PlayerAudio>().HitSound();
            }
 
            if (PlayerStats.Instance.activeMelee.itemType != MeleeItem.MeleeItemType.Fists)

@@ -43,6 +43,7 @@ public class GunSystem : MonoBehaviour
         if (readyToShoot && !reloading && bulletsLeft>0 && _HUDManager.gunActive)
         {
             Debug.Log("Fire");
+            GetComponent<PlayerAudio>().fire();
             readyToShoot = false;
             
             //RayCast
@@ -77,6 +78,8 @@ public class GunSystem : MonoBehaviour
         {
             //Reload
             reloading = true;
+            GetComponent<PlayerAudio>().reload();
+            
             Invoke("ReloadFinished",reloadTime);
         }
     }

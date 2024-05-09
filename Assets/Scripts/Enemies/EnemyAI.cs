@@ -48,7 +48,9 @@ public class EnemyAI : MonoBehaviour
   public bool playerInAttackRange;
   public bool startPauseDone;
 
-    public Animator _animator;
+  public Animator _animator;
+
+  
 
     
     void Start()
@@ -56,6 +58,7 @@ public class EnemyAI : MonoBehaviour
         if(!isStandStillEnemy)setWalkPoint();
         _animator = GetComponentInChildren<Animator>();
         
+
     }
 
     private void Awake()
