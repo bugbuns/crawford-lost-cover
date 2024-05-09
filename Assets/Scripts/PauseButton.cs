@@ -7,7 +7,7 @@ public class PauseButton : MonoBehaviour
 {
     public void MainMenu()
     {
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(1);
     }
     
     public void QuitGame(){ 
