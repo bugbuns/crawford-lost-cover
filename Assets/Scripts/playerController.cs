@@ -43,6 +43,9 @@ public class playerController : MonoBehaviour
 
     public int currentEquip;
     public bool aiming = false;
+
+    public GameObject DeathPanel;
+    public GameObject Hud;
     
 
     // Start is called before the first frame update
@@ -54,6 +57,8 @@ public class playerController : MonoBehaviour
         isCrouching = false;
         weaponEquipped = false;
         currentEquip = 1;
+        
+        DeathPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -320,7 +325,8 @@ public class playerController : MonoBehaviour
 
     public void gameOver()
     {
-        //Game Over
+        Time.timeScale = 0f;
+        DeathPanel.SetActive(true);
     }
 }
 
