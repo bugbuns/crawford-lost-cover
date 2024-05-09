@@ -184,9 +184,11 @@ public class playerController : MonoBehaviour
         else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.Revolver)
         {
             _animator.SetBool("hasPistol", true);
+            _animator.SetBool("hasShotgun",false);
         }
         else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.Shotgun)
         {
+            _animator.SetBool("hasPistol", false);
             _animator.SetBool("hasShotgun", true);
         }
         else if (PlayerStats.Instance.activeRanged.itemType == RangedItem.RangedItemType.TommyGun)
