@@ -115,6 +115,21 @@ public class playerController : MonoBehaviour
             _animator.SetBool("hasMeleeEquipped", false);
             currentEquip = 2;
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (currentEquip == 1)
+            {
+                _animator.SetTrigger("isMeleeUnequip");
+            }
+
+            if (currentEquip == 2)
+            {
+                _animator.SetTrigger("isRangeUnequip");
+            }
+            _animator.SetBool("hasRangeEquipped", false);
+            _animator.SetBool("hasMeleeEquipped", false);
+            currentEquip = 3;
+        }
 
         _animator.SetFloat("hzInput", h, 0.1f, Time.deltaTime); //Animations blend together better with float and Time.deltaTime
         _animator.SetFloat("vInput", v, 0.1f, Time.deltaTime);
