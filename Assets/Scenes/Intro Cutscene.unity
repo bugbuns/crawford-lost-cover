@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2925fd06b1662a4c9bf100b9f0e9dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTime: 1
+  changeTime: 0.5
   sceneName: Level1Testing
 --- !u!4 &1291061357
 Transform:
