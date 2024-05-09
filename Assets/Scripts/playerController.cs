@@ -327,6 +327,8 @@ public class playerController : MonoBehaviour
     {
         Time.timeScale = 0f;
         DeathPanel.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }
 
