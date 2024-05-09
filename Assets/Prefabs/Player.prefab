@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 1778289680159406858}
   - component: {fileID: 6092015179447098612}
   - component: {fileID: 1686708322560286980}
+  - component: {fileID: 6966554185444598440}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -357,6 +358,8 @@ MonoBehaviour:
   weaponEquipped: 0
   currentEquip: 0
   aiming: 0
+  DeathPanel: {fileID: 0}
+  Hud: {fileID: 0}
 --- !u!114 &7985469534032097568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +496,7 @@ MonoBehaviour:
   damage: 3
   timeBetweenShooting: 1
   range: 20
-  reloadTime: 1
+  reloadTime: 3.5
   timeBetweenShots: 0
   magazineSize: 7
   allowButtonHold: 0
@@ -570,7 +573,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 186c6119ee43f4e45b80fe9c1a545b87, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -655,6 +658,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6966554185444598440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441110755404669411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fb9ae554d282a4c8248211529ec726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crowbarHit1: {fileID: 8300000, guid: 13c4819cac590254fa506d10609275a3, type: 3}
+  crowbarHit2: {fileID: 8300000, guid: d1fa125f78303ff498180a000c2db083, type: 3}
+  crowbarHit3: {fileID: 8300000, guid: 186c6119ee43f4e45b80fe9c1a545b87, type: 3}
+  revolverReloadSound: {fileID: 8300000, guid: ec6dbba2bad6a1b49bb84d89c2023535, type: 3}
+  shotgunReloadSound: {fileID: 8300000, guid: 9b798a3b3ccf22840b0cc23bdc64f3a0, type: 3}
+  shotgunFire: {fileID: 8300000, guid: fea11de73e03d2e42b89f64811020ece, type: 3}
+  crowbarPickup: {fileID: 8300000, guid: d53b7cdc28fd12442b385065b919b75d, type: 3}
 --- !u!1 &1641781699851318572
 GameObject:
   m_ObjectHideFlags: 0
