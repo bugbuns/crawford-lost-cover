@@ -17,6 +17,7 @@ public class checkPointCheck : MonoBehaviour
     public float timeDelay;
     public float spawnOffset;
     public Animator _animator;
+    public bool doorOpened = false;
 
 
     private void Awake()
@@ -51,9 +52,13 @@ public class checkPointCheck : MonoBehaviour
 
         //Ding sound
         yield return new WaitForSeconds(1f);
-
+        
         //Open Door Animation
-        _animator.SetTrigger("Open");
+        if (!doorOpened)
+        {
+            _animator.SetTrigger("Open");
+            doorOpened = true;
+        }
         //Destroy(elevatorDoor);
         //Destroy(this.gameObject);
     }
