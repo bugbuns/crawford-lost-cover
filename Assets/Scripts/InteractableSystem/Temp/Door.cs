@@ -23,7 +23,6 @@ public class Door : MonoBehaviour, IInteractable
         if (!hasListened)
         {
             listen();
-            hasListened = true;
             prompt = "Open Door";
             interactor._interactionPromptUI.SetUp(prompt);
             return true;
@@ -65,6 +64,16 @@ public class Door : MonoBehaviour, IInteractable
     {
         //Play Dialogue
         source.PlayOneShot(clip);
+        gameObject.layer = 0;
+        StartCoroutine(resetInteractable());
+    }
+
+    IEnumerator resetInteractable()
+    {
+        yield return new WaitForSeconds(42f);
+        gameObject.layer = 6;
+        hasListened = true;
+
     }
 
 
