@@ -15345,6 +15345,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8119827103434788ac1c796ecfe5566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &892113561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6966554185444598440, guid: 027b5ccffae2a407d8d561f2d7ce8544,
+    type: 3}
+  m_PrefabInstance: {fileID: 252808666475440867}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58543091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fb9ae554d282a4c8248211529ec726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &893827464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19751,7 +19763,7 @@ MonoBehaviour:
   hudManager: {fileID: 1339942411}
   gunSystem: {fileID: 892113532}
   _PlayerController: {fileID: 892113560}
-  _PlayerAudio: {fileID: 0}
+  _PlayerAudio: {fileID: 892113561}
 --- !u!4 &1139914930
 Transform:
   m_ObjectHideFlags: 0
