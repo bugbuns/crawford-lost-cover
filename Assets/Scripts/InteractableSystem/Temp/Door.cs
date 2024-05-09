@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class Door : MonoBehaviour, IInteractable
 {
@@ -13,11 +15,12 @@ public class Door : MonoBehaviour, IInteractable
     public string InteractionPrompt => prompt;
 
     public AudioSource source;
-    public AudioClip clip;
-
+    public AudioClip clip;  
+ 
     public GameObject reticle;
     public bool doorOpen;
     public bool hasListened;
+ 
     public bool Interact(Interactor interactor)
     {
         if (!hasListened)
@@ -65,6 +68,7 @@ public class Door : MonoBehaviour, IInteractable
     {
         //Play Dialogue
         source.PlayOneShot(clip);
+ 
     }
 
 
