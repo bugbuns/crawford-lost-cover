@@ -100,8 +100,14 @@ public class playerController : MonoBehaviour
                 _animator.SetTrigger("isRangeUnequip");
                 _animator.SetTrigger("isMeleeEquipping");
             }
+            else if (currentEquip == 3)
+            {
+                _animator.SetTrigger("HealUnequip");
+                _animator.SetTrigger("isMeleeEquipping");
+            }
             _animator.SetBool("hasMeleeEquipped", true);
             _animator.SetBool("hasRangeEquipped", false);
+            _animator.SetBool("hasHealEquipped", false);
             currentEquip = 1;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -111,8 +117,14 @@ public class playerController : MonoBehaviour
                 _animator.SetTrigger("isMeleeUnequip");
                 _animator.SetTrigger("isRangeEquipping");
             }
+            else if (currentEquip == 3)
+            {
+                _animator.SetTrigger("HealUnequip");
+                _animator.SetTrigger("isRangeEquipping");
+            }
             _animator.SetBool("hasRangeEquipped", true);
             _animator.SetBool("hasMeleeEquipped", false);
+            _animator.SetBool("hasHealEquipped", false);
             currentEquip = 2;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -120,14 +132,17 @@ public class playerController : MonoBehaviour
             if (currentEquip == 1)
             {
                 _animator.SetTrigger("isMeleeUnequip");
+                _animator.SetTrigger("HealEquip");
             }
 
             if (currentEquip == 2)
             {
                 _animator.SetTrigger("isRangeUnequip");
+                _animator.SetTrigger("HealEquip");
             }
             _animator.SetBool("hasRangeEquipped", false);
             _animator.SetBool("hasMeleeEquipped", false);
+            _animator.SetBool("hasHealEquipped", true);
             currentEquip = 3;
         }
 

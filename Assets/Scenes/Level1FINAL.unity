@@ -7040,6 +7040,7 @@ Transform:
   - {fileID: 1003837178}
   - {fileID: 959906850}
   - {fileID: 1810276053}
+  - {fileID: 1292541241}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &449032351
@@ -22553,7 +22554,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1474112191}
-  m_Father: {fileID: 892113525}
+  m_Father: {fileID: 445803969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -36817,10 +36818,6 @@ PrefabInstance:
     - {fileID: 1735298580152104212, guid: 027b5ccffae2a407d8d561f2d7ce8544, type: 3}
     - {fileID: 2442222315898935833, guid: 027b5ccffae2a407d8d561f2d7ce8544, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6030938872932840916, guid: 027b5ccffae2a407d8d561f2d7ce8544,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1292541241}
     - targetCorrespondingSourceObject: {fileID: 6546966209245503471, guid: 027b5ccffae2a407d8d561f2d7ce8544,
         type: 3}
       insertIndex: -1
@@ -39225,7 +39222,7 @@ MonoBehaviour:
   prompt: Listen in
   progressBar: {fileID: 1284206895}
   doorEvent: {fileID: 722266020}
-  _animator: {fileID: 0}
+  _animator: {fileID: 8184209498337859856}
   source: {fileID: 201522688}
   clip: {fileID: 8300000, guid: 330164230fd168648b449e1afdaff134, type: 3}
   reticle: {fileID: 1292541240}
